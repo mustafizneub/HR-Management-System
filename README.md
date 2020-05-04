@@ -1,7 +1,7 @@
 # First Step
 
 1. Install node.js
-2. open git bash or cmd inside the file and Run mpm install 
+2. open git bash or cmd inside the file and Run npm install 
 
 # Ecomm
 
