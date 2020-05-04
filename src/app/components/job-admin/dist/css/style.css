@@ -1,0 +1,210 @@
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+.yoBtn {
+  border: none;
+  border: 1px solid #652783;
+  background-color: #652783;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  -webkit-transition: .3s;
+  transition: .3s;
+}
+
+.yoBtn:focus {
+  outline: none;
+}
+
+.yoBtn:hover {
+  background-color: #771aa5;
+  color: #fff;
+}
+
+.sidebar-collapse .wrapper aside:hover .sidebar ul li a span {
+  display: block;
+}
+
+.sidebar-collapse .wrapper aside .sidebar nav ul li a span {
+  display: none;
+}
+
+.active {
+  color: #f08c2e !important;
+}
+
+.wrapper nav {
+  background-color: #652783;
+}
+
+.wrapper nav ul li a {
+  color: #fff;
+}
+
+.wrapper nav .form-inline .input-group {
+  background-color: #fff;
+  border: 1px solid #f08c2e;
+  border-radius: 5px;
+}
+
+.wrapper nav .form-inline .input-group .form-control {
+  background-color: transparent;
+  border: none;
+}
+
+.wrapper nav .form-inline .input-group .input-group-append {
+  border-left: 1px solid #f08c2e;
+}
+
+.wrapper nav .form-inline .input-group .input-group-append button {
+  color: #652783;
+}
+
+aside {
+  background-color: #fff;
+}
+
+aside .brand-link {
+  border-bottom: 2px solid #652783;
+  padding: 12px .5rem;
+}
+
+aside a img {
+  width: 100%;
+  height: 25px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
+aside .sidebar {
+  padding: 0;
+}
+
+aside .sidebar .user-panel {
+  padding: 0 5px;
+  border-bottom: 1px solid #f08c2e;
+}
+
+aside .sidebar .user-panel .image .elevation-2 {
+  -webkit-box-shadow: 0 3px 6px rgba(240, 140, 46, 0.16), 0 3px 6px rgba(240, 140, 46, 0.23) !important;
+          box-shadow: 0 3px 6px rgba(240, 140, 46, 0.16), 0 3px 6px rgba(240, 140, 46, 0.23) !important;
+}
+
+aside .sidebar .user-panel .info a {
+  color: #652783;
+}
+
+aside .sidebar nav ul {
+  background-color: #fff;
+}
+
+aside .sidebar nav ul li {
+  background-color: #fff;
+  padding: 10px 15px;
+  border-bottom: 1px solid #ddd;
+}
+
+aside .sidebar nav ul li a {
+  -webkit-transition: .3s;
+  transition: .3s;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  color: #333;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+aside .sidebar nav ul li a:hover {
+  color: #f08c2e;
+}
+
+aside .sidebar nav ul li a i {
+  font-size: 18px;
+}
+
+aside .sidebar nav ul li a span {
+  text-transform: capitalize;
+  padding-left: 25px;
+  font-size: 24px;
+}
+
+footer p span {
+  font-weight: 600;
+}
+
+footer p .orange {
+  color: #f08c2e;
+}
+
+footer p .purple {
+  color: #652783;
+}
+
+/*add post page css*/
+form {
+  padding: 0 20px;
+}
+
+form .form-row {
+  margin-top: 20px;
+}
+
+form .form-row textarea {
+  height: 200px;
+}
+
+form .form-row .form-control:focus {
+  border: 1px solid #f08c2e;
+}
+
+/*add post page css ends*/
+/*View post page css*/
+.yoCard {
+  border: 1px solid #f08c2e;
+  padding: 10px 5px;
+  border-radius: 5px;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.yoCard-header h4 {
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+/*View post page css ends*/
+/*Full job page css*/
+.full-job {
+  padding: 20px;
+}
+
+.full-job .single-bar {
+  margin: 0 5px;
+}
+
+.full-job p {
+  text-transform: capitalize;
+}
+
+.full-job p span {
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #f08c2e;
+}
+
+.full-job .job-title {
+  font-weight: 600;
+  font-size: 22px;
+  color: #652783;
+}
+
+.full-job .responsibilities {
+  font-size: 22px;
+  color: #652783;
+}
+
+/*Full job page ends*/
+/*# sourceMappingURL=style.css.map */

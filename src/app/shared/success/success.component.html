@@ -1,0 +1,19 @@
+<ng-container *ngIf="message === 'addingAllowance'">
+  <h5 class="text-center bg bg-success p-3 text-white" style="width: 300px; margin:auto">Adding Allowance</h5>
+</ng-container>
+<ng-container *ngIf="message === 'allowanceAdded'">
+  <h5 class="text-center bg bg-success p-3 text-white" style="width: 300px; margin:auto">Allowance Added</h5>
+</ng-container>
+
+<ng-container *ngIf="message === 'mailOnAir'">
+  <h5 class="text-center bg primary-bg-color p-3 text-white" style="width: 300px; margin:auto">Mail On Air...</h5>
+</ng-container>
+<ng-container *ngIf="message === 'mailSent'">
+  <h5 class="text-center bg secondary-bg-color p-3 text-white" style="width: 300px; margin:auto">Mail Sent</h5>
+</ng-container>
+<ng-container *ngIf="message==='salaryUpdating'">
+  <h5 class="text-center bg secondary-bg-color p-3 text-white" style="width: 300px; margin:auto">Updating Salary</h5>
+</ng-container>
+<ng-container *ngIf="message==='salaryUpdated'">
+  <h5 class="text-center bg primary-bg-color p-3 text-white" style="width: 300px; margin:auto">Salary Updated</h5>
+</ng-container>

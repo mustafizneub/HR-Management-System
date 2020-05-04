@@ -1,0 +1,6 @@
+@import '~semantic-ui-css/semantic.css';
+@import "~bootstrap/dist/css/bootstrap.css";
+label sup {
+    color: red;
+    font-size: 13px;
+}

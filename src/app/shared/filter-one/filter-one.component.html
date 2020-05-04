@@ -1,0 +1,20 @@
+<div class="ui form grid huge">
+  <div class="four wide column" id="type-one">
+    <ng-content select=".type-one"></ng-content>
+  </div>
+  <div class="four wide column" id="type-two">
+    <ng-content select=".type-two"></ng-content>
+  </div>
+  <div class="four wide column" id="type-three">
+    <select name="" id="" class="field" (change)="onChange($event)">
+      <ng-content select=".type-three"></ng-content>
+    </select>
+
+  </div>
+  <div class="four wide column" style="position: relative;">
+    <button class="huge ui positive fluid button " (click)="getElem()">Search</button>
+    <span class="reset-table" style="position: absolute; bottom: -10px; right: 10px;" (click)="resetData()">
+      <i class="undo alternate icon"></i>
+    </span>
+  </div>
+</div>

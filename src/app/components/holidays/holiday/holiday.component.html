@@ -1,0 +1,21 @@
+<form class="ui form" [formGroup]="editholiday">
+  <div class="field">
+    <label>Title</label>
+    <input type="text" name="name" placeholder="Title" formControlName="title">
+  </div>
+  <div class="field">
+    <label>Starts In</label>
+    <input type="date" name="name" formControlName="startsIn">
+  </div>
+  <div class="field">
+    <label>Ends In</label>
+    <input type="date" name="name" formControlName="endsIn">
+  </div>
+  <div class="ui grid">
+    <div class="four column row">
+      <div class="right floated column right aligned">
+        <button class="ui button " (click)="editHoliday()">Add</button>
+      </div>
+    </div>
+  </div>
+</form>

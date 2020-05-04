@@ -1,0 +1,133 @@
+<!-- Top navigation -->
+<nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0">
+        <span class="dasboard-text">Hr Management
+        </span>
+    </a>
+</nav>
+
+<!-- Sidebar navigation -->
+<div class="container-fluid">
+    <div class="row">
+
+        <nav class="col-md-2 d-md-block bg-light sidebar">
+            <div class="sidebar-sticky">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/dashboard">
+                            <i class="fas fa-tachometer-alt"></i>Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/clients">
+                            <i class="fa fa-user-plus"></i>Clients
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/projects">
+                            <i class="fa fa-tasks"></i>Projects
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/users">
+                            <i class="ffa fa-check-square"></i>User Role
+                        </a>
+                    </li>
+                    <!-- Calling SignOut() Api from AuthService -->
+                    <li class="nav-item">
+                        <a class="nav-link" (click)="authService.SignOut()">
+                            <i class="fas fa-sign-out-alt"></i>Log out
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Main content -->
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+            <div class="inner-adjust">
+
+                <div class="pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2"></h1>
+                </div>
+                <!-- Show user data when logged in -->
+                <div class="row" *ngIf="authService.userData as user">
+                    <div class="col-md-12">
+                        <div class="media">
+
+                            <div class="media-body">
+                                <h5 style="font-family: 'Merriweather', serif;
+                                ">
+                                    Add User
+                                </h5>
+                                
+                                <form [formGroup]="userForm" (ngSubmit)="submitUserData()" novalidate>
+                                    <div class="row">
+                                        <div class="col-lg-5 col-md-12 col-sm-12">
+
+
+                                            <div class="row">
+                                                <div class="col-md-12 mb-3">
+                                                    <label>Email</label>
+                                                    <input type="email" formControlName="email" class="form-control"
+                                                        required>
+                                                    <!-- Showing errors using getter method -->
+                                                    <p *ngIf="email.touched && email.invalid" class="error">
+                                                        <sup>*</sup>Please provide email</p>
+                                                    <p *ngIf="email.errors?.pattern" class="error"><sup>*</sup>Please
+                                                        enter correct email</p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12 mb-3">
+                                                    <label>Password</label>
+                                                    <input type="text" formControlName="pass" class="form-control"
+                                                        required>
+                                                    <!-- Showing errors using getter method -->
+                                                    <p *ngIf="pass.errors?.pattern" class="error">
+                                                        <sup>*</sup>Please Enter Your Password</p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12 mb-3">
+                                                    <div class="form-check">
+
+                                                        <input type="checkbox" formControlName="showclient"
+                                                            class="form-check-input" />
+                                                        <label class="form-check-label">Access To Client's Function
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+
+                                                        <input type="checkbox" formControlName="showproject"
+                                                            class="form-check-input" />
+                                                        <label class="form-check-label">Access To Project's Function
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group text-right">
+                                                <button type="button" class="btn btn-secondary gap-right"
+                                                    (click)="ResetForm()">Reset</button>
+                                                <button type="submit" class="btn btn-success"
+                                                    [disabled]="!userForm.valid">Add User</button>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </form>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+
+    </div>
+</div>

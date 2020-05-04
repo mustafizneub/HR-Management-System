@@ -1,0 +1,10 @@
+<app-header>
+    <ng-container class="header-title">
+        <div class="left floated column">
+            <h1 class="page-title">Applied Jobs</h1>
+        </div>
+    </ng-container>
+</app-header>
+<div style="margin: 20px 0;"></div>
+
+<app-table [data]="data" [t_headers]='t_headers' (delete)="delete($event)"></app-table>

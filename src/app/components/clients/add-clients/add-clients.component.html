@@ -1,0 +1,89 @@
+<div *ngIf="authService.userData as user">
+    <h5 style="font-family: 'Amiri', serif;">
+        Add Client
+    </h5>
+    <br />
+    <flash-messages></flash-messages>
+
+    <form [formGroup]="clientForm" (ngSubmit)="submitClientData()" novalidate>
+        <div class="row">
+            <div class="col-lg-5 col-md-12 col-sm-12">
+                <div class="row">
+
+                    <div class="col-md-12 mb-3">
+                        <input type="text" formControlName="name" class="form-control" placeholder="Enter Name"
+                            required>
+                        <!-- Showing errors using getter method -->
+                        <p *ngIf="name.touched && name.invalid" class="error">
+                            <sup>*</sup>Please Enter Name</p>
+                        <p *ngIf="name.errors?.minlength" class="error">
+                            <sup>*</sup>Name shouldn't be less than 3 words</p>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-12 mb-3">
+                        <input type="text" formControlName="cpname" class="form-control"
+                            placeholder="Enter Contact Person's Name" required>
+                        <!-- Showing errors using getter method -->
+                        <p *ngIf="cpname.touched && cpname.invalid" class="error">
+                            <sup>*</sup>Please Enter Contact Person's Name</p>
+                        <p *ngIf="cpname.errors?.minlength" class="error">
+                            <sup>*</sup>Contact Person's Name shouldn't be less than 3 words
+                        </p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <input type="email" formControlName="email" class="form-control" placeholder="Enter email"
+                            required>
+                        <!-- Showing errors using getter method -->
+                        <p *ngIf="email.touched && email.invalid" class="error">
+                            <sup>*</sup>Please provide email</p>
+                        <p *ngIf="email.errors?.pattern" class="error"><sup>*</sup>Please
+                            enter correct email</p>
+                    </div>
+
+                    <div class="col-md-12 mb-3">
+                        <input type="text" formControlName="mobileNumber" class="form-control"
+                            placeholder="Enter Mobile Number" required>
+                        <!-- Showing errors using getter method -->
+                        <p *ngIf="mobileNumber.touched && mobileNumber.invalid" class="error"><sup>*</sup>Please provide
+                            Mobile
+                            number</p>
+                        <p *ngIf="mobileNumber.errors?.pattern" class="error">
+                            <sup>*</sup>Use Valid Mobile Numbers Ex:+8801732080524</p>
+                    </div>
+
+                    <div class="col-md-12 mb-3">
+                        <input type="text" formControlName="company" class="form-control"
+                            placeholder="Enter company name" required>
+                        <!-- Showing errors using getter method -->
+                        <p *ngIf="company.touched && company.invalid" class="error">
+                            <sup>*</sup>Please company name</p>
+                    </div>
+
+                    <div class="col-md-12 mb-3">
+                        <input type="text" formControlName="address" class="form-control" placeholder="Enter Address"
+                            required>
+                        <!-- Showing errors using getter method -->
+                        <p *ngIf="address.touched && address.invalid" class="error">
+                            <sup>*</sup>Please provide Address</p>
+                    </div>
+
+                </div>
+
+                <div class="form-group text-right">
+                    <button type="submit" class="btn btn-success" [disabled]="!clientForm.valid"><i
+                            class="fas fa-plus-square"></i>Add
+                        Client</button>
+                </div>
+
+            </div>
+        </div>
+    </form>
+
+
+</div>

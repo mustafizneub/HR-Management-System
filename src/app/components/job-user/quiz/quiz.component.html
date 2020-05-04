@@ -1,0 +1,21 @@
+
+<div class="container">
+  <form #form="ngForm" >
+    <div *ngFor="let question of questions; let i=index" class="container" ngModelGroup="answers">
+      <h2>{{i+1.}} {{ question.data.question }} </h2>
+
+      <div *ngFor="let option of question.data.option">
+        <div class="form-check">
+          <input class="form-check-input" type="radio" [name]="question.data.name" id="option" [value]="option" ngModel
+            required>
+          <label class="form-check-label">
+            {{ option }}
+          </label>
+        </div>
+      </div>
+    </div>
+    <br>
+
+    <button (click)='onSubmit(form)' class="btn btn-primary" [disabled]="form.invalid">Submit</button><br>
+  </form>
+</div>

@@ -1,0 +1,228 @@
+$purple: #652783;
+$orange: #f08c2e;
+$black: #333;
+$white: #f1f0f0;
+
+@font-face {
+  font-family: 'Roboto';
+  src: url("../fonts/Roboto-Medium.ttf");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url("../fonts/Roboto-Regular.ttf");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url("../fonts/Roboto-Bold.ttf");
+  font-weight: 600;
+}
+
+body {
+  font-family: 'Roboto';
+}
+
+%focus {
+  border-color: transparent;
+  box-shadow: none;
+  outline: 1px solid $orange;
+}
+
+.active {
+  color: $orange !important;
+}
+
+.yoBtn {
+  background-color: #652783;
+  border: none;
+  border: 1px solid $purple;
+  color: $white;
+  transition: .3s;
+
+  &:focus {
+    outline: none;
+    border: 1px solid $orange;
+    box-shadow: 0 0 4px 0 $orange;
+  }
+
+  &:hover {
+    color: $white;
+    background-color: #731aa0;
+  }
+}
+
+header {
+  nav {
+    box-shadow: 0 -2px 4px 0px;
+
+    .navbar-brand {
+      img {
+        width: 150px;
+        height: 35px;
+        object-fit: contain;
+      }
+    }
+
+    .navbar-nav {
+      nav-item {
+        a {
+          transition: .3s;
+
+          &:hover {
+            color: $orange !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+.page-content {
+  background-color: #f4f6f9;
+  min-height: 100vh;
+}
+
+
+footer {
+  background-color: #fff;
+  padding: 15px 0;
+
+  p {
+    margin: 0;
+    color: #888;
+
+    span {
+      font-weight: 600;
+      text-transform: capitalize;
+    }
+
+    .orange {
+      color: $orange;
+    }
+
+    .purple {
+      color: $purple;
+    }
+  }
+}
+
+/* add post start */
+form {
+  margin-top: 20px;
+
+  .form-row {
+    label {
+      font-weight: 600;
+    }
+
+    input {
+      &:focus {
+        @extend %focus;
+      }
+    }
+
+    textarea {
+      height: 150px;
+
+      &:focus {
+        @extend %focus;
+      }
+    }
+  }
+}
+
+/* add post ends */
+
+/* view post starts */
+.yoCard {
+  padding: 10px 20px;
+  border: 1px solid $purple;
+  margin: 15px 0;
+  border-radius: 5px;
+
+  &-header {
+    .job-title {
+      color: $orange;
+    }
+  }
+
+  &-job-des {
+    p {
+      margin: 0;
+    }
+  }
+
+  &-btn {
+    margin-top: 10px;
+
+    .yoBtn {
+      padding: 5px 10px;
+      background-color: transparent;
+      border: 1px solid $orange;
+      color: $black;
+      border-radius: 5px;
+      text-decoration: none;
+
+      &:hover {
+        background-color: $orange;
+        color: $white;
+      }
+    }
+  }
+}
+
+/* view post Ends */
+
+/* applicants starts */
+.table {
+  thead {
+    tr {
+      th {
+        text-transform: capitalize;
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      td {
+        .status {
+          .selected {
+            color: $orange;
+          }
+
+          .waitting {
+            color: $purple;
+          }
+        }
+
+        .add-remove {
+          a {
+            padding: 0 10px;
+            color: $black;
+
+            .fa-plus-square {
+              color: $orange;
+            }
+
+            .fa-trash-alt {
+              color: #dc3545;
+            }
+
+            i {
+              font-size: 18px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/* applicants ends */
+
+
+/*sign-in / sign up*/

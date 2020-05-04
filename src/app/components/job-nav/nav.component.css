@@ -1,0 +1,45 @@
+.yoBtn {
+    background-color: #652783;
+    border: none;
+    border: 1px solid #652783;
+    color: #f1f0f0;
+    -webkit-transition: .3s;
+    transition: .3s;
+    margin: 0 5px;
+  }
+  
+  .yoBtn:focus {
+    outline: none;
+    border: 1px solid #f08c2e;
+    -webkit-box-shadow: 0 0 4px 0 #f08c2e;
+    box-shadow: 0 0 4px 0 #f08c2e;
+  }
+  
+  .yoBtn:hover {
+    color: #f1f0f0;
+    background-color: #731aa0;
+  }
+  
+  header {
+    z-index: 9999;
+    -webkit-box-shadow: 0 -2px 4px 0px;
+    box-shadow: 0 -2px 4px 0px;
+    background-color: #f1f0f0;
+  }
+  
+  header nav .navbar-brand img {
+    width: 150px;
+    height: 35px;
+    -o-object-fit: contain;
+    object-fit: contain;
+  }
+  
+  header nav .navbar-nav nav-item a {
+    -webkit-transition: .3s;
+    transition: .3s;
+  }
+  
+  header nav .navbar-nav nav-item a:hover {
+    color: #f08c2e !important;
+  }
+  

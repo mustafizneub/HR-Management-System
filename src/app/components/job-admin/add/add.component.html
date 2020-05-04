@@ -1,0 +1,70 @@
+<body>
+
+  <!-- page content -->
+  <section class="page-content">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-12">
+          <form #form="ngForm">
+            <div class="form-row" ngModelGroup="jobDetails">
+              <div class="col-12">
+                <label>Your Title</label>
+                <input type="text" name="title" class="form-control mb-2" placeholder="Post Title" ngModel>
+              </div>
+              <div class="col-6">
+                <label>Job Nature</label>
+                <input type="text" name="jobNature" class="form-control mb-2" placeholder="Job Nature" ngModel>
+              </div>
+              <div class="col-6">
+                <label>Available Position</label>
+                <input type="number" name="availablePosition" min="0" ngModel class="form-control mb-2"
+                  placeholder="Available Position">
+              </div>
+              <div class="col-6">
+                <label>Job Location</label>
+                <input type="text" name="jobLocation" ngModel class="form-control mb-2" placeholder="Job Location">
+              </div>
+              <div class="col-6">
+                <label>Deadline</label>
+                <input type="date" name="deadLine" ngModel class="form-control mb-2" placeholder="DeadLine">
+              </div>
+              <div class="col-4">
+                <label>Salary Range(from)</label>
+                <input type="number" name="startSalary" ngModel class="form-control mb-2" placeholder="startSalary">
+              </div>
+              <div class="col-4">
+                <label>Salary Range(to)</label>
+                <input type="number" name="endSalary" ngModel class="form-control mb-2" placeholder="endSalary">
+              </div>
+              <div class="col-4">
+                <label>Experience</label>
+                <input type="text" name="experience" ngModel class="form-control mb-2" placeholder="Experience">
+              </div>
+              <div class="col-12">
+                <label>Job Description</label>
+                <textarea class="form-control mb-2" name="description" ngModel placeholder="Job Description"></textarea>
+              </div>
+              <div class="col-12">
+                <button class="btn yoBtn" (click)="onSubmit(form)">Publish</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- page content ends -->
+
+  <!-- footer -->
+  <footer>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-12">
+          <p>Copyright &copy; 2020 <span class="orange">Yo</span><span class="purple">Tech</span> Limited All rights
+            reserved</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- footer ends -->
+</body>

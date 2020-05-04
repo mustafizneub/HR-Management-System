@@ -1,0 +1,350 @@
+<nav class="navbar navbar-expand-lg navbar-light">
+    <a class="navbar-brand" [routerLink]="['/admin-home']">
+      <img src="../../../assets/images/yotech.png" alt="">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse justify-content-end navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <button class="btn yoBtn" (click)="view()">View Post</button>
+        </li>
+        <li class="nav-item">
+          <button class="btn yoBtn" (click)="download()">Download Pdf</button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+<div id="cv" class="resume">
+    <div class="base" *ngIf="information">
+        <div class="profile">
+
+            <div class="photo"><img [src]="information.url">
+            </div>
+            <div class="info">
+                <h3 class="name">{{information.basicInfo.name}}</h3>
+                <p class="job" style="color: #FFFFFF;">{{information.basicInfo.designation}}</p>
+            </div>
+        </div>
+
+        <div class="contact">
+            <h3>Personal Info.</h3>
+            <div class="row">
+                <div class="col-12" style="padding-bottom: 5px;">
+                    <div class="row">
+                        <div class="col-2"><i class="fa fa-address-book-o" aria-hidden="true"></i></div>
+                        <div class="col-6">
+                            <p> {{information.basicInfo.presentaddress}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 " style="padding-bottom: 5px;">
+                    <div class="row">
+                        <div class="col-2"><i class="fa fa-envelope-o" aria-hidden="true"></i> </div>
+                        <div class="col-6">
+                            <p>{{information.basicInfo.email}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12" style="padding-bottom: 5px;">
+                    <div class="row">
+                        <div class="col-2"><i class="fa fa-mobile" aria-hidden="true"></i></div>
+                        <div class="col-6">
+                            <p> {{information.basicInfo.phonenumber}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+        <hr>
+        <div class="contact">
+            <h3>Skills</h3>
+            <h4>Programming Languages</h4>
+            <p>{{information.skills.programming}}</p><br>
+            <h4>Framework</h4>
+            <p>{{information.skills.framework}}</p><br>
+            <h4>Operating System</h4>
+            <p>{{information.skills.system}}</p><br>
+            <h4>Web Technologies</h4>
+            <p>{{information.skills.other}}</p>
+        </div>
+        <hr>
+        <div class="follow">
+            <h3>Contact me</h3>
+            <div class="box"><a href="javascript:void(0);"><i class="fa fa-facebook"></i></a>
+                <a href="javascript:void(0);"><i class="fa fa-twitter"></i></a>
+                <a href="javascript:void(0);"><i class="fa fa-pinterest-p"></i></a>
+                <a href="javascript:void(0);"><i class="fa fa-codepen"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="func">
+        <div class="work" *ngIf="information">
+            <h3><i class="fa fa-briefcase"></i>Experiences</h3>
+            <ul>
+                <div *ngIf="information.experience.designation0 && information.experience.designation0!='' ">
+                    <li><span>{{ information.experience.designation0 }}</span>
+                        <p>{{ information.experience.companyName0 }}</p>
+                        <p>{{ information.experience.description0 }}</p>
+                        <small class="mb-3">{{ information.experience.from0 }} -
+                            {{ information.experience.to0 }}</small>
+                    </li>
+                </div>
+                <div *ngIf="information.experience.designation1 && information.experience.designation1!='' ">
+                    <li><span>{{ information.experience.designation1 }}</span>
+                        <p>{{ information.experience.companyName1 }}</p>
+                        <p>{{ information.experience.description1 }}</p>
+                        <small class="mb-3">{{ information.experience.from1 }} -
+                            {{ information.experience.to1 }}</small>
+                    </li>
+                </div>
+                <div *ngIf="information.experience.designation2 && information.experience.designation2!='' ">
+                    <li><span>{{ information.experience.designation2 }}</span>
+                        <p>{{ information.experience.companyName2 }}</p>
+                        <p>{{ information.experience.description2 }}</p>
+                        <small class="mb-3">{{ information.experience.from2 }} -
+                            {{ information.experience.to2 }}</small>
+                    </li>
+                </div>
+                <div *ngIf="information.experience.designation3 && information.experience.designation3!='' ">
+                    <li><span>{{ information.experience.designation3 }}</span>
+                        <p>{{ information.experience.companyName3 }}</p>
+                        <p>{{ information.experience.description3 }}</p>
+                        <small class="mb-3">{{ information.experience.from3 }} -
+                            {{ information.experience.to3 }}</small>
+                    </li>
+                </div>
+                <div *ngIf="information.experience.designation4 && information.experience.designation4!='' ">
+                    <li><span>{{ information.experience.designation4 }}</span>
+                        <p>{{ information.experience.companyName4 }}</p>
+                        <p>{{ information.experience.description4 }}</p>
+                        <small class="mb-3">{{ information.experience.from4 }} -
+                            {{ information.experience.to4 }}</small>
+                    </li>
+                </div>
+            </ul>
+        </div>
+        <hr>
+        <div class="edu" *ngIf="information">
+            <h3><i class="fa fa-graduation-cap"></i>Education</h3>
+            <ul>
+                <div
+                    *ngIf="information.qualification.certificationname0 && information.qualification.certificationname0!=''">
+                    <li>
+                        <span>{{information.qualification.certificationname0}}</span>
+                        <p>{{information.qualification.institute0}}</p>
+                        <p>CGPA :{{information.qualification.cgpa0}}</p>
+                        <small class="mb-3">{{information.qualification.session0}}</small>
+                    </li>
+                </div>
+                <div
+                    *ngIf="information.qualification.certificationname1 && information.qualification.certificationname1!=''">
+                    <li>
+                        <span>{{information.qualification.certificationname1}}</span>
+                        <p>{{information.qualification.institute1}}</p>
+                        <p>CGPA :{{information.qualification.cgpa1}}</p>
+                        <small class="mb-3">{{information.qualification.session1}}</small>
+                    </li>
+                </div>
+                <div
+                    *ngIf="information.qualification.certificationname2 && information.qualification.certificationname2!=''">
+                    <li>
+                        <span>{{information.qualification.certificationname2}}</span>
+                        <p>{{information.qualification.institute2}}</p>
+                        <p>CGPA :{{information.qualification.cgpa2}}</p>
+                        <small class="mb-3">{{information.qualification.session2}}</small>
+                    </li>
+                </div>
+                <div
+                    *ngIf="information.qualification.certificationname3 && information.qualification.certificationname3!=''">
+                    <li>
+                        <span>{{information.qualification.certificationname3}}</span>
+                        <p>{{information.qualification.institute3}}</p>
+                        <p>CGPA :{{information.qualification.cgpa3}}</p>
+                        <small class="mb-3">{{information.qualification.session3}}</small>
+                    </li>
+                </div>
+                <div
+                    *ngIf="information.qualification.certificationname4 && information.qualification.certificationname4!=''">
+                    <li>
+                        <span>{{information.qualification.certificationname4}}</span>
+                        <p>{{information.qualification.institute4}}</p>
+                        <p>CGPA :{{information.qualification.cgpa4}}</p>
+                        <small class="mb-3">{{information.qualification.session4}}</small>
+                    </li>
+                </div>
+            </ul>
+        </div>
+        <hr>
+
+        <div *ngIf="information" class="edu">
+            <h3><i class="fa fa-th-list"></i>Participation</h3>
+            <ul>
+                <div *ngIf="information.participation.event0 && information.participation.event0!=''">
+                    <li><span>{{information.participation.event0}}</span>
+                        <p>{{information.participation.achievement0}}</p>
+                        <small class="mb-3">{{information.participation.time0}}</small>
+                    </li>
+                </div>
+                <div *ngIf="information.participation.event1 && information.participation.event1!=''">
+                    <li><span>{{information.participation.event1}}</span>
+                        <p>{{information.participation.achievement1}}</p>
+                        <small class="mb-3">{{information.participation.time1}}</small>
+                    </li>
+                </div>
+                <div *ngIf="information.participation.event2 && information.participation.event2!=''">
+                    <li><span>{{information.participation.event2}}</span>
+                        <p>{{information.participation.achievement2}}</p>
+                        <small class="mb-3">{{information.participation.time2}}</small>
+                    </li>
+                </div>
+                <div *ngIf="information.participation.event3 && information.participation.event3!=''">
+                    <li><span>{{information.participation.event3}}</span>
+                        <p>{{information.participation.achievement3}}</p>
+                        <small class="mb-3">{{information.participation.time3}}</small>
+                    </li>
+                </div>
+                <div *ngIf="information.participation.event4 && information.participation.event4!=''">
+                    <li><span>{{information.participation.event4}}</span>
+                        <p>{{information.participation.achievement4}}</p>
+                        <small class="mb-3">{{information.participation.time4}}</small>
+                    </li>
+                </div>
+            </ul>
+        </div>
+        <hr>
+        <div *ngIf="information" class="edu">
+            <h3><i class="fa fa-code"></i>Online Judges</h3>
+            <ul>
+                <div *ngIf="information.onlineJudge.judgeName0 && information.onlineJudge.judgeName0!=''">
+                    <li><span>{{information.onlineJudge.judgeName0}}</span>
+                        <p>{{information.onlineJudge.judgeAchievement0}}</p>
+                        <small class="mb-3">{{information.onlineJudge.id0}}</small>
+                    </li>
+                </div>
+                <div *ngIf="information.onlineJudge.judgeName1 && information.onlineJudge.judgeName1!=''">
+                    <li><span>{{information.onlineJudge.judgeName1}}</span>
+                        <p>{{information.onlineJudge.judgeAchievement1}}</p>
+                        <small class="mb-3">{{information.onlineJudge.id1}}</small>
+                    </li>
+                </div>
+                <div *ngIf="information.onlineJudge.judgeName2 && information.onlineJudge.judgeName2!=''">
+                    <li><span>{{information.onlineJudge.judgeName2}}</span>
+                        <p>{{information.onlineJudge.judgeAchievement2}}</p>
+                        <small class="mb-3">{{information.onlineJudge.id2}}</small>
+                    </li>
+                </div>
+                <div *ngIf="information.onlineJudge.judgeName3 && information.onlineJudge.judgeName3!=''">
+                    <li><span>{{information.onlineJudge.judgeName3}}</span>
+                        <p>{{information.onlineJudge.judgeAchievement3}}</p>
+                        <small class="mb-3">{{information.onlineJudge.id3}}</small>
+                    </li>
+                </div>
+                <div *ngIf="information.onlineJudge.judgeName4 && information.onlineJudge.judgeName4!=''">
+                    <li><span>{{information.onlineJudge.judgeName4}}</span>
+                        <p>{{information.onlineJudge.judgeAchievement4}}</p>
+                        <small class="mb-3">{{information.onlineJudge.id4}}</small>
+                    </li>
+                </div>
+            </ul>
+        </div>
+        <hr>
+
+        <div class="edu">
+            <h3><i class="fa fa-th-list"></i>Projects</h3>
+            <ul>
+                <div *ngIf="information.projects.topic0 && information.projects.topic0!=''">
+                    <li><span>{{information.projects.topic0}}</span>
+                        <p>{{information.projects.description0}}</p>
+                        <small class="mb-3">{{information.projects.year0}}</small>
+                    </li>
+                </div>
+                <div *ngIf="information.projects.topic1 && information.projects.topic1!=''">
+                    <li><span>{{information.projects.topic1}}</span>
+                        <p>{{information.projects.description1}}</p>
+                        <small class="mb-3">{{information.projects.year1}}</small>
+                    </li>
+                </div>
+                <div *ngIf="information.projects.topic2 && information.projects.topic2!=''">
+                    <li><span>{{information.projects.topic2}}</span>
+                        <p>{{information.projects.description2}}</p>
+                        <small class="mb-3">{{information.projects.year2}}</small>
+                    </li>
+                </div>
+                <div *ngIf="information.projects.topic3 && information.projects.topic3!=''">
+                    <li><span>{{information.projects.topic3}}</span>
+                        <p>{{information.projects.description3}}</p>
+                        <small class="mb-3">{{information.projects.year3}}</small>
+                    </li>
+                </div>
+                <div *ngIf="information.projects.topic4 && information.projects.topic4!=''">
+                    <li><span>{{information.projects.topic4}}</span>
+                        <p>{{information.projects.description4}}</p>
+                        <small class="mb-3">{{information.projects.year4}}</small>
+                    </li>
+                </div>
+            </ul>
+        </div>
+        <hr>
+
+        <div class="skills-prog">
+            <h3><i class="fa fa-code"></i>Skills of Programming</h3>
+            <ul>
+                <li data-percent="96" *ngIf="information.software.soft0 && information.software.soft0!=''">
+                    <span>{{ information.software.soft0 }}</span>
+                    <div class="progress">
+                        <progress id="avancement" class="progressBar" [value]="information.software.value0"
+                            max="100"></progress>
+                    </div>
+                </li>
+                <li data-percent="96" *ngIf="information.software.soft1 && information.software.soft1!=''">
+                    <span>{{ information.software.soft1 }}</span>
+                    <div class="progress">
+                        <progress id="avancement" class="progressBar" [value]="information.software.value1"
+                            max="100"></progress>
+                    </div>
+                </li>
+                <li data-percent="96" *ngIf="information.software.soft2 && information.software.soft2!=''">
+                    <span>{{ information.software.soft2 }}</span>
+                    <div class="progress">
+                        <progress id="avancement" class="progressBar" [value]="information.software.value2"
+                            max="100"></progress>
+                    </div>
+                </li>
+                <li data-percent="96" *ngIf="information.software.soft3 && information.software.soft3!=''">
+                    <span>{{ information.software.soft3 }}</span>
+                    <div class="progress">
+                        <progress id="avancement" class="progressBar" [value]="information.software.value3"
+                            max="100"></progress>
+                    </div>
+                </li>
+                <li data-percent="96" *ngIf="information.software.soft4 && information.software.soft4!=''">
+                    <span>{{ information.software.soft4 }}</span>
+                    <div class="progress">
+                        <progress id="avancement" class="progressBar" [value]="information.software.value4"
+                            max="100"></progress>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="interests">
+            <h3><i class="fa fa-star"></i>Hobbies</h3>
+            <p *ngIf="information.hobby.hobby0 && information.hobby.hobby0!=''" style="margin-left: 20px;"><b>#
+                    {{information.hobby.hobby0}}</b></p>
+            <p *ngIf="information.hobby.hobby1 && information.hobby.hobby1!=''" style="margin-left: 20px;"><b>#
+                    {{information.hobby.hobby1}}</b></p>
+            <p *ngIf="information.hobby.hobby2 && information.hobby.hobby2!=''" style="margin-left: 20px;"><b>#
+                    {{information.hobby.hobby2}}</b></p>
+            <p *ngIf="information.hobby.hobby3 && information.hobby.hobby3!=''" style="margin-left: 20px;"><b>#
+                    {{information.hobby.hobby3}}</b></p>
+            <p *ngIf="information.hobby.hobby4 && information.hobby.hobby4!=''" style="margin-left: 20px;"><b>#
+                    {{information.hobby.hobby4}}</b></p>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+/* @media only screen and (min-width: 1200px) {
+  .ui.modal {
+    width: 500px;
+    height: 300px;
+    margin: 15em 0em 0em 38em;
+  }
+} */
+@media only screen and (min-width: 1200px) {
+  .ui.tiny.modal {
+    width: 540px;
+    height: 202px;
+    margin: auto;
+    position: relative;
+  }
+}

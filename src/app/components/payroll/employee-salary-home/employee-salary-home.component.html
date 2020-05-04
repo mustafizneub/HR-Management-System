@@ -1,0 +1,397 @@
+<ng-container *ngIf="!router">
+  <app-header (show)="toggleModal()">
+    <ng-container class="header-title">
+      <div class="left floated column">
+        <h1 class="page-title">Employee Salary</h1>
+      </div>
+    </ng-container>
+    <ng-container class="header-button">
+      <button class="ui button">
+        <i class="plus icon"></i>Add Salary
+      </button>
+    </ng-container>
+  </app-header>
+  <div style="margin: 20px 0;"></div>
+
+  <app-table [data]="data" [t_headers]="t_headers" (delete)="delete($event)"></app-table>
+  <div style="margin: 20px 0;"></div>
+
+
+  <app-form-modal *ngIf="modalOpen" (close)="toggleModal()">
+    <h1 class="ui header" id="modal-title">Add New Salary</h1>
+    <form action="" class="ui form" #newEmployeeForm="ngForm">
+      <!-- APP ERROR COMPONENT -->
+      <app-errors [error]="errorMessage"></app-errors>
+
+      <ng-container *ngIf="salaryAdded">
+        <div class="message" style="width: 30%; margin: auto;">
+          <p class="secondary-bg-color text-white" style="text-align: center; padding: 20px 0;font-size: 1.2em;">New
+            Salary Added</p>
+        </div>
+      </ng-container>
+
+
+      <div class="ui field">
+        <label for="">Employee ID</label>
+        <input type="text" name="employee_id" (input)="employeeId()" [(ngModel)]="staff_id">
+      </div>
+
+      <div class="field">
+        <label for="">Employee Name</label>
+        <input type="text" name="employee_name" [(ngModel)]="staff_name" #employee_name="ngModel" readonly required>
+        <div *ngIf="employee_name.invalid && (employee_name.dirty || employee_name.touched)" class="alert alert-danger">
+
+          <div *ngIf="employee_name.errors.required">
+            Name is required.
+          </div>
+
+        </div>
+      </div>
+      <div class="field">
+        <label for="">Employee Email</label>
+        <input type="email" name="email" [(ngModel)]="email" #employee_email="ngModel" readonly required>
+        <div *ngIf="employee_email.invalid && (employee_email.dirty || employee_email.touched)"
+          class="alert alert-danger">
+          <div *ngIf="employee_email.errors.required">
+            Email is required.
+          </div>
+
+        </div>
+      </div>
+      <div class="field">
+        <label for="">Employee Salary</label>
+        <input type="text" name="employee_salary" [(ngModel)]="staff_salary" required pattern="[0-9]+"
+          #employee_salary="ngModel">
+        <div *ngIf="employee_salary.invalid && (employee_salary.dirty || employee_salary.touched)"
+          class="alert alert-danger">
+          <div *ngIf="employee_salary.errors.required">
+            Salary is required.
+          </div>
+          <div *ngIf="employee_salary.errors.pattern">
+            Salary should contain numbers only
+          </div>
+        </div>
+      </div>
+      <button class="ui button primary-bg-color" (click)="create()" [disabled]="newEmployeeForm.invalid">Add
+        Salary</button>
+    </form>
+
+    <!-- <h1 class="ui header" id="modal-title">Add Job</h1>
+    <form class="ui form" [formGroup]="addSalary">
+      <div class="four fields">
+        <div class="field">
+          <label for="">Select Staff</label>
+          <input type="text" name="staff_name" formControlName="staff_name" required>
+          <div
+            *ngIf="addSalary.get('staff_name').invalid &&( addSalary.get('staff_name').touched || addSalary.get('staff_name').dirty)">
+            <div class="ui pointing red basic label">
+              <ng-container *ngIf="addSalary.get('staff_name').errors.required">
+                Name is required
+              </ng-container>
+              <ng-container *ngIf="addSalary.get('staff_name').errors.minlength">
+                Minimum Length is 3
+              </ng-container>
+              <ng-container *ngIf="addSalary.get('staff_name').errors.maxlength">
+                Minimum Length is 20
+              </ng-container>
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="">Staff ID</label>
+          <input type="text" name="staff_id" formControlName="staff_id">
+          <div
+            *ngIf="addSalary.get('staff_id').invalid &&( addSalary.get('staff_id').touched || addSalary.get('staff_id').dirty)">
+            <div class="ui pointing red basic label">
+              <ng-container *ngIf="addSalary.get('staff_id').errors.required">
+                Staff ID is required
+              </ng-container>
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="">Payslip No</label>
+          <input type="text" formControlName="payslip_no" required readonly>
+          <div
+            *ngIf="addSalary.get('payslip_no').invalid &&( addSalary.get('payslip_no').touched || addSalary.get('payslip_no').dirty)">
+            <div class="ui pointing red basic label">
+              <ng-container *ngIf="addSalary.get('payslip_no').errors.required">
+                Name is required
+              </ng-container>
+            </div>
+          </div>
+        </div>
+        <div class="field">
+          <label for="">Staff Role</label>
+          <select class="ui search dropdown" formControlName="role" required>
+            <option value=""></option>
+            <option value="employee">Employee</option>
+            <option value="manager">Manager</option>
+            <option value="admin">Admin</option>
+          </select>
+          <div *ngIf="addSalary.get('role').invalid &&( addSalary.get('role').touched || addSalary.get('role').dirty)">
+            <div class="ui pointing red basic label">
+              <ng-container *ngIf="addSalary.get('role').errors.required">
+                Name is required
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="two fields">
+        <div class="field">
+          <label for="">Staff Email</label>
+          <input type="email" name="email" formControlName="email">
+          <div
+            *ngIf="addSalary.get('email').invalid &&( addSalary.get('email').touched || addSalary.get('email').dirty)">
+            <div class="ui pointing red basic label">
+              <ng-container *ngIf="addSalary.get('email').errors.required">
+                Email is required
+              </ng-container>
+              <ng-container *ngIf="addSalary.get('email').errors.email">
+                Should be a valid email
+              </ng-container>
+            </div>
+          </div>
+        </div>
+        <div class="field">
+          <label for="">Net Salary</label>
+          <input type="number" name="net_salary" formControlName="net_salary" readonly>
+        </div>
+      </div>
+
+
+      <div class="ui grid">
+        <div class="eight wide column">
+          <h3>Earngings</h3>
+          <div class="field">
+            <label for="">Basic</label>
+            <input type="number" name="basic" formControlName="basic" (input)="addToForm()">
+            <div
+              *ngIf="addSalary.get('basic').invalid &&( addSalary.get('basic').touched || addSalary.get('basic').dirty)">
+              <div class="ui pointing red basic label">
+                <ng-container *ngIf="addSalary.get('basic').errors.required">
+                  Basic Salary is required
+                </ng-container>
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <label for="">DA(7%)</label>
+            <input type="number" name="da" formControlName="da" required>
+            <div *ngIf="addSalary.get('da').invalid && (addSalary.get('da').touched || addSalary.get('da').dirty)">
+              <div class=" ui pointing red basic label">
+                <ng-container *ngIf="addSalary.get('da').errors.required">
+                  DA is required
+                </ng-container>
+                <ng-container *ngIf="addSalary.get('da').errors.min || addSalary.get('da').errors.max">
+                  Should be between 0-7
+                </ng-container>
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <label for="">HRA(10%)</label>
+            <input type="number" name="hra" formControlName="hra" required>
+            <div *ngIf="addSalary.get('hra').invalid &&( addSalary.get('hra').touched || addSalary.get('hra').dirty)">
+              <div class="ui pointing red basic label">
+                <ng-container *ngIf="addSalary.get('hra').errors.required">
+                  HRA is required
+                </ng-container>
+                <ng-container *ngIf="addSalary.get('hra').errors.min || addSalary.get('hra').errors.max">
+                  Should be between 0-7
+                </ng-container>
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <label for="">Conveyance</label>
+            <input type="number" name="conveyance" formControlName="conveyance" required>
+            <div
+              *ngIf="addSalary.get('conveyance').invalid &&( addSalary.get('conveyance').touched || addSalary.get('conveyance').dirty)">
+              <div class="ui pointing red basic label">
+                <ng-container *ngIf="addSalary.get('conveyance').errors.required">
+                  Conveyance is required
+                </ng-container>
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <label for="">Allowance</label>
+            <input type="number" name="allowance" formControlName="allowance" required>
+            <div
+              *ngIf="addSalary.get('allowance').invalid &&( addSalary.get('allowance').touched || addSalary.get('allowance').dirty)">
+              <div class="ui pointing red basic label">
+                <ng-container *ngIf="addSalary.get('allowance').errors.required">
+                  Allowance is required
+                </ng-container>
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <label for="">Medical Allowance</label>
+            <input type="number" name="medical_allowance" formControlName="medical_allowance" required>
+            <div
+              *ngIf="addSalary.get('medical_allowance').invalid &&( addSalary.get('medical_allowance').touched || addSalary.get('medical_allowance').dirty)">
+              <div class="ui pointing red basic label">
+                <ng-container *ngIf="addSalary.get('medical_allowance').errors.required">
+                  Medical Allowance is required
+                </ng-container>
+              </div>
+            </div>
+          </div>
+
+          <div formGroupName="bonus">
+            <div class="field">
+              <label for="">Bonus Name</label>
+              <input type="text" name="bonus_name" formControlName="bonus_name" required>
+            </div>
+            <div class="field">
+              <label for="">Bonus Amount</label>
+              <input type="number" name="bonus" formControlName="bonus_amount" required>
+            </div>
+          </div>
+
+
+          <div class="field">
+            <label for="">Others</label>
+            <input type="number" name="earnings_others" formControlName="earnings_others" required>
+            <div
+              *ngIf="addSalary.get('earnings_others').invalid &&( addSalary.get('earnings_others').touched || addSalary.get('earnings_others').dirty)">
+              <div class="ui pointing red basic label">
+                <ng-container *ngIf="addSalary.get('earnings_others').errors.required">
+                  Other Earning is required
+                </ng-container>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="eight wide column">
+          <h3>Deductions</h3>
+          <div class="field">
+            <label for="">TDS(max upto 20%)</label>
+            <input type="number" name="tds" formControlName="tds" required>
+            <div *ngIf="addSalary.get('tds').invalid &&( addSalary.get('tds').touched || addSalary.get('tds').dirty)">
+              <div class="ui pointing red basic label">
+                <ng-container *ngIf="addSalary.get('tds').errors.required">
+                  TDS is required
+                </ng-container>
+                <ng-container *ngIf="addSalary.get('tds').errors.min || addSalary.get('tds').errors.max">
+                  Should be between 0-20
+                </ng-container>
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <label for="">ESI</label>
+            <input type="number" name="esi" formControlName="esi" required>
+            <div *ngIf="addSalary.get('esi').invalid &&( addSalary.get('esi').touched || addSalary.get('esi').dirty)">
+              <div class="ui pointing red basic label">
+                <ng-container *ngIf="addSalary.get('esi').errors.required">
+                  ESI is required
+                </ng-container>
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <label for="">PF</label>
+            <input type="number" name="pf" formControlName="pf" required>
+            <div *ngIf="addSalary.get('pf').invalid &&( addSalary.get('pf').touched || addSalary.get('pf').dirty)">
+              <div class="ui pointing red basic label">
+                <ng-container *ngIf="addSalary.get('pf').errors.required">
+                  PF is required
+                </ng-container>
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <label for="">Leave</label>
+            <input type="number" name="leave" formControlName="leave" required>
+            <div
+              *ngIf="addSalary.get('leave').invalid &&( addSalary.get('leave').touched || addSalary.get('leave').dirty)">
+              <div class="ui pointing red basic label">
+                <ng-container *ngIf="addSalary.get('leave').errors.required">
+                  Leave is required
+                </ng-container>
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <label for="">Prof.Tax(<=10%) </label> <input type="number" name="prof_tax" formControlName="prof_tax"
+                  required>
+                <div
+                  *ngIf="addSalary.get('prof_tax').invalid &&( addSalary.get('prof_tax').touched || addSalary.get('prof_tax').dirty)">
+                  <div class="ui pointing red basic label">
+                    <ng-container *ngIf="addSalary.get('prof_tax').errors.required">
+                      Prof Tax is required
+                    </ng-container>
+                    <ng-container *ngIf="addSalary.get('prof_tax').errors.min || addSalary.get('prof_tax').errors.max">
+                      Should be between 0-10
+                    </ng-container>
+                  </div>
+                </div>
+          </div>
+          <div class="field">
+            <label for="">Labour Welfare</label>
+            <input type="number" name="labour_welfare" formControlName="labour_welfare" required>
+            <div
+              *ngIf="addSalary.get('labour_welfare').invalid &&( addSalary.get('labour_welfare').touched || addSalary.get('labour_welfare').dirty)">
+              <div class="ui pointing red basic label">
+                <ng-container *ngIf="addSalary.get('labour_welfare').errors.required">
+                  Labour Welfare is required
+                </ng-container>
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <label for="">Fund</label>
+            <input type="number" name="fund" formControlName="fund" required>
+            <div
+              *ngIf="addSalary.get('fund').invalid &&( addSalary.get('fund').touched || addSalary.get('fund').dirty)">
+              <div class="ui pointing red basic label">
+                <ng-container *ngIf="addSalary.get('fund').errors.required">
+                  Fund is required
+                </ng-container>
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <label for="">Loan</label>
+            <input type="number" name="loan" formControlName="loan" required>
+            <div
+              *ngIf="addSalary.get('loan').invalid &&( addSalary.get('loan').touched || addSalary.get('loan').dirty)">
+              <div class="ui pointing red basic label">
+                <ng-container *ngIf="addSalary.get('loan').errors.required">
+                  Loan is required
+                </ng-container>
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <label for="">Others</label>
+            <input type="number" name="deductions_others" formControlName="deductions_others" required>
+            <div
+              *ngIf="addSalary.get('deductions_others').invalid &&( addSalary.get('deductions_others').touched || addSalary.get('deductions_others').dirty)">
+              <div class="ui pointing red basic label">
+                <ng-container *ngIf="addSalary.get('deductions_others').errors.required">
+                  Other deduction is required
+                </ng-container>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="ui button" tabindex="0" (click)="create()" [disabled]="addSalary.invalid">Add Salary</button>
+    </form> -->
+  </app-form-modal>
+</ng-container>
+
+
+
+<ng-container *ngIf="router">
+  <router-outlet></router-outlet>
+</ng-container>

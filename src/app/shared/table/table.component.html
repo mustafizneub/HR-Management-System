@@ -1,0 +1,159 @@
+<table class="ui striped table">
+  <thead>
+    <tr>
+      <th *ngFor="let th of t_headers">{{th.label}}</th>
+    </tr>
+  </thead>
+  <tbody>
+
+
+    <ng-container *ngIf="data && data[0]">
+
+      <!-- DESIGNATION -->
+      <ng-container *ngIf="(data[0].desname && data[0].dname);">
+        <tr *ngFor="let dt of data">
+          <td *ngFor="let th of t_headers; let i=index">
+            <div *ngIf="th.key==='actions'">
+              <div class="ui buttons">
+                <button class="ui blue button" [routerLink]="['./edit', dt.id]">Edit</button>
+                <div class="or"></div>
+                <button class="ui red button" (click)="deleteOne(dt.id)">Delete</button>
+              </div>
+            </div>
+            <ng-container *ngIf="th.key!='actions'">
+              {{dt[th.key]}}
+            </ng-container>
+          </td>
+        </tr>
+      </ng-container>
+
+
+      <!-- DEPARTMENT -->
+      <ng-container *ngIf="data[0].dep_name">
+        <tr *ngFor="let dt of data">
+          <td *ngFor="let th of t_headers; let i=index">
+            <div *ngIf="th.key==='actions'">
+              <div class="ui buttons">
+                <button class="ui blue button" [routerLink]="['./edit', dt.id]">Edit</button>
+                <div class="or"></div>
+                <button class="ui red button" (click)="deleteOne(dt.id)">Delete</button>
+              </div>
+            </div>
+
+            <ng-container *ngIf="th.key!='actions'">
+              {{dt[th.key]}}
+            </ng-container>
+          </td>
+        </tr>
+      </ng-container>
+
+
+      <!-- MANAGE JOB -->
+      <ng-container *ngIf="data[0].job_id;">
+        <tr *ngFor="let dt of data">
+          <td *ngFor="let th of t_headers; let i=index">
+            <div *ngIf="th.key==='job_type'" class="field">
+              <select name="" id="" name="job_type">
+                <option value="Full Time" [selected]="dt.job_type==='Full Time'">Full Time</option>
+                <option value="Part Time" [selected]="dt.job_type==='Part Time'">Part Time</option>
+              </select>
+            </div>
+            <div *ngIf="th.key==='job_status'" class="field">
+              <select name="" id="" name="job_status">
+                <option value="open" [selected]="dt.job_status==='open'">open</option>
+                <option value="close" [selected]="dt.job_status==='closed'">close</option>
+              </select>
+            </div>
+            <div *ngIf="th.key==='actions'">
+              <div class="ui buttons">
+                <button class="ui blue button" [routerLink]="['./edit', dt.job_id]"
+                  (click)="editOne(dt.job_id)">Edit</button>
+                <div class="or"></div>
+                <button class="ui red button" (click)="deleteOne(dt.job_id)">Delete</button>
+              </div>
+            </div>
+            <ng-container *ngIf="th.key!='actions' && th.key!='job_type' && th.key!='job_status'">
+              {{dt[th.key]}}
+            </ng-container>
+          </td>
+        </tr>
+      </ng-container>
+
+
+      <!-- APPLIED JOB  -->
+      <ng-container *ngIf="data[0].applicant_name">
+        <tr *ngFor="let dt of data">
+          <td *ngFor="let th of t_headers">
+            <div *ngIf="th.key==='actions'">
+              <div class="ui buttons">
+                <button class="ui blue button" routerLink="" (click)="editOne(dt.email)">Schedule
+                  Interview</button>
+                <div class="or"></div>
+                <button class="ui red button" (click)="deleteOne(dt.applicant_id)">Delete</button>
+              </div>
+            </div>
+            <ng-container *ngIf="th.key==='resume'">
+              <a [href]="dt.resume" target="_blank" download="resume"
+                style=" padding: 10px; background-color: #f26202; color: white;">
+                Download
+              </a>
+            </ng-container>
+            <ng-container *ngIf="th.key!='actions' && th.key!='resume'">
+              {{dt[th.key]}}
+            </ng-container>
+          </td>
+        </tr>
+      </ng-container>
+
+
+      <!-- EMPLOYEE -->
+      <ng-container *ngIf="data[0].employee_id">
+        <tr *ngFor="let dt of data">
+          <td *ngFor="let th of t_headers; let i=index">
+            <div *ngIf="th.key==='actions'">
+              <div class="ui buttons">
+
+                <button class="ui blue button" [routerLink]="['./edit', dt.fStoreId]"
+                  (click)="editOne(dt.employee_id)">Edit</button>
+                <div class="or"></div>
+                <button class="ui red button" (click)="deleteOne(dt.fStoreId)">Delete</button>
+              </div>
+            </div>
+
+            <ng-container *ngIf="(i===0) && th.key!='dname'; else normal">
+              <h4 class="ui image header">
+                <img [src]="dt.avatar" class="ui massive rounded image" [routerLink]="['./profile', dt.fStoreId]">
+                <div class="content">
+                  {{dt.username}}
+                  <div class="sub header">{{dt.designation}}
+                  </div>
+                </div>
+              </h4>
+            </ng-container>
+            <ng-template #normal>{{dt[th.key]}}</ng-template>
+          </td>
+        </tr>
+      </ng-container>
+
+
+      <!-- SALARY -->
+      <ng-container *ngIf="data[0].staff_salary">
+        <tr *ngFor="let dt of data">
+          <td *ngFor="let th of t_headers">
+            <div *ngIf="th.key==='actions'">
+              <button class="ui secondary-bg-color text-white button"
+                [routerLink]="['./salary-history', dt.fStoreId]">View</button>
+            </div>
+
+            <ng-container *ngIf="th.key!='actions'">
+              {{th.key==='salary' ? (dt[th.key] | currency): dt[th.key]}}
+            </ng-container>
+
+          </td>
+        </tr>
+      </ng-container>
+
+    </ng-container>
+  </tbody>
+
+</table>

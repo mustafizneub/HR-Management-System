@@ -1,0 +1,258 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+@font-face {
+  font-family: 'Raleway';
+  src: url("../fonts/Raleway/Raleway-Black.ttf");
+  font-weight: 900;
+}
+
+@font-face {
+  font-family: 'Raleway';
+  src: url("../fonts/Raleway/Raleway-Bold.ttf");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'Raleway';
+  src: url("../fonts/Raleway/Raleway-ExtraBold.ttf");
+  font-weight: 800;
+}
+
+@font-face {
+  font-family: 'Raleway';
+  src: url("../fonts/Raleway/Raleway-Light.ttf");
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: 'Raleway';
+  src: url("../fonts/Raleway/Raleway-Regular.ttf");
+  font-weight: 400;
+}
+
+.border-none {
+  border-top: none !important;
+  border-right: none !important;
+  border-left: none !important;
+  border-bottom: none !important;
+}
+
+.m-0 {
+  margin: 0;
+}
+
+.h-100 {
+  height: 100%;
+}
+
+body {
+  font-family: 'Raleway', 'sans-serif';
+  position: relative;
+}
+
+.cv .cv-left-content .cv-left-title h4, .cv .cv-right-content .cv-title h4 {
+  font-size: 18px;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 2px;
+  padding-bottom: 5px;
+}
+
+.cv .background-color {
+  position: relative;
+}
+
+.cv .background-color::before {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  width: 33.33%;
+  height: 100%;
+  z-index: -2;
+  background-color: #652783;
+}
+
+.cv .background-color::after {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 33.33%;
+  width: 66.66%;
+  background-color: #F9F9F9;
+  height: 100%;
+  z-index: -2;
+}
+
+.cv .background-color .header {
+  position: relative;
+  margin: 0;
+  padding: 45px 0;
+}
+
+.cv .background-color .header::before {
+  position: absolute;
+  content: '';
+  width: 100%;
+  height: 50%;
+  z-index: -1;
+  background-color: #fff;
+  top: 50%;
+  left: 0;
+  -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+}
+
+.cv .cv-left {
+  padding: 0 45px;
+}
+
+.cv .cv-left .cv-head {
+  display: table;
+  margin: auto;
+}
+
+.cv .cv-left .cv-head img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  display: block;
+  border-radius: 50%;
+  width: 160px;
+  height: 160px;
+  border: 2px solid #c8c8c8;
+}
+
+.cv .cv-left-content .cv-left-title {
+  color: #f9f9fb;
+  border-bottom: 2px solid #dadae2;
+}
+
+.cv .cv-left-content .cv-content {
+  margin: 20px 0;
+}
+
+.cv .cv-left-content .cv-content .professional {
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #f9f9fb;
+  letter-spacing: 2px;
+}
+
+.cv .cv-left-content .cv-content ul li a {
+  color: #f9f9fb;
+  font-size: 13px;
+}
+
+.cv .cv-left-content .cv-content ul li a i {
+  padding-right: 10px;
+  text-align: center;
+}
+
+.cv .cv-left-content .cv-content ul li p {
+  color: #f9f9fb;
+  font-size: 13px;
+}
+
+.cv .cv-left-content .cv-content .education li {
+  padding-bottom: 20px;
+}
+
+.cv .cv-left-content .cv-content .education li p {
+  color: #f9f9fb;
+  font-size: 13px;
+}
+
+.cv .cv-left-content .cv-content .education li .degree {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.cv .cv-left-content .cv-content .skill {
+  padding-left: 15px;
+}
+
+.cv .cv-left-content .cv-content .skill li {
+  list-style: disc;
+  color: #f9f9fb;
+}
+
+.cv .cv-right {
+  padding-left: 20px;
+}
+
+.cv .cv-right .cv-head {
+  height: 160px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.cv .cv-right .cv-head .name {
+  text-transform: uppercase;
+  font-weight: 600;
+  margin: 0;
+  font-size: 26px;
+  line-height: 40px;
+  color: #f08c2e;
+}
+
+.cv .cv-right .cv-head .profession {
+  letter-spacing: 2px;
+  color: #652783;
+  padding-top: 10px;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.cv .cv-right-content .cv-title {
+  color: #f08c2e;
+  border-bottom: 2px solid #dadae2;
+}
+
+.cv .cv-right-content .cv-content p {
+  font-size: 13px;
+  color: #777777;
+}
+
+.cv .cv-right-content .cv-content .job-title {
+  margin-bottom: 10px;
+}
+
+.cv .cv-right-content .cv-content .job-title .title {
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #652783;
+}
+
+.cv .cv-right-content .cv-content .job-award {
+  margin-bottom: 30px;
+}
+
+.cv .cv-right-content .cv-content .job-award ul {
+  padding-left: 16px;
+}
+
+.cv .cv-right-content .cv-content .job-award ul li {
+  list-style: disc;
+  color: #777777;
+}
+/*# sourceMappingURL=style.css.map */

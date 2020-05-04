@@ -1,0 +1,15 @@
+@import '~semantic-ui-css/semantic.css';
+@import "~bootstrap/dist/css/bootstrap.css";
+th {
+    font-family: 'Merriweather', serif;
+    font-size: 13px;
+}
+
+tr td {
+    font-family: 'Crimson Text', serif;
+    font-size: 13px;
+}
+
+input {
+    font-family: 'Crimson Text', serif;
+}

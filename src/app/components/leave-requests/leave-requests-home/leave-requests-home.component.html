@@ -1,0 +1,125 @@
+<!-- APP HEADER -->
+<app-header>
+  <ng-container class="header-title">
+    <div class="left floated column">
+      <h1 class="page-title">Leave Requests</h1>
+    </div>
+  </ng-container>
+
+</app-header>
+<div style="margin: 20px 0"></div>
+
+<!-- FILTER -->
+<app-filter-two (filter)="filteredData($event)">
+  <ng-container class="type-one">
+    <div class=" field">
+      <input type="text" placeholder="User Name" id="username">
+    </div>
+  </ng-container>
+  <ng-container class="type-two">
+    <option value="">Leave Type</option>
+    <option value="Casual Leave">Casual Leave</option>
+    <option value="Medical Leave">Medical Leave</option>
+    <option value="Loss Of Pay">Loss Of Pay</option>
+  </ng-container>
+  <ng-container class="type-three">
+    <div class=" field">
+      <input type="date" placeholder="User Name" id="from">
+    </div>
+  </ng-container>
+  <ng-container class="type-four">
+    <div class=" field">
+      <input type="date" placeholder="User Name" id="to">
+    </div>
+  </ng-container>
+  <ng-container class="type-five">
+    <option value="">Status</option>
+    <option value="Pending">Pending</option>
+    <option value="Approved">Approved</option>
+    <option value="Declined">Declined</option>
+  </ng-container>
+</app-filter-two>
+
+<div style="margin: 50px 0"></div>
+
+<table class="ui striped table">
+  <thead>
+    <tr>
+      <th>Employee Name</th>
+      <th>Leave Type</th>
+      <th>From</th>
+      <th>To</th>
+      <th>Reason</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!--
+          <tr *ngFor="let leave of data |  paginate: { itemsPerPage: 5, currentPage: p };">
+    -->
+    <tr *ngFor="let leave of data">
+
+      <td>
+        {{ leave.name }}
+      </td>
+      <td>
+        {{ leave.type }}
+      </td>
+      <td>
+        {{ leave.from}}
+      </td>
+      <td>
+        {{ leave.to}}
+      </td>
+      <td>
+        {{ leave.Reason}}
+      </td>
+      <td>
+        <div class="ui buttons">
+          <button class="ui teal button" (click)="action(leave.id)">Action</button>
+          <div class="or" data-text="or"></div>
+          <button class="ui red button">Delete</button>
+        </div>
+      </td>
+    </tr>
+
+  </tbody>
+  <!--
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  -->
+</table>
+<!-- DEMO REQUEST -->
+
+<!-- <app-form-modal *ngIf="modalOpen" (close)="toggleModal()">
+    <form action="" class="ui form" [formGroup]="employee">
+      <div class="two fields">
+        <div class="field">
+          <label for="">Leave Type</label>
+          <select name="" id="" formControlName="leave_type">
+            <option value="Casual Leave">Casual Leave</option>
+            <option value="Medical Leave">Mediacal Leave</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="">Reason of leave</label>
+          <textarea name="" id="" rows="1" formControlName="reason"></textarea>
+        </div>
+
+      </div>
+
+      <div class="two fields">
+        <div class="field">
+          <label for="">From</label>
+          <input type="date" formControlName='from'>
+        </div>
+        <div class="field">
+          <label for="">To</label>
+          <input type="date" formControlName='to'>
+        </div>
+      </div>
+
+      <button class="ui button" (click)="askLeave()">Request</button>
+    </form>
+  </app-form-modal> -->
+
+<app-form-modal *ngIf="modalOpen" (close)="toggleModal()"></app-form-modal>

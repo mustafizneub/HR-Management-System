@@ -1,0 +1,117 @@
+<div class="container">
+    <form [formGroup]="adleaveForm" (ngSubmit)="submitleaveForm()" novalidate>
+        <div class="row">
+            <div class="col-lg-8 col-md-12 col-sm-12">
+
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <label>Employee name</label>
+                        <input type="text" class="form-control" formControlName="name" readonly>
+
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <label>Employee Id</label>
+                        <input type="text" class="form-control" formControlName="id" readonly>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <label>E-Mail</label>
+                                <input type="text" class="form-control" formControlName="mail" readonly>
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="row">
+
+                    <div class="col-md-6 mb-3">
+                        <label>Joining Date</label>
+                        <input type="text" class="form-control" formControlName="joining" readonly>
+
+                    </div>
+
+
+                    <div class="col-md-6 mb-3">
+                        <label>Designation</label>
+                        <input type="text" class="form-control" formControlName="desgn" readonly>
+
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <label>Sick Leave</label>
+                                <input type="number" class="form-control" formControlName="sick" min="1">
+                                <p *ngIf="sick.touched && sick.invalid" class="error">
+                                    <sup>*</sup>Please Enter Number Of Days</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <label>Emergency Leave</label>
+                                <input type="number" class="form-control" formControlName="emergency" min="1">
+                                <p *ngIf="emergency.touched && emergency.invalid" class="error">
+                                    <sup>*</sup>Please Enter Number Of Days</p>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <label>Crasual Leave</label>
+                                <input type="number" class="form-control" formControlName="crasual" min="1">
+                                <p *ngIf="crasual.touched && crasual.invalid" class="error">
+                                    <sup>*</sup>Please Enter Number Of Days</p>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <label>Medical Leave</label>
+                                <input type="number" class="form-control" formControlName="medical" min="1">
+
+                                <p *ngIf="medical.touched && medical.invalid" class="error">
+                                    <sup>*</sup>Please Enter Number Of Days</p>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="form-group text-right">
+                    <button type="submit" class="btn btn-success">Submit
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,209 @@
+<div style="margin: 20px 0"></div>
+<div style="margin: 50px 0"></div>
+<!--modal start-->
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Leave Request</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="container">
+            <form [formGroup]="adleaveForm" (ngSubmit)="submitleaveForm()" novalidate>
+                <div class="row">
+                    <div class="col-lg-8 col-md-12 col-sm-12">
+
+
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <div class="row">
+                                    <div class="col-md-12 mb-3">
+                                        <label><b>Leave Type :-</b>&nbsp; {{ mtype }}</label>
+
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+
+                            <div class="col-md-6 mb-3">
+                                <label><b>Leave From:</b></label>
+
+                                {{ mfrom }}
+
+                            </div>
+
+
+                            <div class="col-md-6 mb-3">
+                                <label><b>Leave To:</b></label>
+
+                                {{ mto }}
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <div class="col-md-12 mb-3">
+                                <label><b>Number Of Days:-</b>&nbsp;{{ mdays }}&nbsp;day</label>
+
+
+
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+
+                            <div class="col-md-12 mb-3">
+                                <label><b>When:-</b>&nbsp;{{ mwhen }}</label>
+
+
+
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <div class="col-md-12 mb-3">
+                                <label><b>Leave Reason/Purpose:</b></label>
+                                {{ mdes }}
+                            </div>
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-md-12 mb-3">
+                                <label><b>Leave Status:-</b>&nbsp;{{ mstat }}</label>
+
+
+
+                            </div>
+                            <div class="col-md-12 mb-3" *ngIf="mrejectstat">
+                                <label><b>Cause Of Reject</b></label>
+                                {{ mrejectstat }}
+
+
+                            </div>
+                        </div>
+
+                        <div class="row" [hidden]="mfile==='No File'" *ngIf="mfile">
+
+                            <div class="col-md-12 mb-3">
+                                <label class="pointfile"><b (click)="file(mfile)">Submitted
+                                        File Click To
+                                        Open</b></label>
+
+                            </div>
+                        </div>
+
+
+                        <div class="form-group text-right">
+                            <button type="submit" class="btn btn-success">Close
+                            </button>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</ng-template>
+<!--modal end-->
+<div class="ui top attached tabular menu">
+    <div class="item">
+        <div *ngIf="app==false">
+            <button class="ui green button" (click)="accepted()">Approve</button>
+        </div>
+        <div *ngIf="app==true">
+            <button class="ui yellow button" (click)="accepted()">Approve</button>
+        </div>
+    </div>
+    <div class="item">
+        <div *ngIf="pend==false">
+            <button class="ui teal button" (click)="pending()">Pending</button>
+        </div>
+        <div *ngIf="pend==true">
+            <button class="ui yellow button" (click)="pending()">Pending</button>
+        </div>
+    </div>
+    <div class="item">
+        <div *ngIf="rej==false">
+            <button class="ui blue button" (click)="reject()">Reject</button>
+        </div>
+        <div *ngIf="rej==true">
+            <button class="ui yellow button" (click)="reject()">Reject</button>
+        </div>
+    </div>
+    <div class="item">
+        <div *ngIf="alls==false">
+            <button class="ui violet button" (click)="all()">All</button>
+        </div>
+        <div *ngIf="alls==true">
+            <button class="ui yellow button" (click)="all()">All</button>
+        </div>
+    </div>
+
+
+    <br />
+</div>
+
+<table class="ui striped table">
+    <thead>
+        <tr>
+            <th>Leave Type</th>
+            <th>From</th>
+            <th>To</th>
+            <th>Leve Time</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr *ngFor="let leave of data |  paginate: { itemsPerPage: 5, currentPage: p };">
+
+            <td>
+                {{ leave.type }}
+            </td>
+            <td>
+                {{ leave.from}}
+            </td>
+            <td>
+                {{ leave.to}}
+            </td>
+            <td>
+                {{ leave.when}}
+
+            </td>
+            <td>
+                {{ leave.leavestatus }}
+
+            </td>
+            <td>
+                <div class="ui buttons" *ngIf="leave.leavestatus === 'pending'">
+                    <button class="btn btn-secondary btn-sm" (click)="view(leave.id,content)">View</button>
+                    <button class="btn btn-primary btn-sm" (click)="edit(leave.id)">Edit</button>
+                    <button class="btn btn-warning btn-sm" (click)="delete(leave.id)">Delete</button>
+                </div>
+                <div class="ui buttons" *ngIf="leave.leavestatus === 'approve'">
+                    <button class="btn btn-secondary btn-sm" (click)="view(leave.id,content)">View</button>
+                </div>
+                <div class="ui buttons" *ngIf="leave.leavestatus === 'reject'">
+                    <button class="btn btn-secondary btn-sm" (click)="view(leave.id,content)">View</button>
+                </div>
+            </td>
+        </tr>
+
+    </tbody>
+    <br /><br />
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    <br /><br />
+
+</table>
+<br /><br />

@@ -1,0 +1,259 @@
+<app-nav></app-nav>
+<form #form="ngForm" style="margin-top: 100px !important;">
+  <section class="cv">
+    <div class="container">
+      <div class="background-color">
+        <div ngModelGroup="basicinfo" class="header">
+          <div class="row m-0">
+            <!-- header left -->
+            <div class="col-sm-4 col-md-4 col-lg-4">
+              <div class="cv-left">
+                <div class="cv-head">
+                  <img src="../../assets/images/user1.png" alt="">
+                  <div class="input-group">
+                    <div class="custom-file">
+                      <input (change)="upload($event)" type="file" class="custom-file-input" id="inputGroupFile04"
+                        accept=".jpg,.png">
+                      <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- header left ends -->
+
+            <!-- header right -->
+            <div class="col-sm-8 col-md-8 col-lg-8">
+              <div class="cv-right">
+                <div class="cv-head">
+                  <input type="text" class="form-control mb-2" placeholder="Your Full Name" name="name" ngModel
+                    #name="ngModel" required minlength="4">
+                  <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+                    <div *ngIf="name.errors.required">
+                      Name is required.
+                    </div>
+                    <div *ngIf="name.errors.minlength">
+                      Name must be at least 4 characters long.
+                    </div>
+                    <div *ngIf="name.errors.forbiddenName">
+                      Name cannot be Bob.
+                    </div>
+                  </div>
+                  <input type="text" class="form-control" name="designation" placeholder="Designation" ngModel>
+                </div>
+              </div>
+            </div>
+            <!-- header right ends -->
+          </div>
+        </div>
+        <div class="row">
+          <!-- left -->
+          <div class="col-sm-4 col-md-4 col-lg-4">
+            <div class="cv-left">
+              <!-- basic info -->
+              <div ngModelGroup="basicinfo" class="cv-left-content">
+                <div class="cv-left-title">
+                  <h4>Contact</h4>
+                </div>
+                <div class="cv-content">
+                  <ul class="list-unstyled">
+                    <li>
+                      <div class="form-group">
+                        <input type="text" class="form-control" id="phonenumber" placeholder="Your Phone Number"
+                          name="phonenumber" #phonenumber="ngModel" ngModel>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="form-group">
+                        <input type="email" placeholder="Your Email Address" class="form-control" id="email"
+                          aria-describedby="emailHelp" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                          ngModel #email="ngModel" required>
+                        <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+                          <div *ngIf="email.errors.required">
+                            Email is required.
+                          </div>
+                          <div *ngIf="email.errors.pattern">
+                            This is not a valid email.
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Your Address" id="presentaddress"
+                          name="presentaddress" #presentaddress="ngModel" ngModel>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Linkedin" id="linkedin" name="linkedin"
+                          #linkedin="ngModel" ngModel>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <!-- basic info ends -->
+
+              <!-- Education -->
+              <div class="cv-left-content">
+                <div class="cv-left-title d-flex justify-content-between">
+                  <h4>Education</h4>
+                  <div class="add-btn">
+                    <button class="add-remove add" (click)="add()"><i class="fa fa-plus-square"
+                        aria-hidden="true"></i></button>
+                  </div>
+                </div>
+
+                <div ngModelGroup="qualification" class="cv-content">
+                  <ul class="list-unstyled education" *ngFor="let item of array, let i=index">
+                    <li>
+                      <div class="form-group">
+                        <select class="custom-select" id="certificationname{{i}}" name="certificationname{{i}}"
+                          #certificationname{{i}}="ngModel" ngModel>
+                          <option selected value="certification">Certification</option>
+                          <option value="SSC">SSC</option>
+                          <option value="HSC">HSC</option>
+                          <option value="BSC">BSC</option>
+                          <option value="BBA">BBA</option>
+                          <option value="MBA">MBA</option>
+                          <option value="MSC">MSC</option>
+                          <option value="MIT">MIT</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <input type="text" placeholder="Institute" class="form-control" id="institute{{i}}"
+                          name="institute{{i}}" #institute{{i}}="ngModel" ngModel>
+                      </div>
+                      <div class="form-group">
+                        <input type="text" placeholder="Session" class="form-control" id="session{{i}}"
+                          name="session{{i}}" #session{{i}}="ngModel" ngModel>
+                      </div>
+                      <div class="col-2">
+                        <div *ngIf="i!=0" class="" style="margin-top: 30px;">
+                          <button class="add-remove remove" (click)="remove(i)"><i class="fa fa-trash"></i></button>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <!-- Education Ends -->
+
+              <!-- Skills -->
+              <div class="cv-left-content">
+                <div class="cv-left-title d-flex justify-content-between">
+                  <h4>Skills</h4>
+                  <div class="add-btn">
+                    <button class="add-remove add" (click)="add1()"><i class="fa fa-plus-square"
+                        aria-hidden="true"></i></button>
+                  </div>
+                </div>
+                <div ngModelGroup="software" class="cv-content">
+                  <p class="professional">//Professional</p>
+
+                  <ul class="skill" *ngFor="let item of array1, let i=index">
+
+                    <li>
+                      <div class="form-group">
+                        <input type="text" class="form-control" placeholder="skill/software" id="soft{{i}}"
+                          name="soft{{i}}" #soft{{i}}="ngModel" ngModel>
+                      </div>
+                      <div class="col-2">
+                        <div *ngIf="i!=0" class="" style="margin-top: 30px;">
+                          <button class="add-remove remove" (click)="remove1(i)"><i class="fa fa-trash"
+                              aria-hidden="true"></i></button>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <!-- Skills ends -->
+            </div>
+          </div>
+          <!-- left ends -->
+
+          <!-- right -->
+          <div class="col-sm-8 col-md-8 col-lg-8">
+            <div class="bg-white">
+              <div class="row">
+                <div class="col-12">
+                  <div class="cv-right">
+                    <!-- profile -->
+                    <div class="cv-right-content">
+                      <div class="cv-title">
+                        <h4>profile</h4>
+                      </div>
+                      <div class="cv-content">
+                        <div ngModelGroup="basicinfo" class="cv-des">
+                          <label for="objective">About</label>
+                          <textarea class="form-control" name="objective" ngModel style="height: 100px;"></textarea>
+                        </div>
+                      </div><br>
+                    </div>
+                    <!-- profile ends -->
+
+                    <!-- experience -->
+                    <div ngModelGroup="experience" class="cv-right-content">
+                      <div class="cv-title d-flex justify-content-between">
+                        <h4>work experience</h4>
+                        <div class="add-btn">
+                          <button class="add-remove add" (click)="add2()"
+                            style="margin-left: 10px; margin-bottom: 10px;"><i class="fa fa-plus-square"
+                              aria-hidden="true"></i></button>
+                        </div>
+                      </div>
+                      <div *ngFor="let item of array2, let i=index">
+                        <div class="cv-content">
+                          <div class="job-title">
+                            <div style="width: 100%;">
+                              <label for="companyName{{i}}">Company Name</label>
+                              <input type="text" class="form-control" id="companyName{{i}}" name="companyName{{i}}"
+                                #companyName{{i}}="ngModel" ngModel>
+                            </div>
+                            <div class="row">
+                              <div class="col-6">
+                                <label for="desgnation{{i}}">Designation</label>
+                                <input type="text" class="form-control" id="desgnation{{i}}" name="designation{{i}}"
+                                  #desgnation{{i}}="ngModel" ngModel>
+                              </div>
+                              <div class="col-3">
+                                <label for="from{{i}}">From</label>
+                                <input type="text" class="form-control" id="from{{i}}" name="from{{i}}"
+                                  #from{{i}}="ngModel" ngModel>
+                              </div>
+                              <div class="col-3">
+                                <label for="to{{i}}">To</label>
+                                <input type="text" class="form-control" id="to{{i}}" name="to{{i}}" #to{{i}}="ngModel"
+                                  ngModel>
+                              </div>
+                              <div class="col-1">
+                                <div *ngIf="i!=0" class="" style="margin-top: 30px;">
+                                  <button class="add-remove remove" (click)="remove2(i)"><i class="fa fa-trash"
+                                      aria-hidden="true"></i></button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="cv-des">
+                            <label for="description{{i}}">Description</label>
+                            <textarea style="height: 100px;" type="text" class="form-control" id="description{{i}}"
+                              name="description{{i}}" #description{{i}}="ngModel" ngModel></textarea>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- experience ends -->
+                    <button (click)="onSubmit(form)" class="btn yoBtn" [disabled]="form.invalid">Submit</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- right ends -->
+        </div>
+      </div>
+    </div>
+  </section>
+</form>

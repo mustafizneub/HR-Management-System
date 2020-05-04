@@ -1,0 +1,75 @@
+<div *ngIf="authService.userData as user">
+  <div class="row">
+    <div class="col-lg-12">
+      <!-- Client's Edit Form -->
+      <form [formGroup]="editForm" (ngSubmit)="updateForm()" novalidate>
+        <div class="row">
+          <div class="col-lg-5 col-md-12 col-sm-12">
+            <div class="row">
+              <div class="col-md-12 mb-3">
+                <label>Name</label>
+                <input type="text" formControlName="name" class="form-control" required>
+                <p *ngIf="name.touched && name.invalid" class="error"><sup>*</sup>Please enter name</p>
+                <p *ngIf="name.errors?.minlength" class="error"><sup>*</sup>Name shouldn't be less than
+                  2 words</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 mb-3">
+                <label>Contact Person Name</label>
+                <input type="text" formControlName="cpname" class="form-control" required>
+                <p *ngIf="cpname.touched && cpname.invalid" class="error"><sup>*</sup>Please enter contact person's name
+                </p>
+                <p *ngIf="cpname.errors?.minlength" class="error"><sup>*</sup>Name shouldn't be less than
+                  2 words</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 mb-3">
+                <label>Email</label>
+                <input type="email" formControlName="email" class="form-control" required>
+                <p *ngIf="email.touched && email.invalid" class="error"><sup>*</sup>Please provide email
+                </p>
+                <p *ngIf="email.errors?.pattern" class="error"><sup>*</sup>Please enter correct email
+                </p>
+              </div>
+              <div class="col-md-12 mb-3">
+                <label>Mobile number</label>
+                <input type="text" formControlName="mobileNumber" class="form-control" required>
+                <p *ngIf="mobileNumber.touched && mobileNumber.invalid" class="error"><sup>*</sup>Please
+                  provide
+                  contact
+                  number</p>
+                <p *ngIf="mobileNumber.errors?.pattern" class="error"><sup>*</sup>Use Valid Mobile
+                  Numbers Ex:+8801732080524</p>
+              </div>
+
+              <div class="col-md-12 mb-3">
+                <label>Company Name</label>
+                <input type="text" formControlName="company" class="form-control" placeholder="Enter company name"
+                  required>
+                <!-- Showing errors using getter method -->
+                <p *ngIf="company.touched && company.invalid" class="error">
+                  <sup>*</sup>Please company name</p>
+              </div>
+
+              <div class="col-md-12 mb-3">
+                <label>Address</label>
+                <input type="text" formControlName="address" class="form-control" required>
+                <!-- Showing errors using getter method -->
+                <p *ngIf="address.touched && address.invalid" class="error">
+                  <sup>*</sup>Please provide Address</p>
+              </div>
+            </div>
+            <div class="form-group text-right">
+              <button type="submit" class="btn btn-success" [disabled]="!editForm.valid"> Update</button>
+            </div>
+          </div>
+        </div>
+      </form>
+      <!-- Client's Edit Form ends-->
+
+
+    </div>
+  </div>
+</div>

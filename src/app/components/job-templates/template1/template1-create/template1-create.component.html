@@ -1,0 +1,431 @@
+<app-nav></app-nav>
+<form  #form="ngForm">
+    <div class="resume">
+        <div class="base">
+            <div ngModelGroup="basicinfo">
+                <div class="form-group">
+                    <div class="profile">
+                        <div class="photo" style="margin-bottom: 5px;"><img src="../../assets/images/user.png">
+                            <input class="" (change)="upload($event)" type="file" accept=".png,.jpg">
+                        </div>
+                        <div class="info">
+                            <div class="form-group col-md-16">
+                                <label for="name">
+                                    <h4>Name</h4>
+                                </label>
+                                <input type="text" class="form-control" id="name" name="name" ngModel #name="ngModel"
+                                    required minlength="4">
+
+                                <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+
+                                    <div *ngIf="name.errors.required">
+                                        Name is required.
+                                    </div>
+                                    <div *ngIf="name.errors.minlength">
+                                        Name must be at least 4 characters long.
+                                    </div>
+                                    <div *ngIf="name.errors.forbiddenName">
+                                        Name cannot be Bob.
+                                    </div>
+
+                                </div>
+                            </div>
+                            <small class="job" style="font-family: inherit; font-size: inherit;">
+                                <div class="form-group col-md-16">
+                                    <label for="designation">
+                                        <h4>Designation</h4>
+                                    </label>
+                                    <input type="text" class="form-control" id="designation" name="designation" ngModel>
+
+                                </div>
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="contact">
+                        <h3>Personal Info.</h3>
+                        <div class="form-group col-md-16">
+                            <label for="present address">
+                                <h4>Present Address</h4>
+                            </label>
+                            <input type="text" class="form-control" id="presentaddress" name="presentaddress"
+                                #presentaddress="ngModel" ngModel>
+
+                        </div>
+                        <div class="form-group col-md-16">
+                            <label for="email">
+                                <h4>Email address</h4>
+                            </label>
+                            <input type="email" class="form-control" id="email" aria-describedby="emailHelp"
+                                name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" ngModel #email="ngModel"
+                                required>
+
+                            <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+
+                                <div *ngIf="email.errors.required">
+                                    Email is required.
+                                </div>
+                                <div *ngIf="email.errors.pattern">
+                                    This is not a valid email.
+                                </div>
+
+                            </div>
+
+
+
+                        </div>
+                        <div class="form-group col-md-16">
+                            <label for="Phone Number">
+                                <h4>Phone Number</h4>
+                            </label>
+                            <input type="text" class="form-control" id="phonenumber" name="phonenumber"
+                                #phonenumber="ngModel" ngModel>
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" class="form-control" id="objective" name="objective" #objective="ngModel" ngModel>
+                <input type="hidden" class="form-control" id="linkedin" name="linkedin" #linkedin="ngModel" ngModel>
+            </div>
+            <div class="contact">
+                <div ngModelGroup="skills">
+
+                    <div class="form-group">
+
+                        <h3>Skills</h3>
+                        <h4>Programming Languages</h4>
+                        <div class="form-group col-md-16">
+                            <input type="text" class="form-control" id="programming" name="programming"
+                                #programming="ngModel" ngModel>
+                        </div>
+                        <h4>Framework</h4>
+                        <div class="form-group col-md-16">
+                            <input type="text" class="form-control" id="framework" name="framework" #framework="ngModel"
+                                ngModel>
+                        </div>
+                        <h4>Operating System</h4>
+                        <div class="form-group col-md-16">
+                            <input type="text" class="form-control" id="system" name="system" #system="ngModel" ngModel>
+                        </div>
+                        <h4>Web Technologies</h4>
+                        <div class="form-group col-md-16">
+                            <input type="text" class="form-control" id="other" name="other" #other="ngModel" ngModel>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="follow">
+                <h3>Contact me</h3>
+                <div class="box">
+                    <a href="javascript:void(0);"><i class="fa fa-facebook"></i></a>
+                    <a href="javascript:void(0);"><i class="fa fa-twitter"></i></a>
+                    <a href="javascript:void(0);"><i class="fa fa-pinterest-p"></i></a>
+                    <a href="#"><i class="fa fa-codepen"></i></a>
+                </div>
+            </div>
+
+        </div>
+        <div class="func">
+            <div class="work">
+                <div ngModelGroup="experience">
+
+                    <div class="form-group">
+                        <h3><i class="fa fa-briefcase"></i>Experiences</h3>
+                        <div class="">
+                            <button class="btn-outline-primary" (click)="add()"
+                                style="margin-left: 10px; margin-bottom: 10px;"><i class="fa fa-plus-square"
+                                    aria-hidden="true"></i></button>
+                        </div>
+                        <ul *ngFor="let item of array, let i=index">
+                            <li>
+                                <span>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-4">
+                                            <label for="companyName{{i}}">Company Name</label>
+                                            <input type="text" class="form-control" id="companyName{{i}}"
+                                                name="companyName{{i}}" #companyName{{i}}="ngModel" ngModel>
+                                        </div>
+                                        <div class="form-group col-md-5">
+                                            <label for="desgnation{{i}}">Designation</label>
+                                            <input type="text" class="form-control" id="desgnation{{i}}"
+                                                name="designation{{i}}" #desgnation{{i}}="ngModel" ngModel>
+                                        </div>
+                                        <div class="col-1">
+                                            <div *ngIf="i!=0" class="" style="margin-top: 30px;">
+                                                <button class="btn-outline-danger" (click)="remove(i)"><i
+                                                        class="fa fa-trash" aria-hidden="true"></i></button>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </span>
+                                <small>
+                                    <div class="form row">
+                                        <div class="form-group col-md-2">
+                                            <label for="from{{i}}">From</label>
+                                            <input type="text" class="form-control" id="from{{i}}" name="from{{i}}"
+                                                #from{{i}}="ngModel" ngModel>
+                                        </div>
+                                        <div class="form-group col-md-2">
+                                            <label for="to{{i}}">To</label>
+                                            <input type="text" class="form-control" id="to{{i}}" name="to{{i}}"
+                                                #to{{i}}="ngModel" ngModel>
+                                        </div>
+                                        <input type="hidden" id="description{{i}}" name="description{{i}}"
+                                            #description{{i}}="ngModel" ngModel>
+
+
+                                    </div>
+                                </small>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="edu">
+                <div ngModelGroup="qualification">
+                    <div class="form-group">
+                        <h3><i class="fa fa-graduation-cap"></i>Education</h3>
+                        <div class="">
+                            <button class="btn-outline-primary" (click)="add1()"
+                                style="margin-left: 10px; margin-bottom: 10px;"><i class="fa fa-plus-square"
+                                    aria-hidden="true"></i></button>
+                        </div>
+                        <ul *ngFor="let item of array1, let i=index">
+                            <li>
+                                <span>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-4">
+                                            <label for="certificationname{{i}}">Cirtification Name</label>
+                                            <input type="text" class="form-control" id="certificationname{{i}}"
+                                                name="certificationname{{i}}" #certificationname{{i}}="ngModel" ngModel>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="institute{{i}}">Institute</label>
+                                            <input type="text" class="form-control" id="institute{{i}}"
+                                                name="institute{{i}}" #institute{{i}}="ngModel" ngModel>
+                                        </div>
+                                        <div class="col-1">
+                                            <div *ngIf="i!=0" class="" style="margin-top: 30px;">
+                                                <button class="btn-outline-danger" (click)="remove1(i)"><i
+                                                        class="fa fa-trash" aria-hidden="true"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </span>
+                                <small>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-2">
+                                            <label for="cgpa{{i}}">CGPA</label>
+                                            <input type="text" class="form-control" id="cgpa{{i}}" name="cgpa{{i}}"
+                                                #cgpa{{i}}="ngModel" ngModel>
+                                        </div>
+                                        <div class="form-group col-md-2">
+                                            <label for="session{{i}}">Session</label>
+                                            <input type="text" class="form-control" id="session{{i}}"
+                                                name="session{{i}}" #session0="ngModel" ngModel>
+                                        </div>
+                                        <input type="hidden" class="form-control" id="description{{i}}"
+                                            name="description{{i}}" #description{{i}}="ngModel" ngModel>
+
+                                    </div>
+                                </small>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="edu">
+                <div ngModelGroup="Participation">
+                    <div class="form-group">
+                        <h3><i class="fa fa-th-list"></i>Participation</h3>
+                        <div class="">
+                            <button class="btn-outline-primary" (click)="add2()"
+                                style="margin-left: 10px; margin-bottom: 10px;"><i class="fa fa-plus-square"
+                                    aria-hidden="true"></i></button>
+                        </div>
+                        <ul *ngFor="let item of array2, let i=index">
+                            <li>
+                                <span>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-4">
+                                            <label for="event{{i}}">Event Name</label>
+                                            <input type="text" class="form-control" id="event{{i}}" name="event{{i}}"
+                                                #event{{i}}="ngModel" ngModel>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="achievement{{i}}">Achievement</label>
+                                            <input type="text" class="form-control" id="achievement{{i}}"
+                                                name="achievement{{i}}" #achievement{{i}}="ngModel" ngModel>
+                                        </div>
+                                        <div class="col-1">
+                                            <div *ngIf="i!=0" class="" style="margin-top: 30px;">
+                                                <button class="btn-outline-danger" (click)="remove2(i)"><i
+                                                        class="fa fa-trash" aria-hidden="true"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </span>
+                                <small>
+                                    <div class="form-group col-md-3">
+                                        <label for="time{{i}}">Year</label>
+                                        <input type="text" class="form-control" id="time{{i}}" name="time{{i}}"
+                                            #time{{i}}="ngModel" ngModel>
+                                    </div>
+                                </small>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="edu">
+                <div ngModelGroup="onlineJudge">
+                    <div class="form-group">
+                        <h3><i class="fa fa-code"></i>Online Judges</h3>
+                        <div class="">
+                            <button class="btn-outline-primary" (click)="add3()"
+                                style="margin-left: 10px; margin-bottom: 10px;"><i class="fa fa-plus-square"
+                                    aria-hidden="true"></i></button>
+                        </div>
+                        <ul *ngFor="let item of array3, let i=index">
+                            <li>
+                                <span>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-5">
+                                            <label for="judgeName{{i}}">Online Judge Name</label>
+                                            <input type="text" class="form-control" id="judgeName{{i}}"
+                                                name="judgeName{{i}}" #judgeName{{i}}="ngModel" ngModel>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="judgeAchievement{{i}}">Achievement</label>
+                                            <input type="text" class="form-control" id="judgeAchievement{{i}}"
+                                                name="judgeAchievement{{i}}" #judgeAchievement{{i}}="ngModel" ngModel>
+                                        </div>
+                                        <div class="col-1">
+                                            <div *ngIf="i!=0" class="" style="margin-top: 30px;">
+                                                <button class="btn-outline-danger" (click)="remove3(i)"><i
+                                                        class="fa fa-trash" aria-hidden="true"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </span>
+                                <small>
+                                    <div class="form-group col-md-5">
+                                        <label for="id{{i}}">ID</label>
+                                        <input type="text" class="form-control" id="id{{i}}" name="id{{i}}"
+                                            #id{{i}}="ngModel" ngModel>
+                                    </div>
+                                </small>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="edu">
+                <div ngModelGroup="projects">
+                    <div class="form-group">
+                        <h3><i class="fa fa-th-list"></i>Projects</h3>
+                        <div class="">
+                            <button class="btn-outline-primary" (click)="add4()"
+                                style="margin-left: 10px; margin-bottom: 10px;"><i class="fa fa-plus-square"
+                                    aria-hidden="true"></i></button>
+                        </div>
+                        <ul *ngFor="let item of array4, let i=index">
+                            <li>
+                                <span>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-5">
+                                            <label for="topic{{i}}">Topic</label>
+                                            <input type="text" class="form-control" id="topic{{i}}" name="topic{{i}}"
+                                                #topic{{i}}="ngModel" ngModel>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="description{{i}}">Description</label>
+                                            <input type="text" class="form-control" id="description{{i}}"
+                                                name="description{{i}}" #description{{i}}="ngModel" ngModel>
+                                        </div>
+                                        <div class="col-1">
+                                            <div *ngIf="i!=0" class="" style="margin-top: 30px;">
+                                                <button class="btn-outline-danger" (click)="remove4(i)"><i
+                                                        class="fa fa-trash" aria-hidden="true"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </span>
+                                <small>
+                                    <div class="form-group col-md-3">
+                                        <label for="year{{i}}">Year</label>
+                                        <input type="text" class="form-control" id="year{{i}}" name="year{{i}}"
+                                            #year{{i}}="ngModel" ngModel>
+                                    </div>
+                                </small>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="skills-prog" ngModelGroup="software">
+                <h3><i class="fa fa-code"></i>Skills of Programming</h3>
+                <div class="">
+                    <button class="btn-outline-primary" (click)="add5()"
+                        style="margin-left: 10px; margin-bottom: 10px;"><i class="fa fa-plus-square"
+                            aria-hidden="true"></i></button>
+                </div>
+                <ul *ngFor="let item of array5, let i=index">
+                    <li>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <input type="text" class="form-control" placeholder="skill/software" id="soft{{i}}"
+                                    name="soft{{i}}" #soft{{i}}="ngModel" ngModel>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <input type="text" class="form-control" placeholder="value" id="value{{i}}"
+                                    name="value{{i}}" #value{{i}}="ngModel" ngModel>
+                            </div>
+                            <div class="col-1">
+                                <div *ngIf="i!=0" class="" style="margin-top: 10px;">
+                                    <button class="btn-outline-danger" (click)="remove5(i)"><i class="fa fa-trash"
+                                            aria-hidden="true"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="interests" ngModelGroup="interest">
+                <h3><i class="fa fa-star"></i>Hobbies</h3>
+                <div class="">
+                    <button class="btn-outline-primary" (click)="add6()"
+                        style="margin-left: 10px; margin-bottom: 10px;"><i class="fa fa-plus-square"
+                            aria-hidden="true"></i></button>
+                </div>
+                <div *ngFor="let item of array6, let i=index">
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <input type="text" class="form-control" placeholder="Hobby" id="hobby{{i}}"
+                                name="hobby{{i}}" #hobby{{i}}="ngModel" ngModel>
+                        </div>
+                        <div class="col-1">
+                            <div *ngIf="i!=0" class="" style="margin-top: 10px;">
+                                <button class="btn-outline-danger" (click)="remove6(i)"><i class="fa fa-trash"
+                                        aria-hidden="true"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div ngModelGroup="Language">
+                <input type="hidden" name="language0" ngModel>
+
+            </div>
+
+
+
+            <button style="float: right;" (click)="onSubmit(form)" class="btn btn-primary"
+                [disabled]="form.invalid">Submit</button>
+        </div>
+    </div>
+
+</form>

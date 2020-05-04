@@ -1,0 +1,528 @@
+<div *ngIf="creating">
+  <div class="ui green rounded" style="width: 40%; margin: 0 auto;">
+    <h3 id="addedText" style="text-align: center; padding: 20px; background-color: #16AB39; color: white;">Adding
+      Employee</h3>
+  </div>
+</div>
+<form class="ui form" [formGroup]="add_employee">
+  <ng-container *ngIf="basic">
+    <div formGroupName="basic">
+      <h3>Basic Infomation</h3>
+      <div class="field">
+        <div class="two fields">
+          <div class="field">
+            <label>First Name</label>
+            <input type="text" name="firstname" formControlName="firstname" required>
+
+            <div *ngIf="add_employee.controls.basic.get('firstname').invalid &&
+                    ( add_employee.controls.basic.get('firstname').touched
+                    || add_employee.controls.basic.get('firstname').dirty)">
+              <div class="ui pointing red basic label">
+                <ng-container *ngIf="add_employee.controls.basic.get('firstname').errors.required">
+                  First name is required
+                </ng-container>
+                <ng-container *ngIf="add_employee.controls.basic.get('firstname').errors.pattern">
+                  Cannot contain any special character
+                </ng-container>
+                <ng-container *ngIf="add_employee.controls.basic.get('firstname').errors.minlength">
+                  Minimum Length is 3
+                </ng-container>
+                <ng-container *ngIf="add_employee.controls.basic.get('firstname').errors.maxlength">
+                  Minimum Length is 20
+                </ng-container>
+              </div>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Last Name</label>
+            <input type="text" name="lastname" formControlName="lastname" required>
+            <div *ngIf="add_employee.controls.basic.get('lastname').invalid &&
+                                      ( add_employee.controls.basic.get('lastname').touched
+                                      || add_employee.controls.basic.get('lastname').dirty)">
+              <div class="ui pointing red basic label">
+                <ng-container *ngIf="add_employee.controls.basic.get('lastname').errors.required">
+                  Last name is required
+                </ng-container>
+                <ng-container *ngIf="add_employee.controls.basic.get('lastname').errors.pattern">
+                  Cannot contain any special character
+                </ng-container>
+                <ng-container *ngIf="add_employee.controls.basic.get('lastname').errors.minlength">
+                  Minimum Length is 3
+                </ng-container>
+                <ng-container *ngIf="add_employee.controls.basic.get('lastname').errors.maxlength">
+                  Minimum Length is 20
+                </ng-container>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="two fields">
+          <div class="field">
+            <label>Usernmae</label>
+            <input type="text" name="username" formControlName="username" required>
+            <div *ngIf="add_employee.controls.basic.get('username').invalid &&
+                                      ( add_employee.controls.basic.get('username').touched
+                                      || add_employee.controls.basic.get('username').dirty)">
+              <div class="ui pointing red basic label">
+                <ng-container *ngIf="add_employee.controls.basic.get('username').errors.required">
+                  username is required
+                </ng-container>
+                <ng-container *ngIf="add_employee.controls.basic.get('username').errors.pattern">
+                  Cannot contain any special character
+                </ng-container>
+                <ng-container *ngIf="add_employee.controls.basic.get('username').errors.minlength">
+                  Minimum Length is 3
+                </ng-container>
+                <ng-container *ngIf="add_employee.controls.basic.get('username').errors.maxlength">
+                  Minimum Length is 20
+                </ng-container>
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <label>Password</label>
+            <input type="password" name="password" formControlName="password">
+            <div *ngIf="add_employee.controls.basic.get('password').invalid &&
+                                    ( add_employee.controls.basic.get('password').touched
+                                    || add_employee.controls.basic.get('password').dirty)">
+              <div class="ui pointing red basic label">
+                <ng-container *ngIf="add_employee.controls.basic.get('password').errors.required">
+                  First name is required
+                </ng-container>
+                <ng-container *ngIf="add_employee.controls.basic.get('password').errors.minlength">
+                  Minimum Length is 6
+                </ng-container>
+                <ng-container *ngIf="add_employee.controls.basic.get('password').errors.maxlength">
+                  Minimum Length is 32
+                </ng-container>
+                <ng-container *ngIf="add_employee.controls.basic.get('password').errors.pattern">
+                  Password must contain at least one small and capital letter, at least one number and
+                  special
+                  character and be longer than five charaters.
+                </ng-container>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="two fields">
+          <div class="field">
+            <label>Employee ID</label>
+            <input type="text" name="employee_id" formControlName="employee_id" readonly>
+          </div>
+          <div class="field">
+            <label>Joining Date</label>
+            <input type="date" name="joining_date" formControlName="joining_date">
+            <div *ngIf="add_employee.controls.basic.get('joining_date').invalid &&
+                                      ( add_employee.controls.basic.get('joining_date').touched
+                                      || add_employee.controls.basic.get('joining_date').dirty)">
+              <div class="ui pointing red basic label">
+                <ng-container *ngIf="add_employee.controls.basic.get('joining_date').errors.required">
+                  Joining Date is required
+                </ng-container>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="field">
+        <label>Company</label>
+        <input type="text" name="company" formControlName="company" required>
+        <div *ngIf="add_employee.controls.basic.get('company').invalid &&
+                                                      ( add_employee.controls.basic.get('company').touched
+                                                      || add_employee.controls.basic.get('company').dirty)">
+          <div class="ui pointing red basic label">
+            <ng-container *ngIf="add_employee.controls.basic.get('company').errors.required">
+              Company is required
+            </ng-container>
+            <ng-container *ngIf="add_employee.controls.basic.get('company').errors.minlength">
+              Minimum Length is 3
+            </ng-container>
+            <ng-container *ngIf="add_employee.controls.basic.get('company').errors.maxlength">
+              Minimum Length is 50
+            </ng-container>
+          </div>
+        </div>
+      </div>
+      <div class="field">
+        <div class="two fields">
+          <div class="field">
+            <label>Department</label>
+            <select name="" id="" (change)="fiterDesignation($event)" formControlName="department">
+              <option value=""></option>
+              <option [value]="dep.dep_name" *ngFor="let dep of departments">{{dep.dep_name}}</option>
+            </select>
+            <div *ngIf="add_employee.controls.basic.get('department').invalid &&
+                                                      ( add_employee.controls.basic.get('department').touched
+                                                      || add_employee.controls.basic.get('department').dirty)">
+              <div class="ui pointing red basic label">
+                <ng-container *ngIf="add_employee.controls.basic.get('department').errors.required">
+                  Department required
+                </ng-container>
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <label>Designation</label>
+            <select name="" id="" class="field" name="designation" formControlName="designation">
+              <option value=""></option>
+              <option [value]="d.desname" *ngFor="let d of des">{{d.desname}}</option>
+
+            </select>
+            <div *ngIf="add_employee.controls.basic.get('designation').invalid &&
+                                                      ( add_employee.controls.basic.get('designation').touched
+                                                      || add_employee.controls.basic.get('designation').dirty)">
+              <div class="ui pointing red basic label">
+                <ng-container *ngIf="add_employee.controls.basic.get('designation').errors.required">
+                  Designation is required
+                </ng-container>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="two fields">
+        <div class="field">
+          <label for="">Select Gender</label>
+          <select class="field" formControlName="gender">
+            <option value="">Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+          </select>
+          <div
+            *ngIf="add_employee.controls.basic.get('gender').invalid &&
+                                                                          ( add_employee.controls.basic.get('gender').touched
+                                                                          || add_employee.controls.basic.get('gender').dirty)">
+            <div class="ui pointing red basic label">
+              <ng-container *ngIf="add_employee.controls.basic.get('gender').errors.required">
+                Gender is required
+              </ng-container>
+            </div>
+          </div>
+        </div>
+        <div class="field">
+          <label for="">Profile Image</label>
+          <input type="file" (change)="uploadImage($event)" required accept="image/*">
+        </div>
+      </div>
+      <div class="field">
+        <label for="">NID</label>
+        <input type="text" formControlName="nid" required>
+        <div
+          *ngIf="add_employee.controls.basic.get('nid').invalid &&
+                                                                      ( add_employee.controls.basic.get('nid').touched
+                                                                      || add_employee.controls.basic.get('nid').dirty)">
+
+          <div class="ui pointing red basic label">
+            <ng-container *ngIf="add_employee.controls.basic.get('nid').errors.required">
+              NID number is required
+            </ng-container>
+            <ng-container *ngIf="add_employee.controls.basic.get('nid').errors.pattern">
+              NID should contain numbers only
+            </ng-container>
+            <ng-container *ngIf="add_employee.controls.basic.get('nid').errors.minlength ||
+                        add_employee.controls.basic.get('nid').errors.maxlength">
+              NID number should of length 10.
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <button class="ui button" (click)="basicToggle()" [disabled]="add_employee.controls.basic.invalid">Next</button>
+  </ng-container>
+
+
+  <ng-container *ngIf="bank">
+    <div formGroupName="bankDetails">
+      <h3>Bank Details</h3>
+      <div class="two fields">
+        <div class="field">
+          <label for="">Bank Name</label>
+          <input type="text" formControlName="bankname">
+          <div *ngIf="add_employee.controls.bankDetails.get('bankname').invalid &&
+                                      ( add_employee.controls.bankDetails.get('bankname').touched
+                                      || add_employee.controls.bankDetails.get('bankname').dirty)">
+            <div class="ui pointing red address label">
+              <ng-container *ngIf="add_employee.controls.bankDetails.get('bankname').errors.required">
+                Bank name is required
+              </ng-container>
+              <ng-container *ngIf="add_employee.controls.bankDetails.get('bankname').errors.pattern">
+                Cannot contain any special character
+              </ng-container>
+              <ng-container *ngIf="add_employee.controls.bankDetails.get('bankname').errors.minlength">
+                Minimum Length is 5
+              </ng-container>
+              <ng-container *ngIf="add_employee.controls.bankDetails.get('bankname').errors.maxlength">
+                Minimum Length is 30
+              </ng-container>
+            </div>
+          </div>
+        </div>
+        <div class="field">
+          <label for="">Branch Name</label>
+          <input type="text" formControlName="branch">
+          <div *ngIf="add_employee.controls.bankDetails.get('branch').invalid &&
+                                      ( add_employee.controls.bankDetails.get('branch').touched
+                                      || add_employee.controls.bankDetails.get('branch').dirty)">
+            <div class="ui pointing red address label">
+              <ng-container *ngIf="add_employee.controls.bankDetails.get('branch').errors.required">
+                Branch name is required
+              </ng-container>
+              <ng-container *ngIf="add_employee.controls.bankDetails.get('branch').errors.pattern">
+                Cannot contain any special character
+              </ng-container>
+              <ng-container *ngIf="add_employee.controls.bankDetails.get('branch').errors.minlength">
+                Minimum Length is 5
+              </ng-container>
+              <ng-container *ngIf="add_employee.controls.bankDetails.get('branch').errors.maxlength">
+                Minimum Length is 30
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="two fields">
+        <div class="field">
+          <label for="">A/C Holder Name</label>
+          <input type="text" formControlName="holder">
+          <div *ngIf="add_employee.controls.bankDetails.get('holder').invalid &&
+                                      ( add_employee.controls.bankDetails.get('holder').touched
+                                      || add_employee.controls.bankDetails.get('holder').dirty)">
+            <div class="ui pointing red address label">
+              <ng-container *ngIf="add_employee.controls.bankDetails.get('holder').errors.required">
+                Account Holder is required
+              </ng-container>
+              <ng-container *ngIf="add_employee.controls.bankDetails.get('holder').errors.pattern">
+                Cannot contain any special character
+              </ng-container>
+              <ng-container *ngIf="add_employee.controls.bankDetails.get('holder').errors.minlength">
+                Minimum Length is 5
+              </ng-container>
+              <ng-container *ngIf="add_employee.controls.bankDetails.get('holder').errors.maxlength">
+                Minimum Length is 30
+              </ng-container>
+            </div>
+          </div>
+        </div>
+        <div class="field">
+          <label for="">A/C Number</label>
+          <input type="text" formControlName="acc_no">
+          <div *ngIf="add_employee.controls.bankDetails.get('acc_no').invalid &&
+                                      ( add_employee.controls.bankDetails.get('acc_no').touched
+                                      || add_employee.controls.bankDetails.get('acc_no').dirty)">
+            <div class="ui pointing red address label">
+              <ng-container *ngIf="add_employee.controls.bankDetails.get('acc_no').errors.required">
+                Account number is required
+              </ng-container>
+              <ng-container *ngIf="add_employee.controls.bankDetails.get('acc_no').errors.pattern">
+                Should only be numbers
+              </ng-container>
+              <ng-container *ngIf="add_employee.controls.bankDetails.get('acc_no').errors.minlength">
+                Minimum Length is 5
+              </ng-container>
+              <ng-container *ngIf="add_employee.controls.bankDetails.get('acc_no').errors.maxlength">
+                Minimum Length is 30
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ui two column centered grid">
+      <div class="column"></div>
+      <div class="four column centered row">
+        <div class="column">
+          <button class="ui button" (click)="bankPrev()">Prev</button>
+        </div>
+        <div class="column">
+          <button class="ui button" (click)="bankNext()"
+            [disabled]="add_employee.controls.bankDetails.invalid">Next</button>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+
+
+  <ng-container *ngIf="address">
+    <div formGroupName="address">
+      <h3>Address</h3>
+      <div class="field">
+        <div class="two fields">
+          <div class="field">
+            <label for="">Street</label>
+            <input type="text" formControlName="street" required>
+            <div *ngIf="add_employee.controls.address.get('street').invalid &&
+                                      ( add_employee.controls.address.get('street').touched
+                                      || add_employee.controls.address.get('street').dirty)">
+              <div class="ui pointing red address label">
+                <ng-container *ngIf="add_employee.controls.address.get('street').errors.required">
+                  Street is required
+                </ng-container>
+                <ng-container *ngIf="add_employee.controls.address.get('street').errors.pattern">
+                  Cannot contain any special character
+                </ng-container>
+                <ng-container *ngIf="add_employee.controls.address.get('street').errors.minlength">
+                  Minimum Length is 3
+                </ng-container>
+                <ng-container *ngIf="add_employee.controls.address.get('street').errors.maxlength">
+                  Minimum Length is 20
+                </ng-container>
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <label for="">City</label>
+            <input type="text" formControlName="city" required>
+            <div *ngIf="add_employee.controls.address.get('city').invalid &&
+                                      ( add_employee.controls.address.get('city').touched
+                                      || add_employee.controls.address.get('city').dirty)">
+              <div class="ui pointing red address label">
+                <ng-container *ngIf="add_employee.controls.address.get('city').errors.required">
+                  City is required
+                </ng-container>
+                <ng-container *ngIf="add_employee.controls.address.get('city').errors.pattern">
+                  Cannot contain any special character
+                </ng-container>
+                <ng-container *ngIf="add_employee.controls.address.get('city').errors.minlength">
+                  Minimum Length is 3
+                </ng-container>
+                <ng-container *ngIf="add_employee.controls.address.get('city').errors.maxlength">
+                  Minimum Length is 20
+                </ng-container>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="field">
+        <div class="two fields">
+          <div class="field">
+            <label for="">State</label>
+            <input type="text" formControlName="state" required>
+            <div *ngIf="add_employee.controls.address.get('state').invalid &&
+                                      ( add_employee.controls.address.get('state').touched
+                                      || add_employee.controls.address.get('state').dirty)">
+              <div class="ui pointing red address label">
+                <ng-container *ngIf="add_employee.controls.address.get('state').errors.required">
+                  State is required
+                </ng-container>
+                <ng-container *ngIf="add_employee.controls.address.get('state').errors.pattern">
+                  Cannot contain any special character
+                </ng-container>
+                <ng-container *ngIf="add_employee.controls.address.get('state').errors.minlength">
+                  Minimum Length is 3
+                </ng-container>
+                <ng-container *ngIf="add_employee.controls.address.get('state').errors.maxlength">
+                  Minimum Length is 20
+                </ng-container>
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <label for="">Zip Code</label>
+            <input type="text" formControlName="zip" required>
+            <div *ngIf="add_employee.controls.address.get('zip').invalid &&
+                                      ( add_employee.controls.address.get('zip').touched
+                                      || add_employee.controls.address.get('zip').dirty)">
+              <div class="ui pointing red address label">
+                <ng-container *ngIf="add_employee.controls.address.get('zip').errors.required">
+                  Zip Code is required
+                </ng-container>
+                <ng-container *ngIf="add_employee.controls.address.get('zip').errors.pattern">
+                  Cannot contain any special character
+                </ng-container>
+                <ng-container *ngIf="add_employee.controls.address.get('zip').errors.minlength">
+                  Minimum Length is 3
+                </ng-container>
+                <ng-container *ngIf="add_employee.controls.address.get('zip').errors.maxlength">
+                  Minimum Length is 20
+                </ng-container>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ui two column centered grid">
+      <div class="column"></div>
+      <div class="four column centered row">
+        <div class="column">
+          <button class="ui button" (click)="addressPrev()">Prev</button>
+        </div>
+        <div class="column">
+          <button class="ui button" (click)="addressNext()"
+            [disabled]="add_employee.controls.address.invalid">Next</button>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="contact">
+    <div formGroupName="contact">
+      <h3>Contact</h3>
+      <div class="field">
+        <div class="two fields">
+          <div class="field">
+            <label>Phone Number</label>
+            <input type="text" name="phone_number" formControlName="phone_number" required>
+            <div *ngIf="add_employee.controls.contact.get('phone_number').invalid &&
+                                                      ( add_employee.controls.contact.get('phone_number').touched
+                                                      || add_employee.controls.contact.get('phone_number').dirty)">
+              <div class="ui pointing red basic label">
+                <ng-container *ngIf="add_employee.controls.contact.get('phone_number').errors.required">
+                  Phone Number is required
+                </ng-container>
+                <ng-container *ngIf="add_employee.controls.contact.get('phone_number').errors.pattern">
+                  Phone Pattern: +880XXXXXXXX, Lenght: 12
+                </ng-container>
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <label>Email</label>
+            <input type="email" name="email" formControlName="email">
+            <div *ngIf="add_employee.controls.contact.get('email').invalid &&
+                                      ( add_employee.controls.contact.get('email').touched
+                                      || add_employee.controls.contact.get('email').dirty)">
+              <div class="ui pointing red basic label">
+                <ng-container *ngIf="add_employee.controls.contact.get('email').errors.required">
+                  Email is required
+                </ng-container>
+                <ng-container *ngIf="add_employee.controls.contact.get('email').errors.email">
+                  Should be a valid email
+                </ng-container>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ui two column centered grid">
+      <div class="column"></div>
+      <div class="four column centered row">
+        <div class="column">
+          <button class="ui button" (click)="contactToggle()">Prev</button>
+        </div>
+        <div class="column">
+          <button class="ui button" tabindex="0" type="submit" (click)="addEmployee()"
+            [disabled]="add_employee.controls.contact.invalid || add_employee.controls.invalid">Add
+            Employee</button>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+</form>

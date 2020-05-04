@@ -1,0 +1,274 @@
+<ng-container *ngIf="loading">
+  <div class="ui active inverted dimmer">
+    <div class="ui large text loader" style="font-weight: 600;">
+      <h1>
+        <span class="primary-text-color">Fetching</span><span class="secondary-text-color"> Salary
+          Details.</span>
+      </h1>
+    </div>
+  </div>
+  <img class="ui wireframe image" src="https://semantic-ui.com/images/wireframe/short-paragraph.png">
+  <img class="ui wireframe image" src="https://semantic-ui.com/images/wireframe/short-paragraph.png">
+  <img class="ui wireframe image" src="https://semantic-ui.com/images/wireframe/short-paragraph.png">
+  <img class="ui wireframe image" src="https://semantic-ui.com/images/wireframe/short-paragraph.png">
+  <img class="ui wireframe image" src="https://semantic-ui.com/images/wireframe/short-paragraph.png">
+  <img class="ui wireframe image" src="https://semantic-ui.com/images/wireframe/short-paragraph.png">
+  <img class="ui wireframe image" src="https://semantic-ui.com/images/wireframe/short-paragraph.png">
+</ng-container>
+
+
+<ng-container *ngIf="data && !loading">
+  <div class="ui segment employee-salary" id="employee-history">
+    <div class="ui grid">
+      <ng-container *ngIf="data">
+        <div class="ui sixteen wide column">
+
+          <div class="ui grid">
+            <div class="ui four wide column">
+              <div class="ui small rounded image">
+                <img [src]="data.staff_avatar"><br>
+              </div>
+            </div>
+            <div class="ui four wide column">
+              <span>Email: {{data.staff_email}}</span><br>
+              <span>Name; {{data.staff_name}}</span><br>
+            </div>
+            <div class="ui four wide column">
+              <span>Bank: {{data.bank.bankname}}</span><br>
+              <span>Branch: {{data.bank.branch}}</span><br>
+              <span>A/C Holder: {{data.bank.holder}}</span><br>
+              <span>A/C Number: {{data.bank.acc_no}}</span>
+            </div>
+            <div class="ui three wide column">
+              <img class="floated right" src="./../../../assets/Yotech Web color.png" alt=""
+                style="width: 80%; margin-top: 10px; margin-right: 10px;">
+            </div>
+          </div>
+
+
+        </div>
+        <div class="ui animated button primary-bg-color text-white p-3" tabindex=" 0" (click)="toggleModal()">
+          <div class="hidden content">Add Allowance</div>
+          <div class="visible content" style="width: 80px;">
+            <i class="plus icon"></i>
+          </div>
+        </div>
+        <button class="ui button text-center" (click)="printHistory()"><i class="print icon"></i></button>
+        <button class="ui button text-center" (click)="makePdf()"><i class="file pdf outline icon"></i></button>
+        <button class="ui button" (click)="mailModalToggle()"><i class="inbox icon"></i></button>
+
+
+        <!-- <button class="ui button text-center"><i class="print icon"></i></button> -->
+        <div class="ui sixteen wide column mt-3">
+
+          <h4 class="text-center p-3">Salary History </h4>
+
+          <ng-container *ngIf="keys.length===0">
+            <h5 style="text-align: center; padding: 20px;">No salary added for this employee.</h5>
+          </ng-container>
+
+          <ng-container *ngIf="keys.length>0">
+            <table class="ui fixed single line celled table" id="details" *ngIf="history!='' && history!=undefined">
+              <thead>
+
+                <tr>
+                  <th>Month</th>
+                  <th>Issue Date</th>
+                  <th>Monthly Amount</th>
+                  <th>Salary Type</th>
+                  <th>Salary (BDT) </th>
+                  <th>Bonus Type</th>
+                  <th>Bonus Amount (BDT)</th>
+                  <th>Total Amount (BDT) </th>
+                  <th>Payslip</th>
+                  <th>Actions</th>
+                </tr>
+
+              </thead>
+
+              <tbody>
+
+                <ng-container *ngFor="let key of keys">
+                  <ng-container *ngIf="history[key].salary_id">
+                    <tr>
+                      <td>{{history[key].month}}</td>
+                      <td>{{history[key].issue_date}}</td>
+                      <td>BDT- {{history[key].monthly_amount}}</td>
+                      <td>{{history[key].type || '-'}}</td>
+                      <td>BDT- {{history[key].amount !=0 ? history[key].amount : history[key].monthly_amount}}</td>
+                      <td>{{history[key].bonus_type || '-'}}</td>
+                      <td>{{history[key].bonus_amount || '-'}}</td>
+                      <td>{{history[key].total_amount}}</td>
+                      <td>
+                        <button class="mini ui orange button ">Generate Slip</button>
+                      </td>
+                      <td>
+                        <div class="ui compact menu">
+                          <div class="ui simple dropdown item">
+                            ...
+                            <i class="dropdown icon"></i>
+                            <div class="menu">
+                              <div class="item" [routerLink]="['../../salary-details', id]"
+                                [queryParams]="{history: key}">
+
+                                <div class="ui vertical animated button" tabindex="0">
+                                  <div class="hidden content text-center">View</div>
+                                  <div class="visible content text-center">
+                                    <i class=" eye icon"></i>
+                                  </div>
+                                </div>
+
+                              </div>
+
+                              <div class="item">
+                                <div class="ui vertical animated button" tabindex="0"
+                                  [routerLink]="['../../edit', data.fStoreId]" [queryParams]="{history: key}">
+                                  <div class="hidden content text-center">Edit</div>
+                                  <div class="visible content text-center">
+                                    <i class="edit icon"></i>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="item">
+                                <div class="ui vertical animated button" tabindex="0" (click)="deleteAHistory(key)">
+                                  <div class="hidden content text-center">Delete</div>
+                                  <div class="visible content text-center">
+                                    <i class="trash alternate outline icon"></i>
+                                  </div>
+                                </div>
+                              </div>
+
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </ng-container>
+                </ng-container>
+              </tbody>
+            </table>
+          </ng-container>
+        </div>
+      </ng-container>
+
+    </div>
+  </div>
+
+
+  <!-- Add To Salary -->
+  <app-form-modal *ngIf="modalOpen" (close)="toggleModal()">
+    <h1 class="ui header" id="modal-title">Add New Salary</h1>
+
+    <app-success [message]="addiingAllowance ? 'addiingAllowance': ''"></app-success>
+    <app-success [message]="allowanceAdded ? 'allowanceAdded': ''"></app-success>
+
+    <form action="" class="ui form" #salaryForm="ngForm">
+      <ng-container *ngIf="addedToSalary">
+        <div class="message" style="width: 30%; margin: auto;">
+          <p class="primary-bg-color text-white" style="text-align: center; padding: 20px 0;font-size: 1.2em;">Allowance
+            Added</p>
+        </div>
+      </ng-container>
+
+
+
+      <div class="field p-3">
+        <h5 class="text-center">Salary Month: {{salary_month}}</h5>
+      </div>
+
+
+      <div class="two fields">
+        <div class="field">
+          <label for="">Salary Amount</label>
+          <input type="number" name="salary" [(ngModel)]="salary" (input)="total()"
+            [disabled]="type==='Monthly Salary'">
+        </div>
+        <div class="ui field">
+          <label for="">Type</label>
+          <select class="ui dropdown" name="type" [(ngModel)]="type">
+            <option value="Monthly Salary" [selected]="type==='Monthly Salary'">Monthly Salary</option>
+            <option value="Increment">Increment</option>
+            <option value="Promotion">Promotion</option>
+          </select>
+        </div>
+
+      </div>
+
+
+      <div class="ui checkbox">
+        <input type="checkbox" name="example" (change)="addBonus()">
+        <label>Add Bonus</label>
+      </div>
+      <br><br>
+
+      <ng-container *ngIf="bonusToggle">
+        <div class="two fields">
+          <div class="field">
+            <label for="">Bonus Type</label>
+            <select class="ui dropdown" name="bonus_type" [(ngModel)]="bonus_type">
+              <option value=""></option>
+              <option value="Eid-Ul-Fitr">Eid-Ul-Fitr</option>
+              <option value="Eid-Ul-Adha">Eid-Ul-Adha</option>
+              <option value="Puja">Puja</option>
+              <option value="Chirstmas">Christmas</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="">Bonus Amount (BDT)</label>
+            <input type="number" name="bonus_amount" [(ngModel)]="bonus_amount" (input)="total()">
+          </div>
+
+        </div>
+      </ng-container>
+      <div class="two fields">
+        <div class="field">
+          <label for="">Date</label>
+          <input type="date" name="date" [(ngModel)]="date">
+        </div>
+
+        <!-- <button class="ui button primary-bg-color" (click)="addToSalary(salaryForm)">Add Allowance</button> -->
+
+        <div class="field">
+          <label for="">Total Amount</label>
+          <input type="text" name="amount" [(ngModel)]="total_amount" style="text-align: center;" value="BDT-" readonly>
+        </div>
+      </div>
+      <button class="ui button" tabindex="0" (click)="addToSalary(salaryForm)">
+        Add Allowance
+      </button>
+    </form>
+  </app-form-modal>
+
+
+  <app-form-modal *ngIf="mailModal" (close)="mailModalToggle()">
+    <app-success [message]="mailOnAir===true ? 'mailOnAir': ''"></app-success>
+    <app-success [message]="mailSent===true ? 'mailSent': ''"></app-success>
+    <app-errors [error]="mailError===true?'mailError':''"></app-errors>
+
+
+
+    <form class="ui form" #f='ngForm'>
+      <div class="field">
+        <label for="email">to</label>
+        <input type="email" id="email" name="email" [ngModel]='email'>
+      </div>
+      <div class="field">
+        <label for="subject">subject</label>
+        <input type="text" id="subject" name="subject" placeholder="Subject" [ngModel]="subject">
+      </div>
+
+      <div class="field">
+        <label for="subject">Message</label>
+        <textarea id="subject" name="message" placeholder="Message" [ngModel]="message"></textarea>
+      </div>
+      <button class="ui button" (click)="sendMail(f)">Send</button>
+    </form>
+  </app-form-modal>
+
+  <confirmation-modal *ngIf="confirmationModal" (confirm)="confirmation($event)" (close)="toggleConfirmationModal()">
+    <p id="message" class="alert alert-danger">Are you sure to delete this history?</p>
+  </confirmation-modal>
+
+
+</ng-container>

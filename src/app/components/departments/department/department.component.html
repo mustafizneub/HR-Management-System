@@ -1,0 +1,13 @@
+<form class="ui form" [formGroup]="updateDep" style="width: 60%; margin: auto;">
+  <div class="field">
+    <p style="text-align: center; font-weight:bold">Update Department</p>
+    <input type="text" name="name" placeholder="Department" formControlName="dep_name">
+  </div>
+  <div class="ui grid">
+    <div class="four column row">
+      <div class="right floated column right aligned">
+        <button class="ui button " (click)="updateDepartment()">Save Changes</button>
+      </div>
+    </div>
+  </div>
+</form>

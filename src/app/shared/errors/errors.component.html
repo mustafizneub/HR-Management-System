@@ -1,0 +1,30 @@
+<ng-container *ngIf="error==='employeeExist'">
+  <div class="message" style="width: 30%; margin: auto;">
+    <p class="primary-bg-color text-white" style="text-align: center; padding: 20px 0;font-size: 1.2em;">
+      Employee Already On The List
+    </p>
+  </div>
+</ng-container>
+<ng-container *ngIf="error==='noEmployee'">
+  <div class="message" style="width: 30%; margin: auto;">
+    <p class="primary-bg-color text-white" style="text-align: center; padding: 20px 0;font-size: 1.2em;">No
+      employee found with this Id</p>
+  </div>
+</ng-container>
+<ng-container *ngIf="error==='notValidId'">
+  <div class="message" style="width: 30%; margin: auto;">
+    <p class="primary-bg-color text-white" style="text-align: center; padding: 20px 0;font-size: 1.2em;">Something
+      went wrong. Please provide valid Id</p>
+  </div>
+</ng-container>
+<ng-container *ngIf="error==='deleteFail'">
+  <div class="message" style="width: 30%; margin: auto;">
+    <p class="text-white" style="text-align: center; padding: 20px 0;font-size: 1.2em; background-color: #BA2929;">
+      Something went
+      wrong while Deletingd</p>
+  </div>
+</ng-container>
+<ng-container *ngIf="error==='mailError'">
+  <h5 class="text-center p-3 text-white" style="width: 300px; margin:auto; background-color: #BA2929;">Mail not sent.
+    please try again later</h5>
+</ng-container>

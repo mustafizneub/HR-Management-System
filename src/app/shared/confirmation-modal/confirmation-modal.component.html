@@ -1,0 +1,18 @@
+<div (click)="onCloseClick()" class="ui dimmer visible active">
+  <div (click)="$event.stopPropagation()" class="ui tiny test modal transition visible active scrolling"
+    style="display: block !important;">
+    <div class="header">
+      Delete Data
+    </div>
+    <div class="content">
+      <ng-content select="#message"></ng-content>
+    </div>
+    <div class="actions">
+      <div class="ui button" (click)="confirmation(false)">
+        Cancel
+      </div>
+      <div class=" ui right button text-white" (click)="confirmation(true)" style="background-color:#ba2929;">
+        Delete
+      </div>
+    </div>
+  </div>

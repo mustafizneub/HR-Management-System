@@ -1,0 +1,170 @@
+<form class="ui segment form" [formGroup]="application" style="padding-top:30px;">
+  <div class="center aligned">
+    <img src="./../assets/images/yotech.png" alt="" style="width: 10%;">
+  </div>
+  <h3 style="text-align: center; padding-bottom: 30px;">Application Form</h3>
+  <div formGroupName="personal">
+    <h4>Personal Information</h4>
+    <div class="ui three fields">
+      <div class="field">
+        <label for="">First Name</label>
+        <input type="text" formControlName="firstname">
+      </div>
+      <div class="field">
+        <label for="">Last Name</label>
+        <input type="text" formControlName="lastname">
+      </div>
+      <div class="field">
+        <label for="">Photo</label>
+        <input type="file" accept="image/*" (change)="uploadImage($event)">
+      </div>
+    </div>
+  </div>
+  <div class="ui divider"></div>
+
+  <div formGroupName="contact">
+    <h4>Contact</h4>
+    <div class="ui three fields">
+      <div class="field">
+        <label for="">Mobile</label>
+        <input type="text" formControlName="phone_number">
+      </div>
+      <div class="field">
+        <label for="">Email</label>
+        <input type="text" formControlName="email">
+      </div>
+      <div class="field">
+        <label for="">Address</label>
+        <input type="text" formControlName="address">
+      </div>
+    </div>
+  </div>
+  <div class="ui divider"></div>
+
+
+  <h4>About</h4>
+  <div class="field">
+    <textarea name="" id="" rows="5" formControlName="about"></textarea>
+  </div>
+  <div class="ui divider"></div>
+
+  <div class="field" formGroupName="education">
+    <h4>Education</h4>
+    <div formGroupName="hsc">
+      <div class="field">
+        <label for="">School <sub>HSC/O'level</sub></label>
+        <input type="text" formControlName="school">
+      </div>
+      <div class="ui two fields">
+        <div class="field">
+          <label for="">Group</label>
+          <input type="text" formControlName="group">
+        </div>
+        <div class="field">
+          <label for="">Grade</label>
+          <input type="text" formControlName="grade">
+        </div>
+      </div>
+      <div class="ui two fields">
+        <div class="field">
+          <label for="">Entry Year</label>
+          <input type="text" formControlName="entry_year">
+        </div>
+        <div class="field">
+          <label for="">Passing Year</label>
+          <input type="text" formControlName="passing_year">
+        </div>
+      </div>
+    </div>
+
+    -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    <div formGroupName="ssc">
+      <div class="field">
+        <label for="">School <sub>SSC/A'level</sub></label>
+        <input type="text" formControlName="school">
+      </div>
+      <div class="ui two fields">
+        <div class="field">
+          <label for="">Group</label>
+          <input type="text" formControlName="group">
+        </div>
+        <div class="field">
+          <label for="">Grade</label>
+          <input type="text" formControlName="grade">
+        </div>
+      </div>
+      <div class="ui two fields">
+        <div class="field">
+          <label for="">Entry Year</label>
+          <input type="text" formControlName="entry_year">
+        </div>
+        <div class="field">
+          <label for="">Passing Year</label>
+          <input type="text" formControlName="passing_year">
+        </div>
+      </div>
+    </div>
+
+    -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    <div formGroupName="bachelor">
+      <div class="field">
+        <label for="">University</label>
+        <input type="text" formControlName="university">
+      </div>
+      <div class="ui two fields">
+        <div class="field">
+          <label for="">Department</label>
+          <input type="text" formControlName="department">
+        </div>
+        <div class="field">
+          <label for="">Grade</label>
+          <input type="text" formControlName="grade">
+        </div>
+      </div>
+      <div class="ui two fields">
+        <div class="field">
+          <label for="">Entry Year</label>
+          <input type="text" formControlName="entry_year">
+        </div>
+        <div class="field">
+          <label for="">Passing Year</label>
+          <input type="text" formControlName="passing_year">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ui divider"></div>
+  <div class="field">
+    <label for="">Skills <sub>example: HTML5, CSS3, JS etc</sub></label>
+    <input type="text" formControlName="skills">
+  </div>
+  <div class="ui divider"></div>
+
+  <div formGroupName="job_experience">
+    <h4>Last Job</h4>
+    <div class="ui two fields">
+      <div class="field">
+        <label for="">Company</label>
+        <input type="text" formControlName="company">
+      </div>
+      <div class="field">
+        <label for="">Designation</label>
+        <input type="text" formControlName="designation">
+      </div>
+    </div>
+    <div class="ui two fields">
+      <div class="field">
+        <label for="">Entry Year</label>
+        <input type="date" formControlName="starting_date">
+      </div>
+      <div class="field">
+        <label for="">Passing Year</label>
+        <input type="date" formControlName="expiry_date">
+      </div>
+    </div>
+  </div>
+
+  <button class="ui button right floated" (click)="apply()">Apply</button>
+</form>

@@ -1,0 +1,253 @@
+<app-nav></app-nav>
+<div class="container" style="margin-top: 100px !important;">
+  <form #form="ngForm">
+    <header>
+      <div ngModelGroup="basicinfo" class="container clearfix">
+        <div class="row">
+          <div class="col-lg-4 col-md-12">
+            <div class="cv-top">
+              <div class="form-group col-md-16">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" name="name" ngModel #name="ngModel" required
+                  minlength="4">
+
+                <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+
+                  <div *ngIf="name.errors.required">
+                    Name is required.
+                  </div>
+                  <div *ngIf="name.errors.minlength">
+                    Name must be at least 4 characters long.
+                  </div>
+                  <div *ngIf="name.errors.forbiddenName">
+                    Name cannot be Bob.
+                  </div>
+
+                </div>
+              </div>
+              <div class="form-group col-md-16">
+                <label for="designation">
+                  Designation
+                </label>
+                <input type="text" class="form-control" id="designation" name="designation" ngModel>
+
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-8 col-md-12">
+            <div class="address">
+              <div class="area" style="float: right; text-align: left;">
+                <div class="form-group col-16">
+                  <label for="presentaddress">Address</label>
+                  <input type="text" class="form-control" id="presentaddress" name="presentaddress"
+                    #presentaddress="ngModel" ngModel>
+
+                </div>
+                <div class="form-group col-md-16">
+                  <label for="email">Email</label>
+                  <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email"
+                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" ngModel #email="ngModel" required>
+
+                  <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+
+                    <div *ngIf="email.errors.required">
+                      Email is required.
+                    </div>
+                    <div *ngIf="email.errors.pattern">
+                      This is not a valid email.
+                    </div>
+
+                  </div>
+
+
+
+                </div>
+                <div class="form-group col-md-16">
+                  <label for="phonenumber">Phone</label>
+                  <input type="text" class="form-control" id="phonenumber" name="phonenumber" #phonenumber="ngModel"
+                    ngModel>
+                </div>
+                <div class="form-group col-md-16">
+                  <label for="linkedin">linkedin</label>
+                  <input type="text" class="form-control" id="linkedin" name="linkedin" #linkedin="ngModel" ngModel>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="divider"></div>
+      </div>
+    </header>
+    <!-- Header Ends-->
+
+    <main>
+      <!-- CV Details goes here -->
+      <section class="cv">
+        <div class="container">
+          <div class="row">
+            <!-- left part -->
+            <div class="col-lg-4 col-md-12 col-sm-12">
+              <div class="cv-box">
+                <div class="cv-box-single">
+                  <div class="cv-title">
+                    <h5>Education</h5>
+                  </div>
+                  <div class="">
+                    <button class="add-remove add" (click)="add()"
+                      style="margin-left: 10px; margin-bottom: 10px;"><i class="fa fa-plus-square"
+                        aria-hidden="true"></i></button>
+                  </div>
+                  <div ngModelGroup="qualification" class="cv-left-content">
+                    <ul *ngFor="let item of array, let i=index">
+                      <li>
+                        <div class="form-group col-md-16">
+                          <label for="certificationname{{i}}">Cirtification Name</label>
+                          <input type="text" class="form-control" id="certificationname{{i}}"
+                            name="certificationname{{i}}" #certificationname{{i}}="ngModel" ngModel>
+                        </div>
+                        <div class="form-group col-md-16">
+                          <label for="institute{{i}}">Institute</label>
+                          <input type="text" class="form-control" id="institute{{i}}" name="institute{{i}}"
+                            #institute{{i}}="ngModel" ngModel>
+                        </div>
+                        <div class="form-group col-md-16">
+                          <label for="session{{i}}">Session</label>
+                          <input type="text" class="form-control" id="session{{i}}" name="session{{i}}"
+                            #session{{i}}="ngModel" ngModel>
+                        </div>
+                        <div class="col-2">
+                          <div *ngIf="i!=0" class="" style="margin-top: 30px;">
+                            <button class="add-remove remove" (click)="remove(i)"><i class="fa fa-trash"
+                                aria-hidden="true"></i></button>
+                          </div>
+                        </div>
+                      </li><br>
+                    </ul>
+                  </div>
+                </div>
+                <div class="cv-box-single">
+                  <div class="cv-title">
+                    <h5>skills <span>(professional)</span></h5>
+                  </div>
+                  <div class="">
+                    <button class="add-remove add" (click)="add1()"
+                      style="margin-left: 10px; margin-bottom: 10px;"><i class="fa fa-plus-square"
+                        aria-hidden="true"></i></button>
+                  </div>
+                  <div ngModelGroup="software" class="cv-left-content">
+                    <ul *ngFor="let item of array1, let i=index">
+                      <li>
+                        <div class="form-group col-8">
+                          <input type="text" class="form-control" placeholder="skill/software" id="soft{{i}}"
+                            name="soft{{i}}" #soft{{i}}="ngModel" ngModel>
+                        </div>
+
+                        <div class="col-2">
+                          <div *ngIf="i!=0" class="" style="margin-top: 30px;">
+                            <button class="add-remove remove" (click)="remove1(i)"><i class="fa fa-trash"
+                                aria-hidden="true"></i></button>
+                          </div>
+                        </div>
+
+
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="cv-box-single">
+                  <div class="cv-title">
+                    <h5>Social</h5>
+                  </div>
+                  <div class="cv-left-content">
+                    <div ngModelGroup="social" class="social">
+                      <label for="facebook">Facebook</label>
+                      <input class="form-control" type="text" name="facebook" ngModel>
+                      <br>
+                      <label for="twitter">Twitter</label>
+                      <input class="form-control" type="text" name="twitter" ngModel>
+                      <br>
+                      <label for="dribble">Dribble</label>
+                      <input class="form-control" type="text" name="dribble" ngModel>
+                      <br><br>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- left part ends -->
+
+            <!-- right part -->
+            <div class="col-lg-8">
+              <div class="cv-box line">
+                <div class="cv-box-single ">
+                  <div class="cv-title">
+                    <h5>profile</h5>
+                  </div>
+                  <div ngModelGroup="basicinfo" class="cv-right-content">
+                    <textarea class="form-control" name="objective" ngModel style="height: 100px;"></textarea>
+                  </div>
+                </div>
+                <div class="cv-box-single">
+                  <div class="cv-title">
+                    <h5>work experience</h5>
+                  </div>
+                  <div class="">
+                    <button class="add-remove add" (click)="add2()"
+                      style="margin-left: 10px; margin-bottom: 10px;"><i class="fa fa-plus-square"
+                        aria-hidden="true"></i></button>
+                  </div>
+                  <div ngModelGroup="experience" class="cv-right-content" *ngFor="let item of array2, let i=index">
+                    <div class="work-experience">
+                      <div style="width: 60%;">
+                        <label for="companyName{{i}}">Company Name</label>
+                        <input type="text" class="form-control" id="companyName{{i}}" name="companyName{{i}}"
+                          #companyName{{i}}="ngModel" ngModel>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-5">
+                          <label for="desgnation{{i}}">Designation</label>
+                          <input type="text" class="form-control" id="desgnation{{i}}" name="designation{{i}}"
+                            #desgnation{{i}}="ngModel" ngModel>
+                        </div>
+                        <div class="col-6">
+                          <div class="form row">
+                            <div class="form-group col-6">
+                              <label for="from{{i}}">From</label>
+                              <input type="text" class="form-control" id="from{{i}}" name="from{{i}}"
+                                #from{{i}}="ngModel" ngModel>
+                            </div>
+                            <div class="form-group col-6">
+                              <label for="to{{i}}">To</label>
+                              <input type="text" class="form-control" id="to{{i}}" name="to{{i}}" #to{{i}}="ngModel"
+                                ngModel>
+                            </div>
+
+                          </div>
+                        </div>
+                        <div class="col-1">
+                          <div *ngIf="i!=0" class="" style="margin-top: 30px;">
+                            <button class="add-remove remove" (click)="remove2(i)"><i class="fa fa-trash"
+                                aria-hidden="true"></i></button>
+                          </div>
+                        </div>
+                      </div>
+
+                      <label for="description{{i}}">Description</label>
+                      <textarea style="height: 100px;" type="text" class="form-control" id="description{{i}}"
+                        name="description{{i}}" #description{{i}}="ngModel" ngModel></textarea>
+                    </div><br>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- right part ends -->
+
+          </div>
+        </div>
+      </section>
+    </main>
+    <button style="float: right; margin-bottom: 20px !important;" (click)="onSubmit(form)" class="btn btn-primary"
+      [disabled]="form.invalid">Submit</button>
+  </form>
+</div>

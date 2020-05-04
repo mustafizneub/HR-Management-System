@@ -1,0 +1,6 @@
+@import '~semantic-ui-css/semantic.css';
+@import "~bootstrap/dist/css/bootstrap.css";
+@import 'https://use.fontawesome.com/releases/v5.5.0/css/all.css';
+.font {
+    font-size: 15px;
+}

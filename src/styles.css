@@ -1,0 +1,35 @@
+@import 'https://use.fontawesome.com/releases/v5.5.0/css/all.css';
+@import '~semantic-ui-css/semantic.css';
+@import "~bootstrap/dist/css/bootstrap.css";
+
+
+
+
+
+
+:root{
+  --primary-color:#EE8B2B;
+  --secondary-color: #642C82;
+}
+
+
+/* ############################## */
+.primary-bg-color{
+  background-color: var(--primary-color) !important;
+}
+.primary-text-color{
+  color: var(--primary-color) !important;
+}
+.secondary-bg-color{
+  background-color: var(--secondary-color) !important;
+}
+.secondary-text-color{
+  color: var(--secondary-color) !important;
+}
+.text-white{
+  color: #eeeeee !important;
+}
+/* Financial App */
+#app-sidebar {
+  background: #FFF;;
+}

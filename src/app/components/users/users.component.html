@@ -1,0 +1,86 @@
+<!-- Top navigation -->
+<nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+  <a class="navbar-brand col-sm-3 col-md-2 mr-0">
+    <span class="dasboard-text">Hr Management
+    </span>
+  </a>
+</nav>
+
+<!-- Sidebar navigation -->
+<div class="container-fluid">
+  <div class="row">
+    <!-- Main content -->
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+      <div class="inner-adjust">
+
+        <div class="pt-3 pb-2 mb-3 border-bottom">
+          <h1 class="h2"></h1>
+        </div>
+        <!-- Show user data when logged in -->
+        <div class="row" *ngIf="authService.userData as user">
+          <div class="col-md-12">
+            <div class="media">
+
+              <div class="media-body">
+                <div class="row">
+                  <div class="col">
+                    <h4 style="font-family: 'Amiri', serif;">Users</h4>
+                  </div>
+                  <div class="col">
+
+                  </div>
+                  <div class="col">
+                    <div style="text-align: right;">
+                      <button type="button" class="btn btn-primary" style="color:white;font-family: 'Merriweather', serif;
+                      " routerLink="/add-users"><i class="far fa-plus-square"></i>Add User</button>
+                    </div>
+
+                  </div>
+                </div>
+                <br />
+                <div class="row">
+                  <div class="col">
+                    <div class="row">
+                      <div class="col">
+                        <input type="text" class="form-control" placeholder="Search By User's E-mail"
+                          [(ngModel)]="searchuser">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <br />
+                <div class="row">
+                  <table class="table">
+                    <tr>
+                      <th>
+                        User E-Mail
+                      </th>
+                      <th>
+                        Access
+                      </th>>
+                    </tr>
+                    <tr
+                      *ngFor="let user of userList |filter:searchuser | paginate: { itemsPerPage: 5, currentPage: p };">
+                      <td>
+                        {{ user.mail }}
+                      </td>
+                      <td id="highlight">
+                        {{ user.showclient }}
+                        {{ user.showproject }}
+                      </td>
+                    </tr>
+                    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+                  </table>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+  </div>
+</div>

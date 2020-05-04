@@ -1,0 +1,249 @@
+<header class="sticky-top">
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <a class="navbar-brand" [routerLink]="['/admin-home']">
+      <img src="../../../assets/images/yotech.png" alt="">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse justify-content-end navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <button class="btn yoBtn" (click)="view()">View Post</button>
+        </li>
+        <li class="nav-item">
+          <button class="btn yoBtn" (click)="download()">Download Pdf</button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+
+<section id="cv" *ngIf="information" class="cv mt-3">
+  <div class="container">
+    <div class="background-color">
+      <div class="header">
+        <div class="row m-0">
+          <div class="col-sm-4 col-md-4 col-lg-4">
+            <div class="cv-left">
+              <div class="cv-head">
+                <img [src]="information.url" alt="">
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-8 col-md-8 col-lg-8">
+            <div class="cv-right">
+              <div class="cv-head">
+                <h2 class="name">{{ information.basicInfo.name }}</h2>
+                <p class="profession">{{ information.basicInfo.designation }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4 col-md-4 col-lg-4">
+          <div class="cv-left">
+            <div class="cv-left-content">
+              <div class="cv-left-title">
+                <h4>Contact</h4>
+              </div>
+              <div class="cv-content">
+                <ul class="list-unstyled">
+                  <li>
+                    <a href="#!">
+                      <i class="fas fa-mobile-alt"></i>
+                      <span>{{ information.basicInfo.phonenumber }}</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="">
+                      <i class="fas fa-envelope"></i>
+                      <span>{{ information.basicInfo.email }}</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#!">
+                      <i class="fas fa-home"></i>
+                      <span>{{ information.basicInfo.presentaddress }}</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#!">
+                      <i class="fab fa-linkedin-in"></i>
+                      <span>{{ information.basicInfo.linkedin }}</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="cv-left-content">
+              <div class="cv-left-title">
+                <h4>Education</h4>
+              </div>
+              <div class="cv-content">
+                <ul class="education list-unstyled">
+                  <li
+                    *ngIf="information.qualification.certificationname0 && information.qualification.certificationname0!=''">
+                    <p class="degree">{{ information.qualification.certificationname0 }}</p>
+
+                    <p class="uni-name">{{ information.qualification.institute0 }}</p>
+                    <p class="grad-year">{{ information.qualification.session0 }}</p>
+                  </li>
+                  <li
+                    *ngIf="information.qualification.certificationname1 && information.qualification.certificationname1!=''">
+                    <p class="degree">{{ information.qualification.certificationname1 }}</p>
+
+                    <p class="uni-name">{{ information.qualification.institute1 }}</p>
+                    <p class="grad-year">{{ information.qualification.session1 }}</p>
+                  </li>
+                  <li
+                    *ngIf="information.qualification.certificationname2 && information.qualification.certificationname2!=''">
+                    <p class="degree">{{ information.qualification.certificationname2 }}</p>
+
+                    <p class="uni-name">{{ information.qualification.institute2 }}</p>
+                    <p class="grad-year">{{ information.qualification.session2 }}</p>
+                  </li>
+                  <li
+                    *ngIf="information.qualification.certificationname3 && information.qualification.certificationname3!=''">
+                    <p class="degree">{{ information.qualification.certificationname3 }}</p>
+
+                    <p class="uni-name">{{ information.qualification.institute3 }}</p>
+                    <p class="grad-year">{{ information.qualification.session3 }}</p>
+                  </li>
+                  <li
+                    *ngIf="information.qualification.certificationname4 && information.qualification.certificationname4!=''">
+                    <p class="degree">{{ information.qualification.certificationname4 }}</p>
+
+                    <p class="uni-name">{{ information.qualification.institute4 }}</p>
+                    <p class="grad-year">{{ information.qualification.session4 }}</p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="cv-left-content">
+              <div class="cv-left-title">
+                <h4>Skills</h4>
+              </div>
+              <div class="cv-content">
+                <p class="professional">//Professional</p>
+
+                <ul class="skill">
+
+                  <li *ngIf="information.software.soft0 && information.software.soft0!=''">
+                    <p class="single-skill">{{information.software.soft0}}</p>
+                  </li>
+
+                  <li *ngIf="information.software.soft1 && information.software.soft1!=''">
+                    <p class="single-skill">{{information.software.soft1}}</p>
+                  </li>
+                  <li *ngIf="information.software.soft2 && information.software.soft2!=''">
+                    <p class="single-skill">{{information.software.soft2}}</p>
+                  </li>
+                  <li *ngIf="information.software.soft3 && information.software.soft3!=''">
+                    <p class="single-skill">{{information.software.soft3}}</p>
+                  </li>
+                  <li *ngIf="information.software.soft4 && information.software.soft4!=''">
+                    <p class="single-skill">{{information.software.soft4}}</p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-8 col-md-8 col-lg-8">
+          <div class="bg-white">
+            <div class="row">
+              <div class="col l12">
+                <div class="cv-right">
+                  <div class="cv-right-content">
+                    <div class="cv-title">
+                      <h4>profile</h4>
+                    </div>
+                    <div class="cv-content">
+                      <div class="cv-des">
+                        <p>{{ information.basicInfo.objective }}</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="cv-right-content">
+                    <div class="cv-title">
+                      <h4>work experience</h4>
+                    </div>
+                    <div *ngIf="information.experience.companyName0 && information.experience.companyName0!=''"
+                      class="cv-content">
+                      <div class="job-title">
+                        <p class="title">{{ information.experience.designation0 }}
+                        </p>
+                        <p class="company">{{ information.experience.companyName0 }} |
+                          <span>{{ information.experience.from0 }}-{{ information.experience.to0 }}</span>
+                        </p>
+                      </div>
+                      <div class="cv-des">
+                        <p>{{ information.experience.description0 }}</p>
+                      </div>
+                    </div>
+                    <div *ngIf="information.experience.companyName1 && information.experience.companyName1!=''"
+                      class="cv-content">
+                      <div class="job-title">
+                        <p class="title">{{ information.experience.designation1 }}
+                        </p>
+                        <p class="company">{{ information.experience.companyName1 }} |
+                          <span>{{ information.experience.from1 }}-{{ information.experience.to1 }}</span>
+                        </p>
+                      </div>
+                      <div class="cv-des">
+                        <p>{{ information.experience.description1 }}</p>
+                      </div>
+                    </div>
+                    <div *ngIf="information.experience.companyName2 && information.experience.companyName2!=''"
+                      class="cv-content">
+                      <div class="job-title">
+                        <p class="title">{{ information.experience.designation2 }}
+                        </p>
+                        <p class="company">{{ information.experience.companyName2 }} |
+                          <span>{{ information.experience.from2 }}-{{ information.experience.to2 }}</span>
+                        </p>
+                      </div>
+                      <div class="cv-des">
+                        <p>{{ information.experience.description2 }}</p>
+                      </div>
+                    </div>
+                    <div *ngIf="information.experience.companyName3 && information.experience.companyName3!=''"
+                      class="cv-content">
+                      <div class="job-title">
+                        <p class="title">{{ information.experience.designation3 }}
+                        </p>
+                        <p class="company">{{ information.experience.companyName3 }} |
+                          <span>{{ information.experience.from3 }}-{{ information.experience.to3 }}</span>
+                        </p>
+                      </div>
+                      <div class="cv-des">
+                        <p>{{ information.experience.description3 }}</p>
+                      </div>
+                    </div>
+                    <div *ngIf="information.experience.companyName4 && information.experience.companyName4!=''"
+                      class="cv-content">
+                      <div class="job-title">
+                        <p class="title">{{ information.experience.designation4 }}
+                        </p>
+                        <p class="company">{{ information.experience.companyName4 }} |
+                          <span>{{ information.experience.from4 }}-{{ information.experience.to4 }}</span>
+                        </p>
+                      </div>
+                      <div class="cv-des">
+                        <p>{{ information.experience.description4 }}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

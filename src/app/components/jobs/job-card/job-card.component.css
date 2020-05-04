@@ -1,0 +1,15 @@
+.card {
+  color: #612386;
+}
+
+.job-type {
+  border: 1.5px solid #E3955A;
+  float: right;
+  padding: 12px;
+  color: #612386;
+  font-weight: 600;
+}
+
+.icon {
+  color: #E3955A;
+}

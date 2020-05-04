@@ -1,0 +1,26 @@
+#providedForm:empty {
+  display: none;
+}
+
+form {
+  display: none;
+}
+
+#providedForm:empty+form {
+  display: block;
+}
+
+.ui.dimmer{
+    height: 150%;
+}
+.ui.modal{
+  /* top: -20px; */
+  position: relative;
+  height: 100%;
+}
+@media only screen and (min-width: 1600px) {
+  .ui.modal {
+    width: 80%;
+    /* height: 70%; */
+  }
+}

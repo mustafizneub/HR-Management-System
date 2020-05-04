@@ -1,0 +1,115 @@
+<ng-container *ngIf="!router">
+  <app-header (show)="toggleModal()">
+    <ng-container class="header-title">
+      <div class="left floated column">
+        <h1 class="page-title">Job Management</h1>
+      </div>
+    </ng-container>
+    <ng-container class="header-button">
+      <button class="ui button">
+        <i class="plus icon"></i>Add New Job
+      </button>
+    </ng-container>
+  </app-header>
+  <div style="margin: 20px 0;"></div>
+
+
+  <!-- DATA TABLE -->
+  <app-table [data]="data" [t_headers]="t_headers" (delete)="deleteJob($event)"></app-table>
+
+  <div style="margin: 20px 0;"></div>
+
+  <!-- ADD JOB FORM -->
+  <app-form-modal *ngIf="modalOpen" (close)="toggleModal()">
+    <h1 class="ui header" id="modal-title">Add Job</h1>
+    <form class="ui form" [formGroup]="addJob">
+      <div class="field">
+        <div class="two fields">
+          <div class="field">
+            <label for="">Job Title</label>
+            <input type="text" name="job_title" formControlName="job_title">
+          </div>
+          <div class="field">
+            <label for="">Select Department</label>
+            <select class="ui fluid dropdown" formControlName='job_department'>
+              <option value=""></option>
+              <option [value]="dep.dep_name" *ngFor="let dep of departments">{{dep.dep_name}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="two fields">
+        <div class="field">
+          <label for="">Job Location</label>
+          <input type="text" name="job_location" formControlName="job_location">
+        </div>
+        <div class="field">
+          <label for="">No of Vaccencies</label>
+          <input type="number" name="vaccencies" formControlName="vaccencies">
+        </div>
+      </div>
+      <div class="two fields">
+        <div class="field">
+          <label for="">Experience</label>
+          <input type="text" name="experience" formControlName="experience">
+        </div>
+        <div class="field">
+          <label for="">Age</label>
+          <input type="text" name="age" formControlName="age">
+        </div>
+      </div>
+      <div class="two fields">
+        <div class="field">
+          <label for="">Salary From</label>
+          <input type="text" name="salary_from" formControlName="salary_from">
+        </div>
+        <div class="field">
+          <label for="">Salary To</label>
+          <input type="text" name="salary_to" formControlName="salary_to">
+        </div>
+      </div>
+      <div class="two fields">
+        <div class="field">
+          <label for="">Select Job Type</label>
+          <select class="ui fluid dropdown" formControlName="job_type">
+            <option value=""></option>
+            <option value="Full Time">Full Time</option>
+            <option value="Part Time">Part Time</option>
+            <option value="Internship">Internship</option>
+            <option value="Temporary">Temporary</option>
+            <option value="Remote">Remote</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="">Select Job Status</label>
+          <select class="ui fluid dropdown" formControlName="job_status">
+            <option value=""></option>
+            <option value="open">Open</option>
+            <option value="closed">Closed</option>
+            <option value="cencelled">Cancelled</option>
+          </select>
+        </div>
+      </div>
+      <div class="two fields">
+        <div class="field">
+          <label for="">Start Date</label>
+          <input type="date" name="start_date" formControlName="start_date">
+        </div>
+        <div class="field">
+          <label for="">Expiry Date</label>
+          <input type="date" name="expiry_date" formControlName="expiry_date">
+        </div>
+      </div>
+      <div class="field">
+        <label for="">Description</label>
+        <textarea name="" id="" cols="30" rows="10" placeholder="Description" formControlName="description"></textarea>
+      </div>
+      <div class="ui button" tabindex="0" (click)="createJob()">Add Job</div>
+    </form>
+  </app-form-modal>
+
+</ng-container>
+
+<ng-container *ngIf="router">
+  <router-outlet></router-outlet>
+</ng-container>

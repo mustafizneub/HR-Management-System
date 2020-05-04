@@ -1,0 +1,101 @@
+<ng-container *ngIf="loader">
+  <div class="ui active inverted dimmer">
+    <div class="ui large text loader" style="font-weight: 600;">
+      <h1>
+        <span class="primary-text-color">Generating </span><span class="secondary-text-color">Payslip</span>
+      </h1>
+    </div>
+  </div>
+  <img class="ui wireframe image" src="https://semantic-ui.com/images/wireframe/short-paragraph.png">
+  <img class="ui wireframe image" src="https://semantic-ui.com/images/wireframe/short-paragraph.png">
+  <img class="ui wireframe image" src="https://semantic-ui.com/images/wireframe/short-paragraph.png">
+  <img class="ui wireframe image" src="https://semantic-ui.com/images/wireframe/short-paragraph.png">
+  <img class="ui wireframe image" src="https://semantic-ui.com/images/wireframe/short-paragraph.png">
+  <img class="ui wireframe image" src="https://semantic-ui.com/images/wireframe/short-paragraph.png">
+  <img class="ui wireframe image" src="https://semantic-ui.com/images/wireframe/short-paragraph.png">
+</ng-container>
+
+
+<ng-container *ngIf="!loader && employeeSalary">
+  <button class="ui button text-center" (click)="printHistory()"><i class="print icon"></i></button>
+  <button class="ui button text-center" (click)="makePdf()"><i class="file pdf outline icon"></i></button>
+  <button class="ui button" (click)="toggleModal()"><i class="inbox icon"></i></button>
+  <div id="employee-history">
+    <div style="width: 30%; margin: auto;">
+      <img id="detailsLogo" src="../../../../assets/Yotech Web color.png" alt="">
+      <br>
+      <p class="text-center p-3">
+        8'th floor, Ananda Tower, Sylhet, Bangladesh
+      </p>
+    </div>
+
+    <div id="details">
+      <h4 class="ui header aligned center" style="padding: 10px;">Salary History Month: {{employeeSalary.month}}</h4>
+      <div class="ui grid">
+
+        <h5 class="text-center">Details</h5>
+        <table class="ui table">
+          <tbody>
+            <tr>
+              <th>Issue Date</th>
+              <td>{{employeeSalary.issue_date | date}}</td>
+            </tr>
+            <td>Monthly Salary</td>
+            <td>BDT- {{employeeSalary.monthly_amount}}</td>
+            <tr>
+              <td>Increment</td>
+              <td>BDT- {{employeeSalary.type==='Increment' ? employeeSalary.amount : '0.0'}}</td>
+            </tr>
+            <tr>
+              <td>Promotion</td>
+              <td>BDT-{{employeeSalary.type==='Promotion' ? employeeSalary.amount : '0.0'}}</td>
+            </tr>
+            <tr>
+              <td>Bonus</td>
+              <td>{{employeeSalary.bonus_type || '-'}}</td>
+            </tr>
+            <tr>
+              <td>Bonus Amount</td>
+              <td>BDT- {{employeeSalary.bonus_amount || '0.0'}}</td>
+            </tr>
+            <tr>
+              <td>
+                <h5> Total Amount</h5>
+              </td>
+              <td>
+                <h5>{{employeeSalary.total_amount}}</h5>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<app-form-modal *ngIf="modalOpen" (close)="toggleModal()">
+  <h1 class="ui header" id="modal-title">Send Email</h1>
+
+  <form class="ui form" #f='ngForm'>
+    <app-success [message]="mailOnAir===true ? 'mailOnAir': ''"></app-success>
+    <app-success [message]="mailSent===true ? 'mailSent': ''"></app-success>
+    <app-errors [error]="mailError===true?'mailError':''"></app-errors>
+
+    <div class="field">
+      <label for="email">to</label>
+      <input type="email" id="email" name="email" [ngModel]='email'>
+    </div>
+    <div class="field">
+
+      <label for="subject">subject</label>
+      <input type="text" id="subject" name="subject" placeholder="Subject" [ngModel]="subject">
+    </div>
+
+    <div class="field">
+      <label for="subject">Message</label>
+      <textarea id="subject" name="message" placeholder="Message" [ngModel]="message"></textarea>
+    </div>
+    <button class="ui button" (click)="sendMail(f)">Send</button>
+  </form>
+
+</app-form-modal>

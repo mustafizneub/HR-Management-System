@@ -1,0 +1,48 @@
+<div class="displayTable secondary-bg-color">
+
+  <div class="displayTableCell">
+    <div class="authBlock">
+      <p class="login">Log In Your Account</p>
+
+      <div class="alert alert-danger" role="alert" *ngIf="error">
+        {{ error }}
+      </div>
+
+
+      <div class="formGroup">
+        <input type="text" class="formControl" placeholder="Enter Your E-Mail" #userName required
+          style="font-family: 'Eczar', serif;" id="errormail">
+      </div>
+
+      <div class="formGroup">
+        <input type="password" class="formControl" placeholder="Enter Your Password" #userPassword required
+          style="font-family: 'Eczar', serif;" id="errorpsw">
+      </div>
+      <div class="checkbox">
+        <label>
+
+          <input type="checkbox" (change)="isRemberMe($event,userName.value,userPassword.value)" checked
+            *ngIf="checked==='show'">
+
+          <input type="checkbox" (change)="isRemberMe($event,userName.value,userPassword.value)"
+            *ngIf="checked==='hide'">
+          &nbsp;Remember Me
+        </label>
+        <a routerLink="/forgot-password"><span class="fp">Forgot Password</span></a>
+        <br /><br />
+
+      </div>
+      <br />
+      <div class="formGroup ui centered grid">
+        <button class="ui big six wide tablet eight wide computer column button primary-bg-color"
+          (click)="authService.SignIn(userName.value, userPassword.value)" style="text-align: center;">Log
+          In</button>
+      </div>
+      <br /><br />
+
+
+      <br>
+    </div>
+  </div>
+
+</div>

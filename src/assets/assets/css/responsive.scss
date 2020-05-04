@@ -1,0 +1,129 @@
+$large : (min-width: 992px) and (max-width: 1200px);
+$medium :(min-width: 600px) and (max-width: 991px);
+$small : (min-width: 320px) and (max-width: 599px);
+
+@media #{$large} {
+  .cv-left {
+    padding: 0 30px !important;
+  }
+}
+
+@media #{$medium} {
+  .cv-left {
+    padding: 0 10px !important;
+  }
+
+  .header {
+    padding: 30px 0 !important;
+  }
+
+  .cv-content ul li a i {
+    padding-right: 5px !important;
+  }
+
+  .cv-head {
+    height: 130px !important;
+
+    img {
+      width: 130px !important;
+      height: 130px !important;
+    }
+  }
+}
+
+
+/* Mobile Layout: 320px. 300px */
+@media #{$small} {
+  body {
+    p {
+      word-break: break-all !important;
+    }
+
+    h4 {
+      word-break: break-all;
+    }
+    span {
+      word-break: break-all;
+    }
+
+    a {
+      word-break: break-all;
+    }
+  }
+
+  .cv-left {
+    padding: 0 0 !important;
+  }
+
+  .header {
+    padding: 15px 0 !important;
+  }
+
+  .cv-content ul li a i {
+    padding-right: 5px !important;
+  }
+
+  .cv-head {
+    height: 90px !important;
+
+    img {
+      width: 90px !important;
+      height: 90px !important;
+    }
+
+    .name {
+      font-size: 14px !important;
+      line-height: 1 !important;
+    }
+
+    .profession {
+      padding-top: 0 !important;
+      font-size: 12px !important;
+      letter-spacing: 0 !important;
+    }
+
+  }
+
+  .cv-left-title {
+    h4 {
+      font-size: 13px !important;
+    }
+  }
+
+  .cv-title {
+    h4 {
+      font-size: 13px !important;
+    }
+  }
+
+  .cv-content ul li a {
+    font-size: 11px !important;
+  }
+
+  .education {
+    li {
+      p {
+        font-size: 11px !important;
+      }
+    }
+  }
+
+  .professional {
+    font-size: 11px;
+    word-break: break-all;
+  }
+
+  .cv-content {
+    p {
+      font-size: 11px !important;
+    }
+  }
+
+  .title {
+    font-size: 11px !important;
+  }
+
+  .cv-des p {
+    font-size: 11px !important;
+  }
+}

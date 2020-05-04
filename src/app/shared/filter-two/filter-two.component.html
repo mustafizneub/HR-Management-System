@@ -1,0 +1,27 @@
+<div class="ui form grid small">
+  <div class="two wide column" id="type-one">
+    <ng-content select=".type-one"></ng-content>
+  </div>
+  <div class="three wide column" id="type-two">
+    <select name="" id="" class="field" (change)="leaveType($event)">
+      <ng-content select=".type-two"></ng-content>
+    </select>
+  </div>
+  <div class="three wide column" id="type-three">
+    <ng-content select=".type-three"></ng-content>
+  </div>
+  <div class="three wide column" id="type-four">
+    <ng-content select=".type-four"></ng-content>
+  </div>
+  <div class="three wide column" id="type-five">
+    <select name="" id="" class="field" (change)="leaveStatus($event)">
+      <ng-content select=".type-five"></ng-content>
+    </select>
+  </div>
+  <div class="two wide column" style="position: relative;">
+    <button class="small ui positive fluid button" (click)="getElem()">Search</button>
+    <span class="reset-table" style="position: absolute; bottom: -10px; right: 10px;" (click)="resetData()">
+      <i class="undo alternate icon"></i>
+    </span>
+  </div>
+</div>

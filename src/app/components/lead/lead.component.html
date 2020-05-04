@@ -1,0 +1,123 @@
+<div class="container-fluid">
+    <div class="row">
+
+
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+            <div class="inner-adjust">
+
+
+
+                <div class="col-md-12">
+                    <div class="media">
+
+                        <div class="media-body">
+                            <div class="row">
+                                <div class="col">
+                                    <h4 style="font-family: 'Amiri', serif;">Leads</h4>
+                                </div>
+                                <div class="col">
+                                </div>
+                                <div class="col">
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col">
+                                    <div class="row">
+                                        <div class="col">
+                                            <!--
+                                            <input type="text" class="form-control"
+                                                placeholder="Lead Name"
+                                                [(ngModel)]="searchproject">
+                                        </div>
+                                        <div class="col">
+                                            <input type="text" class="form-control"
+                                                placeholder="Email"
+                                                [(ngModel)]="searchproject">
+                                        </div>
+                                        <div class="col">
+                                            <input type="text" class="form-control"
+                                                placeholder="Project"
+                                                [(ngModel)]="searchproject">
+                                        -->
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <table class="table">
+                                    <tr>
+                                        <th>
+                                            Lead Name
+                                        </th>
+                                        <th>
+                                            E-mail
+                                        </th>
+                                        <th>
+                                            Contact Number
+                                        </th>
+                                        <th>
+                                            Project
+                                        </th>
+                                        <th>
+                                            Status
+                                        </th>
+                                        <th>
+                                            Created On
+                                        </th>
+                                        <th>
+                                            Action
+                                        </th>
+                                    </tr>
+
+
+                                    <tr
+                                        *ngFor="let leads of leads |filter:searchleads | paginate: { itemsPerPage: 5, currentPage: p };">
+                                        <td>
+                                            {{ leads.name }}
+                                        </td>
+                                        <td>
+                                            {{ leads.mail }}
+                                        </td>
+                                        <td>
+                                            {{ leads.conatact }}
+                                        </td>
+                                        <td>
+                                            {{ leads.project }}
+                                        </td>
+                                        <td>
+                                            {{ leads.projectstatus }}
+                                        </td>
+                                        <td>
+                                            {{ leads.status }}
+                                        </td>
+                                        <td>
+                                            {{ leads.created }}
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-success" (click)="editlead(leads.id)">
+                                                Edit&nbsp;</button>
+                                            &nbsp;&nbsp;
+                                            <button class="btn btn-danger" (click)="dellead(leads.id)">
+
+                                                Delete</button>
+                                        </td>
+                                    </tr>
+                                    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+        </main>
+
+    </div>
+</div>

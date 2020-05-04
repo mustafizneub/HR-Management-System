@@ -1,0 +1,111 @@
+<!--modal start-->
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Client Details</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+
+        <label><b>Company Name:-</b> {{ company }}</label>
+        <br />
+        <label><b>Name:-</b> {{ name }}</label>
+        <br />
+
+        <label *ngIf="cpname"><b>Contact Person Name:-</b> {{ cpname }}</label>
+        <br />
+
+        <label><b>E-Mail:-</b> {{ mail }}</label>
+        <br />
+
+        <label><b>Contact Number:-</b> {{ contact }}</label>
+        <br />
+
+        <label><b>Address:-</b> {{ address }}</label>
+
+
+    </div>
+
+</ng-template>
+<!--modal end-->
+<div class="row">
+    <div class="col">
+        <h4 style="font-family: 'Amiri', serif;">Client</h4>
+    </div>
+    <div class="col">
+
+    </div>
+    <div class="col">
+        <div style="text-align: right;">
+
+            <button type="button" class="btn btn-primary" style="color:white;font-family: 'Merriweather', serif;
+" routerLink="/add-clients"><i class="fas fa-plus"></i>Add Client</button>
+        </div>
+
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col">
+        <div class="row">
+            <div class="col">
+                <input type="text" class="form-control" placeholder="Search By Company Name And Client Name"
+                    [(ngModel)]="searchclient">
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+<div class="row">
+    <table class="table">
+        <tr>
+            <th>
+                Company Name
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                E-Mail
+            </th>
+            <th>
+                Contact Number
+            </th>
+            <th>
+                Address
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+        <tr *ngFor="let client of clientList |filter:searchclient | paginate: { itemsPerPage: 5, currentPage: p };">
+            <td>
+                {{ client.company_name}}
+            </td>
+            <td>
+                {{ client.name}}
+            </td>
+            <td>
+                {{ client.email}}
+            </td>
+            <td>
+                {{ client.contact_number}}
+            </td>
+
+            <td>
+                {{ client.address}}
+            </td>
+            <td>
+                <button type="button" class="btn btn-secondary btn-sm"
+                    (click)="open(content, client.company_name)">View</button>
+                <button class="btn btn-success btn-sm" (click)="editClient(client.company_name)">
+                    Edit</button>
+                <button class="btn btn-danger btn-sm" (click)="delClient(client.company_name)">
+                    Delete</button>
+            </td>
+        </tr>
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+    </table>
+</div>

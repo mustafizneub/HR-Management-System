@@ -1,0 +1,27 @@
+.employee-salary {
+  font-family: 'Cormorant Garamond' !important;
+  min-height: 100vh;
+}
+
+.employee-salary h5 {
+  font-weight: 300 !important;
+}
+
+.ui.table tr td {
+  height: 100px;
+  overflow-y: auto;
+}
+
+.ui.simple.active.dropdown>.menu,
+.ui.simple.dropdown:hover>.menu {
+  top: -35% !important;
+  left: -13%;
+}
+
+.ui.table thead tr:first-child>th:first-child {
+  width: 8%;
+}
+
+.hideCells {
+  display: none;
+}

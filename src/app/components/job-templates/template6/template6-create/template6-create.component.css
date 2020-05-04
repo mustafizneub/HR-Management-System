@@ -1,0 +1,86 @@
+@import "../../../../../assets/assets/css/all.min.css";
+@import "../../../../../assets/assets/css//material-icons.min.css";
+@import "../../../../../assets/assets/css/responsive.css";
+@import "../../../../../assets/assets/css/style.css";
+
+.cv-head .input-group .custom-file {
+  position: absolute;
+  left: 0;
+  top: -100px;
+}
+
+.cv-head .input-group .custom-file label {
+  font-size: 14px;
+}
+
+.cv-right input,
+.cv-left input,
+.cv-right textarea,
+.cv-left select {
+  border-style: none;
+  border-bottom: 1px solid #f08c2e;
+  background-color: transparent;
+}
+
+.cv-left input,
+.cv-left select {
+  color: #fff;
+}
+
+.cv-left select option {
+  background-color: #888;
+}
+
+.cv-left input::placeholder {
+  color: #ddd;
+}
+
+.cv-right input:focus,
+.cv-left input:focus,
+.cv-right textarea:focus,
+.cv-left select:focus {
+  box-shadow: none;
+  outline: none;
+  border: 1px solid #f08c2e;
+}
+
+.add-remove {
+  background-color: transparent;
+  border-style: none;
+}
+
+.add-remove.add i {
+  color: #f08c2e;
+  font-size: 16px;
+  transition: .3s;
+}
+
+.add-remove.add i:hover {
+  transform: scale(1.1);
+}
+
+.add-remove.remove i {
+  color: #f08c2e;
+}
+
+.yoBtn {
+  background-color: #652783;
+  border: none;
+  border: 1px solid #652783;
+  color: #f1f0f0;
+  -webkit-transition: .3s;
+  transition: .3s;
+  margin: 0 5px;
+}
+
+.yoBtn:focus {
+  outline: none;
+  border: 1px solid #f08c2e;
+  -webkit-box-shadow: 0 0 4px 0 #f08c2e;
+  box-shadow: 0 0 4px 0 #f08c2e;
+}
+
+.yoBtn:hover {
+  color: #f1f0f0;
+  background-color: #731aa0;
+}

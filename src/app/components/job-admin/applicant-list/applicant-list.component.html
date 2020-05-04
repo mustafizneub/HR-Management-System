@@ -1,0 +1,145 @@
+<body>
+    <!-- header -->
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" [routerLink]="['/admin-view']">
+          <img src="../../../assets/images/yotech.png" alt="">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse justify-content-end navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Filter by Location" [(ngModel)]="term" (input)="filter()">
+            </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" [routerLink]="['/admin-applicants', id]">View Applicants</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/admin-shortlist', id]">Short List</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <!-- header ends -->
+  
+    <!-- page content -->
+    <section class="page-content">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-12"><br>
+            <div class="form-group">
+              <label for="formControlRange">Filter By Salary Range</label>
+              <input type="range" class="form-control-range" id="formControlRange" (input)="filterSalary()"
+               min="5000" max="50000" [(ngModel)]="salary">
+            </div>
+            <p style="margin-left: 45%;">{{ salary }}</p><br>
+            <table class="table" *ngIf="information">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">email</th>
+                  <th scope="col">Applied At</th>
+                  <th scope="col">View</th>
+                  <th scope="col">Add/Remove</th>
+                </tr>
+              </thead>
+              <tbody *ngFor="let info of information | paginate: config">
+                <tr *ngIf="info.data.jobId && (info.data.jobId==id) && info.data.basicInfo">
+                  <td>{{info.data.basicInfo.name}}</td>
+                  <td>{{info.data.basicInfo.email}}</td>
+                  <td>{{info.data.dateTime}}</td>
+                  <td class="d-flex add-remove" *ngIf="info.data.cvNo==1">
+                    <a [routerLink]="['/templates/template1-view', info.id]">
+                    <button class="btn yoBtn">Resume</button>
+                  </a>
+                  </td>
+                  <td class="d-flex add-remove" *ngIf="info.data.cvNo==2">
+                    <a [routerLink]="['/templates/template2-view', info.id]">
+                    <button class="btn yoBtn">Resume</button>
+                  </a>
+                  </td>
+                  <td class="d-flex add-remove" *ngIf="info.data.cvNo==3">
+                    <a [routerLink]="['/templates/template3-view', info.id]">
+                    <button class="btn yoBtn">Resume</button>
+                  </a>
+                  </td>
+                  <td class="d-flex add-remove" *ngIf="info.data.cvNo==4">
+                    <a [routerLink]="['/templates/template4-view', info.id]">
+                    <button class="btn yoBtn">Resume</button>
+                  </a>
+                  </td>
+                  <td class="d-flex add-remove" *ngIf="info.data.cvNo==5">
+                    <a [routerLink]="['/templates/template5-view', info.id]">
+                    <button class="btn yoBtn">Resume</button>
+                  </a>
+                  </td>
+                  <td class="d-flex add-remove" *ngIf="info.data.cvNo==6">
+                    <a [routerLink]="['/templates/template6-view', info.id]">
+                    <button class="btn yoBtn">Resume</button>
+                  </a>
+                  </td>
+                  <td>
+                    <div class="add-remove d-flex">
+                      <button [disabled]="info.isSelected == 1" class="btn btn-primary" (click)="addShortlist(info.id)">
+                        <i class="fas fa-plus-square"></i>
+                      </button>&nbsp;&nbsp;
+                      <button class="btn btn-danger" (click)="deleteCv(info.id)">
+                        <i class="far fa-trash-alt"></i>
+                      </button>
+                    </div>
+                  </td>
+                  
+                </tr>
+              </tbody>
+            </table>
+
+            <!--pagination start-->
+
+            <pagination-template #p="paginationApi" *ngIf = "isPaginate" 
+            [id]="config.id" (pageChange)="config.currentPage = $event">
+ 
+ 
+              <div class="custom-pagination">
+                <div class="pagination-previous" [class.disabled]="p.isFirstPage()">
+                  <span *ngIf="!p.isFirstPage()" (click)="p.previous()"> <<--
+                      </span> 
+                  </div> 
+                  <div class="page-number" *ngFor="let page of p.pages" [class.current]="p.getCurrent() === page.value">
+                        <span (click)="p.setCurrent(page.value)" *ngIf="p.getCurrent() !== page.value">{{ page.label }}</span>
+                      <div *ngIf="p.getCurrent() === page.value">
+                        <span>{{ page.label }}</span>
+                      </div>
+                  </div>
+                  <div class="pagination-next" [class.disabled]="p.isLastPage()">
+                    <span *ngIf="!p.isLastPage()" (click)="p.next()"> -->> </span>
+                  </div>
+              </div>
+           
+            </pagination-template>
+
+            <!--pagination end-->
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- page content ends -->
+    <!-- footer -->
+    <footer>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-sm-12">
+            <p>Copyright &copy; 2020 <span class="orange">Yo</span><span class="purple">Tech</span> Limited All rights
+              reserved</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- footer ends -->
+  </body>
+  

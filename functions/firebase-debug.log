@@ -1,0 +1,160 @@
+[debug] [2020-04-24T15:35:20.648Z] ----------------------------------------------------------------------
+[debug] [2020-04-24T15:35:20.650Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Hp\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy --only functions
+[debug] [2020-04-24T15:35:20.650Z] CLI Version:   8.1.1
+[debug] [2020-04-24T15:35:20.650Z] Platform:      win32
+[debug] [2020-04-24T15:35:20.650Z] Node Version:  v10.16.3
+[debug] [2020-04-24T15:35:20.651Z] Time:          Fri Apr 24 2020 21:35:20 GMT+0600 (Bangladesh Standard Time)
+[debug] [2020-04-24T15:35:20.651Z] ----------------------------------------------------------------------
+[debug] [2020-04-24T15:35:20.651Z] 
+[debug] [2020-04-24T15:35:20.661Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-04-24T15:35:20.662Z] > authorizing via signed-in user
+[debug] [2020-04-24T15:35:20.662Z] [iam] checking project db-hrmanage for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2020-04-24T15:35:20.665Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/db-hrmanage:testIamPermissions  
+ {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2020-04-24T15:35:22.436Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Fri, 24 Apr 2020 15:35:22 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=1169","alt-svc":"quic=\":443\"; ma=2592000; v=\"46,43\",h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-04-24T15:35:22.437Z] >>> HTTP REQUEST POST https://iam.googleapis.com/v1/projects/db-hrmanage/serviceAccounts/db-hrmanage@appspot.gserviceaccount.com:testIamPermissions  
+ {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2020-04-24T15:35:24.472Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Fri, 24 Apr 2020 15:35:25 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"quic=\":443\"; ma=2592000; v=\"46,43\",h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] 
+[info] === Deploying to 'db-hrmanage'...
+[info] 
+[info] i  deploying functions
+[debug] [2020-04-24T15:35:28.479Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "8"
+  },
+  "dependencies": {
+    "emailjs": "^2.2.0",
+    "firebase-admin": "^8.11.0",
+    "firebase-functions": "^3.6.0",
+    "sendgrid": "^5.2.3"
+  },
+  "devDependencies": {
+    "firebase-functions-test": "^0.1.6"
+  },
+  "private": true
+}
+[info] i  functions: ensuring required API cloudfunctions.googleapis.com is enabled...
+[debug] [2020-04-24T15:35:30.530Z] [functions] runtime dependency check dates: warning: 2020-05-05T00:00:00.000Z error: 2020-06-05T00:00:00.000Z
+[debug] [2020-04-24T15:35:30.530Z] >>> HTTP REQUEST GET https://serviceusage.googleapis.com/v1/projects/db-hrmanage/services/cloudfunctions.googleapis.com  
+ 
+[debug] [2020-04-24T15:35:30.530Z] >>> HTTP REQUEST GET https://serviceusage.googleapis.com/v1/projects/db-hrmanage/services/runtimeconfig.googleapis.com  
+ 
+[debug] [2020-04-24T15:35:33.822Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Fri, 24 Apr 2020 15:35:34 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"quic=\":443\"; ma=2592000; v=\"46,43\",h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-04-24T15:35:34.512Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Fri, 24 Apr 2020 15:35:34 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"quic=\":443\"; ma=2592000; v=\"46,43\",h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] +  functions: required API cloudfunctions.googleapis.com is enabled
+[debug] [2020-04-24T15:35:34.513Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/db-hrmanage/adminSdkConfig  
+ 
+[debug] [2020-04-24T15:35:35.363Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Fri, 24 Apr 2020 15:35:36 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"quic=\":443\"; ma=2592000; v=\"46,43\",h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] i  functions: preparing functions directory for uploading...
+[debug] [2020-04-24T15:35:35.366Z] >>> HTTP REQUEST GET https://runtimeconfig.googleapis.com/v1beta1/projects/db-hrmanage/configs  
+ 
+[debug] [2020-04-24T15:35:35.950Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Fri, 24 Apr 2020 15:35:36 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"quic=\":443\"; ma=2592000; v=\"46,43\",h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] i  functions: packaged functions (30.62 KB) for uploading
+[debug] [2020-04-24T15:35:36.304Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/projects/db-hrmanage/locations/-/functions  
+ 
+[debug] [2020-04-24T15:35:37.145Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Fri, 24 Apr 2020 15:35:37 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"quic=\":443\"; ma=2592000; v=\"46,43\",h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-04-24T15:35:37.147Z] [functions] found 1 new HTTP functions, testing setIamPolicy permission...
+[debug] [2020-04-24T15:35:37.147Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/db-hrmanage:testIamPermissions  
+ {"permissions":["cloudfunctions.functions.setIamPolicy"]}
+[debug] [2020-04-24T15:35:40.375Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Fri, 24 Apr 2020 15:35:40 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=1179","alt-svc":"quic=\":443\"; ma=2592000; v=\"46,43\",h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-04-24T15:35:40.375Z] [functions] found setIamPolicy permission, proceeding with deploy
+[debug] [2020-04-24T15:35:40.376Z] >>> HTTP REQUEST POST https://cloudfunctions.googleapis.com/v1/projects/db-hrmanage/locations/us-central1/functions:generateUploadUrl  
+ 
+[debug] [2020-04-24T15:35:41.416Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Fri, 24 Apr 2020 15:35:42 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"quic=\":443\"; ma=2592000; v=\"46,43\",h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-04-24T15:35:41.416Z] >>> HTTP REQUEST PUT https://storage.googleapis.com/gcf-upload-us-central1-cea0152e-b83f-4a36-ac12-c0c183dc63d9/519e0d3c-8137-439d-9145-bd7c906b0089.zip?GoogleAccessId=service-774366621877@gcf-admin-robot.iam.gserviceaccount.com&Expires=1587744342&Signature=gFX8cwMsK%2Fwk9oKF6khQ8A7N2IuEsZqPuhWnOTAk%2BucVTbyLXdW%2BXMkCcxsB0G3Al%2Fl2Z1fW8dw5wthb%2BywkZTllnQVTFTjtpKV8%2F0piHPm2I454U%2BMC1xv27j%2B39eQ4XTxYMYMdTwplQ4IYWzwMOlsuV9Ewemey9qk%2Bet3HkjBicn9V6Jljx3Ueu%2ByRiAA7GzeiJPym%2Fji5HwEXNXQxgZ%2B8e%2FUGMSnEVaSQZXW2OJaDBHV2RsyLql5np76%2BZ8E3Sv9UeT4GCwo2DeqHny75smi22JZHjEdJ6qzjhCpayUfvV1CnhP0nCnQc4NWxhV8xIe9OILqHc8xCVDu6bt5NmQ%3D%3D  
+ <request body omitted>
+[warn] !  functions: Upload Error: Server Error. read ECONNRESET
+[debug] [2020-04-24T15:36:01.932Z] Error: read ECONNRESET
+    at TLSWrap.onStreamRead (internal/stream_base_commons.js:111:27)
+[error] 
+[error] Error: Server Error. read ECONNRESET
+[debug] [2020-04-24T15:37:23.252Z] ----------------------------------------------------------------------
+[debug] [2020-04-24T15:37:23.255Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Hp\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy --only functions --debug
+[debug] [2020-04-24T15:37:23.256Z] CLI Version:   8.1.1
+[debug] [2020-04-24T15:37:23.256Z] Platform:      win32
+[debug] [2020-04-24T15:37:23.257Z] Node Version:  v10.16.3
+[debug] [2020-04-24T15:37:23.260Z] Time:          Fri Apr 24 2020 21:37:23 GMT+0600 (Bangladesh Standard Time)
+[debug] [2020-04-24T15:37:23.261Z] ----------------------------------------------------------------------
+[debug] [2020-04-24T15:37:23.261Z] 
+[debug] [2020-04-24T15:37:23.278Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-04-24T15:37:23.281Z] > authorizing via signed-in user
+[debug] [2020-04-24T15:37:23.283Z] [iam] checking project db-hrmanage for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2020-04-24T15:37:23.293Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/db-hrmanage:testIamPermissions  
+ {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2020-04-24T15:37:25.253Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Fri, 24 Apr 2020 15:37:25 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=1178","alt-svc":"quic=\":443\"; ma=2592000; v=\"46,43\",h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-04-24T15:37:25.258Z] >>> HTTP REQUEST POST https://iam.googleapis.com/v1/projects/db-hrmanage/serviceAccounts/db-hrmanage@appspot.gserviceaccount.com:testIamPermissions  
+ {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2020-04-24T15:37:27.539Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Fri, 24 Apr 2020 15:37:27 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"quic=\":443\"; ma=2592000; v=\"46,43\",h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] 
+[info] === Deploying to 'db-hrmanage'...
+[info] 
+[info] i  deploying functions
+[debug] [2020-04-24T15:37:31.858Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "8"
+  },
+  "dependencies": {
+    "emailjs": "^2.2.0",
+    "firebase-admin": "^8.11.0",
+    "firebase-functions": "^3.6.0",
+    "sendgrid": "^5.2.3"
+  },
+  "devDependencies": {
+    "firebase-functions-test": "^0.1.6"
+  },
+  "private": true
+}
+[info] i  functions: ensuring required API cloudfunctions.googleapis.com is enabled...
+[debug] [2020-04-24T15:37:33.891Z] [functions] runtime dependency check dates: warning: 2020-05-05T00:00:00.000Z error: 2020-06-05T00:00:00.000Z
+[debug] [2020-04-24T15:37:33.892Z] >>> HTTP REQUEST GET https://serviceusage.googleapis.com/v1/projects/db-hrmanage/services/cloudfunctions.googleapis.com  
+ 
+[debug] [2020-04-24T15:37:33.904Z] >>> HTTP REQUEST GET https://serviceusage.googleapis.com/v1/projects/db-hrmanage/services/runtimeconfig.googleapis.com  
+ 
+[debug] [2020-04-24T15:37:35.748Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Fri, 24 Apr 2020 15:37:36 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"quic=\":443\"; ma=2592000; v=\"46,43\",h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-04-24T15:37:35.897Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Fri, 24 Apr 2020 15:37:36 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"quic=\":443\"; ma=2592000; v=\"46,43\",h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] +  functions: required API cloudfunctions.googleapis.com is enabled
+[debug] [2020-04-24T15:37:35.907Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/db-hrmanage/adminSdkConfig  
+ 
+[debug] [2020-04-24T15:37:36.465Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Fri, 24 Apr 2020 15:37:37 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"quic=\":443\"; ma=2592000; v=\"46,43\",h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] i  functions: preparing functions directory for uploading...
+[debug] [2020-04-24T15:37:36.476Z] >>> HTTP REQUEST GET https://runtimeconfig.googleapis.com/v1beta1/projects/db-hrmanage/configs  
+ 
+[debug] [2020-04-24T15:37:37.052Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Fri, 24 Apr 2020 15:37:37 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"quic=\":443\"; ma=2592000; v=\"46,43\",h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] i  functions: packaged functions (30.62 KB) for uploading
+[debug] [2020-04-24T15:37:37.374Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/projects/db-hrmanage/locations/-/functions  
+ 
+[debug] [2020-04-24T15:37:38.046Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Fri, 24 Apr 2020 15:37:38 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"quic=\":443\"; ma=2592000; v=\"46,43\",h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-04-24T15:37:38.049Z] [functions] found 1 new HTTP functions, testing setIamPolicy permission...
+[debug] [2020-04-24T15:37:38.055Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/db-hrmanage:testIamPermissions  
+ {"permissions":["cloudfunctions.functions.setIamPolicy"]}
+[debug] [2020-04-24T15:37:39.486Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Fri, 24 Apr 2020 15:37:40 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=1213","alt-svc":"quic=\":443\"; ma=2592000; v=\"46,43\",h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-04-24T15:37:39.489Z] [functions] found setIamPolicy permission, proceeding with deploy
+[debug] [2020-04-24T15:37:39.496Z] >>> HTTP REQUEST POST https://cloudfunctions.googleapis.com/v1/projects/db-hrmanage/locations/us-central1/functions:generateUploadUrl  
+ 
+[debug] [2020-04-24T15:37:40.215Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Fri, 24 Apr 2020 15:37:40 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"quic=\":443\"; ma=2592000; v=\"46,43\",h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-04-24T15:37:40.219Z] >>> HTTP REQUEST PUT https://storage.googleapis.com/gcf-upload-us-central1-cea0152e-b83f-4a36-ac12-c0c183dc63d9/b5152cad-bb83-4adb-8513-bcf9f3cd8880.zip?GoogleAccessId=service-774366621877@gcf-admin-robot.iam.gserviceaccount.com&Expires=1587744460&Signature=Zm16NHEqMAac37UrWg5KqEgfTZQ49nRvNt1WDpoU3rhP%2B58HGkNC82qx8yzu4ii3QGbbh%2B%2F%2FUT%2FXKYmoixRyGqESR7Ba8jE7cTrOhuNJU6xzNL6VSHtJ3mXEIyvH%2F4Sflj3UZhqkw8586ALgASWQYlK5cjvhV%2BFZMcR2uUfmVOzn3VMhd%2F3tkNmmAt3gz5RbhHQEx4U1CUNQTvs4S91Bc5bZljNVLDkObVbPUz7LPcUxr%2B8HHiIM6I6pqAHzVn6Ym43iHNI2%2FY%2FfWgW3FYWe0QDPj5%2FObuW8ORAOtO%2FrBtnAUfmM7yO%2F2jb5rIwTS2Uln1Cav45%2Ft8FRPtb7NYtmzA%3D%3D  
+ <request body omitted>
+[warn] !  functions: Upload Error: Server Error. read ECONNRESET
+[debug] [2020-04-24T15:38:06.648Z] Error: read ECONNRESET
+    at TLSWrap.onStreamRead (internal/stream_base_commons.js:111:27)
+[error] 
+[error] Error: Server Error. read ECONNRESET

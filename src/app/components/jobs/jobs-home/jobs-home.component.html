@@ -1,0 +1,13 @@
+<ng-container *ngIf="!router">
+  <h1 class="ui header" style="color: #DE7E3B;">Jobs</h1>
+  <div class="ui grid">
+    <ng-container *ngFor="let job of jobs">
+      <div class="ui eight wide column">
+        <job-card [job]="job"></job-card>
+      </div>
+    </ng-container>
+  </div>
+</ng-container>
+<ng-container *ngIf="router">
+  <router-outlet></router-outlet>
+</ng-container>

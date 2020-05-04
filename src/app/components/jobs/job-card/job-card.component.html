@@ -1,0 +1,31 @@
+<div class="ui segment" [routerLink]="['./details', job.job_id]">
+  <div class="card">
+    <div class="content">
+      <div class="description">
+        <div class="ui grid">
+          <div class="ui eight wide column">
+            <h3 class="header" style="padding: 0; margin: 0;">{{job.job_title}}</h3>
+            <h5 style="padding: 10px 0; margin: 0; ">{{job.job_department}}</h5>
+          </div>
+          <div class="ui eight wide column">
+            <div class="job-type">{{job.job_type}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="extra content">
+      <div class="ui divider"></div>
+      <span class="right floated">
+        <i class="location arrow icon"></i>
+        {{job.job_location}} &nbsp;
+      </span>
+      <span>
+        <i class="dollar sign icon"></i>{{job.salary_from/1000 | currency}}k - {{job.salary_to/1000 | currency}}k
+      </span>&nbsp;
+      <span>
+        <i class="clock outline icon"></i>{{job.created_at | daysAgo}}
+      </span>
+    </div>
+  </div>
+</div>

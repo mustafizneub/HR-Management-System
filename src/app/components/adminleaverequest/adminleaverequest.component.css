@@ -1,0 +1,6 @@
+@import '~semantic-ui-css/semantic.css';
+@import "~bootstrap/dist/css/bootstrap.css";
+
+error{
+    color:red;
+}

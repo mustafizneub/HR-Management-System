@@ -1,0 +1,412 @@
+<app-nav></app-nav>
+
+<section class="cv-t2">
+  <form #form="ngForm">
+    <div class="container">
+      <div class="row">
+        <!-- left -->
+        <div class="col-sm-3">
+          <div class="left h-100">
+            <!-- Personal info -->
+            <div class="personal-img">
+              <img class="img-fluid" src="../../assets/images/user1.png" />
+              <input class="img-up" (change)="upload($event)" type="file" accept=".png,.jpg" />
+            </div>
+            <div ngModelGroup="basicinfo">
+              <div class="name-des">
+                <div class="form-group">
+                  <label for="name">Name</label>
+                  <input type="text" class="form-control" placeholder="Name" id="name" name="name" ngModel
+                    #name="ngModel" required minlength="4" />
+                  <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+                    <div *ngIf="name.errors.required">
+                      Name is required.
+                    </div>
+                    <div *ngIf="name.errors.minlength">
+                      Name must be at least 4 characters long.
+                    </div>
+                    <div *ngIf="name.errors.forbiddenName">
+                      Name cannot be Bob.
+                    </div>
+                  </div>
+                  <label for="designation">
+                    Designation
+                  </label>
+                  <input type="text" class="form-control" id="designation" name="designation" ngModel />
+                </div>
+              </div>
+              <div class="left-items">
+                <h5 class="left-header">Personal info</h5>
+                <div class="left-items-details">
+                  <p class="semi-title">
+                    <i class="far fa-address-book"></i>
+                    <span>Address</span>
+                  </p>
+                  <input type="text" class="form-control" id="presentaddress" name="presentaddress"
+                    #presentaddress="ngModel" ngModel />
+                </div>
+                <div class="left-items-details">
+                  <p class="semi-title">
+                    <i class="fas fa-envelope"></i>
+                    <span>Email</span>
+                  </p>
+                  <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email"
+                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" ngModel #email="ngModel" required />
+                  <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+                    <div *ngIf="email.errors.required">
+                      Email is required.
+                    </div>
+                    <div *ngIf="email.errors.pattern">
+                      This is not a valid email.
+                    </div>
+                  </div>
+                </div>
+                <div class="left-items-details">
+                  <p class="semi-title">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>Phone</span>
+                  </p>
+                  <input type="text" class="form-control" id="phonenumber" name="phonenumber" #phonenumber="ngModel"
+                    ngModel />
+                </div>
+                <div class="left-items-details">
+                  <p class="semi-title">
+                    <i class="fab fa-linkedin-in"></i>
+                    <span>Linkedin</span>
+                  </p>
+                  <input type="text" class="form-control" id="linkedin" name="linkedin" #linkedin="ngModel" ngModel />
+                </div>
+                <input type="hidden" class="form-control" id="objective" name="objective" #objective="ngModel"
+                  ngModel />
+              </div>
+            </div>
+            <!-- Personal Info ends -->
+
+            <!-- Skills -->
+            <div ngModelGroup="skills">
+              <div class="left-items">
+                <h5 class="left-header">Skills</h5>
+                <div class="left-items-details">
+                  <h6 class="semi-title">Programming Languages</h6>
+                  <input type="text" class="form-control" id="programming" name="programming" #programming="ngModel"
+                    ngModel />
+                </div>
+                <div class="left-items-details">
+                  <h6 class="semi-title">Framework</h6>
+                  <input type="text" class="form-control" id="framework" name="framework" #framework="ngModel"
+                    ngModel />
+                </div>
+                <div class="left-items-details">
+                  <h6 class="semi-title">Operating System</h6>
+                  <input type="text" class="form-control" id="system" name="system" #system="ngModel" ngModel />
+                </div>
+                <div class="left-items-details">
+                  <h6 class="semi-title">Others</h6>
+                  <input type="text" class="form-control" id="other" name="other" #other="ngModel" ngModel />
+                </div>
+              </div>
+            </div>
+            <!-- Skills ends -->
+
+            <!-- software -->
+            <div class="left-items">
+              <h5 class="left-header d-flex justify-content-between">
+                Software
+                <button class="add-remove add" (click)="add()">
+                  <i class="fas fa-plus-square" aria-hidden="true"></i>
+                </button>
+              </h5>
+              <div class="left-single-list" ngModelGroup="software">
+                <div class="form-group" *ngFor="let item of array; let i = index">
+                  <div class="form-row">
+                    <div class="col-10">
+                      <input type="text" class="form-control" placeholder="skill/software" id="soft{{ i }}"
+                        name="soft{{ i }}" #soft{{i}}="ngModel" ngModel />
+                    </div>
+                    <div class="col-2">
+                      <div *ngIf="i != 0">
+                        <button class="add-remove remove" (click)="remove(i)">
+                          <i class="fa fa-trash" aria-hidden="true"></i>
+                        </button>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <input type="hidden" class="form-control" placeholder="value" id="value{{ i }}"
+                        name="value{{ i }}" #value{{i}}="ngModel" ngModel />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- software ends -->
+
+            <!-- Languages -->
+            <div class="left-items">
+              <h5 class="left-header d-flex justify-content-between">
+                Language
+                <button class="add-remove add" (click)="add1()">
+                  <i class="fas fa-plus-square" aria-hidden="true"></i>
+                </button>
+              </h5>
+              <div class="left-single-list" ngModelGroup="Language">
+                <div class="form-group" *ngFor="let item of array1; let i = index">
+                  <div class="form-row">
+                    <div class="col-10">
+                      <input type="text" class="form-control" placeholder="Language" id="language{{ i }}"
+                        name="language{{ i }}" #language{{i}}="ngModel" ngModel />
+                    </div>
+                    <div class="col-2">
+                      <div *ngIf="i != 0">
+                        <button class="add-remove remove" (click)="remove1(i)">
+                          <i class="fa fa-trash" aria-hidden="true"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Languages ends -->
+          </div>
+        </div>
+        <!-- left ends -->
+
+        <!-- right -->
+        <div class="col-sm-9">
+          <div class="right h-100 pb-3">
+            <!-- experience -->
+            <div class="right-single" ngModelGroup="experience">
+              <h5 class="right-header d-flex justify-content-between">
+                Experience
+                <button class="add-remove add" (click)="add2()">
+                  <i class="fa fa-plus-square" aria-hidden="true"></i>
+                </button>
+              </h5>
+              <div class="row" *ngFor="let item of array2; let i = index">
+                <div class="col-3">
+                  <div class="row">
+                    <div class="form-group col-6">
+                      <label for="from{{ i }}">From</label>
+                      <input type="text" class="form-control" id="from{{ i }}" name="from{{ i }}" #from{{i}}="ngModel"
+                        ngModel />
+                    </div>
+                    <div class="form-group col-6">
+                      <label for="to{{ i }}">To</label>
+                      <input type="text" class="form-control" id="to{{ i }}" name="to{{ i }}" #to{{i}}="ngModel"
+                        ngModel />
+                    </div>
+                  </div>
+                </div>
+                <div class="col-7">
+                  <div class="form-group">
+                    <label for="desgnation{{ i }}">Designation</label>
+                    <input type="text" class="form-control" id="desgnation{{ i }}" name="designation{{ i }}"
+                      #desgnation{{i}}="ngModel" ngModel />
+                  </div>
+                  <div class="form-group">
+                    <label for="companyName{{ i }}">Company Name</label>
+                    <input type="text" class="form-control" id="companyName{{ i }}" name="companyName{{ i }}"
+                      #companyName{{i}}="ngModel" ngModel />
+                  </div>
+                  <div class="form-group">
+                    <label for="description{{ i }}">Description</label>
+                    <input type="text" class="form-control" id="description{{ i }}" name="description{{ i }}"
+                      #description{{i}}="ngModel" ngModel />
+                  </div>
+                </div>
+                <div class="col-2">
+                  <div *ngIf="i != 0" class="m-30">
+                    <button class="add-remove remove" (click)="remove2(i)">
+                      <i class="fa fa-trash" aria-hidden="true"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- experience ends -->
+
+            <!-- qualification -->
+            <div class="right-single">
+              <h5 class="right-header d-flex justify-content-between">
+                Qualification
+                <button class="add-remove add" (click)="add3()" style="margin-left: 10px; margin-bottom: 10px;">
+                  <i class="fa fa-plus-square" aria-hidden="true"></i>
+                </button>
+              </h5>
+              <div ngModelGroup="qualification">
+                <div class="row" *ngFor="let item of array3; let i = index">
+                  <div class="col-3">
+                    <div class="form-group">
+                      <label for="session{{ i }}">Session</label>
+                      <input type="text" class="form-control" id="session{{ i }}" name="session{{ i }}"
+                        #session{{i}}="ngModel" ngModel />
+                    </div>
+                  </div>
+                  <div class="col-7">
+                    <div class="form-group">
+                      <label for="certificationname{{ i }}">Cirtification Name</label>
+                      <input type="text" class="form-control" id="certificationname{{ i }}"
+                        name="certificationname{{ i }}" #certificationname{{i}}="ngModel" ngModel />
+                    </div>
+                    <div class="form-group">
+                      <label for="institute{{ i }}">Institute</label>
+                      <input type="text" class="form-control" id="institute{{ i }}" name="institute{{ i }}"
+                        #institute{{i}}="ngModel" ngModel />
+                    </div>
+
+                    <input type="hidden" class="form-control" id="description0" name="description0"
+                      #description0="ngModel" ngModel />
+                    <input type="hidden" class="form-control" id="cgpa0" name="cgpa0" #cgpa0="ngModel" ngModel />
+                  </div>
+                  <div class="col-2">
+                    <div *ngIf="i != 0" class="m-30">
+                      <button class="add-remove remove" (click)="remove3(i)">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- qualification ends -->
+
+            <!-- projects starts -->
+            <div class="right-single">
+              <h5 class="right-header d-flex justify-content-between">
+                Projects
+                <button class="add-remove add" (click)="add5()">
+                  <i class="fa fa-plus-square" aria-hidden="true"></i>
+                </button>
+              </h5>
+              <div ngModelGroup="projects">
+                <div class="row" *ngFor="let item of array5, let i=index">
+                  <div class="col-3">
+                    <div class="form-group">
+                      <label for="year{{ i }}">Year</label>
+                      <input type="text" class="form-control" id="year{{ i }}" name="year{{ i }}" #year{{i}}="ngModel"
+                        ngModel />
+                    </div>
+                  </div>
+                  <div class="col-7">
+                    <div class="form-group">
+                      <label for="topic{{ i }}">Topic</label>
+                      <input type="text" class="form-control" id="topic{{ i }}" name="topic{{ i }}"
+                        #topic{{i}}="ngModel" ngModel />
+                    </div>
+                    <div class="form-group">
+                      <label for="description{{ i }}">Description</label>
+                      <input type="text" class="form-control" id="description{{ i }}" name="description{{ i }}"
+                        #description{{i}}="ngModel" ngModel />
+                    </div>
+                  </div>
+                  <div class="col-2">
+                    <div *ngIf="i != 0" class="m-30">
+                      <button class="add-remove remove" (click)="remove5(i)">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- projects ends -->
+
+            <!-- participation -->
+            <div class="right-single">
+              <h5 class="right-header d-flex justify-content-between">
+                Participation
+                <button class="add-remove add" (click)="add4()">
+                  <i class="fa fa-plus-square" aria-hidden="true"></i>
+                </button>
+              </h5>
+              <div ngModelGroup="Participation">
+                <div class="row" *ngFor="let item of array4; let i = index">
+                  <div class="col-3">
+                    <div class="form-group">
+                      <label for="time{{ i }}">Year</label>
+                      <input type="text" class="form-control" id="time{{ i }}" name="time{{ i }}" #time{{i}}="ngModel"
+                        ngModel />
+                    </div>
+                  </div>
+                  <div class="col-7">
+                    <div class="form-group">
+                      <label for="event{{ i }}">Event Name</label>
+                      <input type="text" class="form-control" id="event{{ i }}" name="event{{ i }}"
+                        #event{{i}}="ngModel" ngModel />
+                    </div>
+                    <div class="form-group">
+                      <label for="achievement{{ i }}">Achievement</label>
+                      <input type="text" class="form-control" id="achievement{{ i }}" name="achievement{{ i }}"
+                        #achievement{{i}}="ngModel" ngModel />
+                    </div>
+                  </div>
+                  <div class="col-2">
+                    <div *ngIf="i != 0" class="m-30">
+                      <button class="add-remove remove" (click)="remove4(i)">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- participation ends -->
+
+            <!-- online judges -->
+            <div class="right-single">
+              <h5 class="right-header d-flex justify-content-between">
+                Online Judges
+                <button class="add-remove add" (click)="add6()">
+                  <i class="fa fa-plus-square" aria-hidden="true"></i>
+                </button>
+              </h5>
+              <div ngModelGroup="onlineJudge">
+                <div class="row" *ngFor="let item of array6; let i = index">
+                  <div class="col-3">
+                    <div class="form-group">
+                      <label for="id{{ i }}">ID</label>
+                      <input type="text" class="form-control" id="id{{ i }}" name="id{{ i }}" #id{{i}}="ngModel"
+                        ngModel />
+                    </div>
+                  </div>
+                  <div class="col-7">
+                    <div class="form-group">
+                      <label for="judgeName{{ i }}">Online Judge Name</label>
+                      <input type="text" class="form-control" id="judgeName{{ i }}" name="judgeName{{ i }}"
+                        #judgeName{{i}}="ngModel" ngModel />
+                    </div>
+                    <div class="form-group">
+                      <label for="judgeAchievement{{ i }}">Achievement</label>
+                      <input type="text" class="form-control" id="judgeAchievement{{ i }}"
+                        name="judgeAchievement{{ i }}" #judgeAchievement{{i}}="ngModel" ngModel />
+                    </div>
+                  </div>
+                  <div class="col-2">
+                    <div *ngIf="i != 0" class="m-30">
+                      <button class="add-remove remove" (click)="remove6(i)">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- online judges ends -->
+            <div class="right-single">
+              <div ngModelGroup="interest">
+                <input type="hidden" id="hobby0" name="hobby0" #hobby0="ngModel" ngModel />
+                <input type="hidden" id="hobby1" name="hobby1" #hobby1="ngModel" ngModel />
+                <input type="hidden" id="hobby2" name="hobby2" #hobby2="ngModel" ngModel />
+                <input type="hidden" id="hobby3" name="hobby3" #hobby3="ngModel" ngModel />
+              </div>
+              <button (click)="onSubmit(form)" class="btn yoBtn float-right" [disabled]="form.invalid">
+                Submit
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- right ends -->
+      </div>
+    </div>
+  </form>
+</section>

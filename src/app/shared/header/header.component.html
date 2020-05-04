@@ -1,0 +1,8 @@
+<div class="ui grid">
+  <div class="four column row">
+    <ng-content select=".header-title"></ng-content>
+    <div class="right floated column center aligned" (click)="onClick()">
+      <ng-content select=".header-button"></ng-content>
+    </div>
+  </div>
+</div>

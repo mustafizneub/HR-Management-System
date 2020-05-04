@@ -1,0 +1,98 @@
+<ng-container *ngIf="job && !router">
+  <div class="ui grid">
+    <div class="ui eleven wide column">
+
+      <div class="ui segment">
+        <div class="card">
+          <div class="content">
+            <div class="description">
+              <div class="ui grid">
+                <div class="ui eight wide column">
+                  <h3 class="job-title">{{job.job_title}}
+                  </h3>
+                  <h5 class="department">{{job.job_department}}</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="extra content">
+            <div class="ui divider"></div>
+            <span class="right floated">
+              <i class="calendar alternate outline icon"></i> Post Date:
+              {{job.start_date}} &nbsp;
+            </span>
+            <span class="right">
+              <i class="calendar alternate outline icon"></i> Last Date:
+              {{job.expiry_date}} &nbsp;
+            </span>
+            <span>
+              <i class="user outline icon"></i>Applicants: {{job.applicants}}
+            </span>&nbsp;
+          </div>
+        </div>
+      </div>
+
+      <div class="ui padded text segment">
+        <h5 class="ui header" style="font-size: 16px; font-weight: 600; ">Job Description</h5>
+        <p class="job-description">{{job.description}}</p>
+      </div>
+
+    </div>
+    <div class="ui five wide column">
+      <div class="ui padded text segment">
+        <p class="apply ui segment rounded" routerLink="./apply">Apply For This Job</p>
+        <br><br>
+        <div class="ui relaxed list">
+          <div class="item">
+            <i class="large chart bar outline middle aligned icon"></i>
+            <div class="content">
+              <h4 class="header job-properties">JOB TYPE</h4>
+              <div class="description">{{job.job_type}}</div>
+            </div>
+          </div>
+          <div class="item">
+            <i class="large money bill alternate outline middle aligned icon"></i>
+            <div class="content">
+              <h4 class="header job-properties">SALARY
+              </h4>
+              <div class="description">{{job.salary_from/1000 | currency}}k - {{job.salary_to/1000 | currency}}k</div>
+            </div>
+          </div>
+          <div class="item">
+            <i class="large briefcase middle aligned icon"></i>
+            <div class="content">
+              <h4 class="header job-properties">
+                EXPERIENCE</h4>
+              <div class="description">{{job.experience}}</div>
+            </div>
+          </div>
+          <div class="item">
+            <i class="large ticket alternate middle aligned icon"></i>
+            <div class="content">
+              <h4 class="header job-properties">VACANCY
+              </h4>
+              <div class="description">{{job.vaccencies}}</div>
+            </div>
+          </div>
+          <div class="item">
+            <i class="large location arrow middle aligned icon"></i>
+            <div class="content">
+              <h4 class="header job-properties">
+                LOCATION</h4>
+              <div class="description">{{job.job_location}}</div>
+            </div>
+          </div>
+          <br><br>
+        </div>
+        <div>
+          <p class="day-left">{{job.expiry_date | dayLeft}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="router">
+  <router-outlet></router-outlet>
+</ng-container>

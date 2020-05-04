@@ -1,0 +1,49 @@
+
+<section class="page-content">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-12">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Post Name</th>
+                            <th scope="col">Applied At</th>
+                            <th scope="col">View</th>
+                            <th scope="col">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="information && jobInfo!=undefined">
+                        <tr *ngFor="let information of information; let i=index">
+                            <td>{{jobInfo[i].job.title}}</td>
+                            <td>{{information.data.dateTime}}</td>
+                            <td><a [routerLink]="['/job-description', information.data.jobId]">
+                                    <button class="btn yoBtn">View</button></a>
+                            </td>
+                            <td *ngIf="information.data.isSelected == 0">
+                                Pending...
+
+                            </td>
+                            <td *ngIf="information.data.isSelected == 1">Shorlisted</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- page content ends -->
+
+<!-- footer -->
+<footer>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <p>Copyright &copy; 2020 <span class="orange">Yo</span><span class="purple">Tech</span> Limited All
+                    rights
+                    reserved</p>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer ends -->

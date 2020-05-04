@@ -1,0 +1,78 @@
+<div class="row">
+  <div class="col">
+    <h4 style="font-family: 'Amiri', serif;">Projects</h4>
+  </div>
+  <div class="col">
+
+  </div>
+  <div class="col">
+    <div style="text-align: right;">
+      <button type="button" class="btn btn-primary" style="color:white;font-family: 'Merriweather', serif;
+          " routerLink="/add-project"><i class="fas fa-plus"></i>Add Project</button>
+    </div>
+
+  </div>
+</div>
+<br />
+<div class="row">
+  <div class="col">
+    <div class="row">
+      <div class="col">
+        <input type="text" class="form-control" placeholder="Search By FProject Name" [(ngModel)]="searchproject">
+      </div>
+    </div>
+  </div>
+</div>
+<br />
+<div class="row">
+  <table class="table">
+    <tr>
+      <th>
+        Project Name
+      </th>
+      <th>
+        Company Nmae
+      </th>
+      <th>
+        Start Date
+      </th>
+      <th>
+        End Date
+      </th>
+      <th>
+        Project Leader
+      </th>
+      <th>
+        Action
+      </th>
+    </tr>
+    <tr *ngFor="let project of projectList |filter:searchproject | paginate: { itemsPerPage: 5, currentPage: p };">
+      <td>
+        {{ project.name}}
+      </td>
+      <td>
+        {{ project.client}}
+      </td>
+      <td>
+        {{ project.startdate}}
+      </td>
+      <td>
+        {{ project.enddate}}
+      </td>
+
+      <td>
+        {{ project.leader}}
+      </td>
+      <td>
+        <button class="btn btn-success" (click)="editProject(project.name)">
+          Edit</button>
+        &nbsp;&nbsp;
+        <button class="btn btn-danger" (click)="delProject(project.name)">
+
+          Delete</button>
+      </td>
+    </tr>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+  </table>
+</div>

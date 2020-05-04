@@ -1,0 +1,123 @@
+<ng-container *ngIf="loader">
+  <div class="ui active inverted dimmer">
+    <div class="ui large text loader" style="font-weight: 600;">
+      <h1>
+        <span class="primary-text-color">Generating </span><span class="secondary-text-color">Payslip</span>
+      </h1>
+    </div>
+  </div>
+  <img class="ui wireframe image" src="https://semantic-ui.com/images/wireframe/short-paragraph.png">
+  <img class="ui wireframe image" src="https://semantic-ui.com/images/wireframe/short-paragraph.png">
+  <img class="ui wireframe image" src="https://semantic-ui.com/images/wireframe/short-paragraph.png">
+  <img class="ui wireframe image" src="https://semantic-ui.com/images/wireframe/short-paragraph.png">
+  <img class="ui wireframe image" src="https://semantic-ui.com/images/wireframe/short-paragraph.png">
+  <img class="ui wireframe image" src="https://semantic-ui.com/images/wireframe/short-paragraph.png">
+  <img class="ui wireframe image" src="https://semantic-ui.com/images/wireframe/short-paragraph.png">
+</ng-container>
+
+
+<ng-container *ngIf="!loader">
+  <div id="employee-history">
+    <div style="width: 30%; margin: auto;">
+      <img src="../../../../assets/Yotech Web color.png" alt="">
+      <br>
+      <p class="text-center p-3">
+        8'th floor, Ananda Tower, Sylhet, Bangladesh
+      </p>
+    </div>
+    <h4 class="ui header aligned center" style="padding: 10px;">PAYSLIP FOR THE MONTH {{currentMonth}} </h4>
+    <div class="ui grid">
+      <div class="eight wide column">
+        <div class="staff" style="margin-top:30px">
+          <p>{{employeeSalary.staff_name}}</p>
+          <p>Employee ID: {{employeeSalary.staff_id}}</p>
+          <p>Bank Name: {{employeeSalary.bank.bankname}}, {{employeeSalary.bank.branch}}</p>
+          <p> A/C Number: {{employeeSalary.bank.acc_no}}</p>
+          <button class="ui button text-center" (click)="printHistory()"><i class="print icon"></i></button>
+
+        </div>
+      </div>
+      <div class="eight wide column  right aligned" style=" padding: 30px 20px 0 0">
+        <h3>PAYSLIP: {{employeeSalary.payslip_no}}</h3>
+        <p>Salary Month: {{currentMonth}} {{year}}</p>
+      </div>
+
+      <!-- <div class="eight wide column">
+      <h1 class="ui header">Earnings</h1>
+      <table class="ui single line table">
+        <tbody>
+          <tr>
+            <td>Basic Salary</td>
+            <td>{{employeeSalary.basic | currency}}</td>
+          </tr>
+          <tr>
+            <td>Dearness Allowance (D.A)</td>
+            <td>{{employeeSalary.da}}%</td>
+          </tr>
+          <tr>
+            <td>Hourse Rent Allowance (H.R.A)</td>
+            <td>{{employeeSalary.hra}}%</td>
+          </tr>
+          <tr>
+            <td>Conveyance</td>
+            <td>{{employeeSalary.conveyance | currency}}</td>
+          </tr>
+          <tr>
+            <td>Allowance</td>
+            <td>{{employeeSalary.allowance | currency}}</td>
+          </tr>
+          <tr>
+            <td>Medical Allowance</td>
+            <td>{{employeeSalary.medical_allowance | currency}}</td>
+          </tr>
+          <tr>
+            <td>{{employeeSalary.bonus.bonus_name}} Bonus</td>
+            <td>{{employeeSalary.bonus.bonus_amount | currency}}</td>
+          </tr>
+          <tr>
+            <td>Other Allowance</td>
+            <td>{{employeeSalary.earnings_others | currency}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <h1 class="ui header">Net Salary: {{employeeSalary.net_salary | currency}}</h1>
+    </div>
+
+    <div class="eight wide column">
+      <h1 class="ui header">Deductions</h1>
+      <table class="ui single line table">
+        <tbody>
+          <tr>
+            <td>Tax Deducted at Source (T.D.S)</td>
+            <td>{{employeeSalary.tds}}%</td>
+          </tr>
+          <tr>
+            <td>Prof Tax (10%)</td>
+            <td>{{employeeSalary.prof_tax}}%</td>
+          </tr>
+          <tr>
+            <td>PF</td>
+            <td>{{employeeSalary.pf | currency}}</td>
+          </tr>
+          <tr>
+            <td>Loan</td>
+            <td>{{employeeSalary.loan | currency}}</td>
+          </tr>
+          <tr>
+            <td>Leave</td>
+            <td>{{employeeSalary.leave | currency}}</td>
+          </tr>
+          <tr>
+            <td>Provient Fund</td>
+            <td>{{employeeSalary.fund | currency}}</td>
+          </tr>
+          <tr>
+            <td>ESI</td>
+            <td>{{employeeSalary.esi | currency}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div> -->
+    </div>
+  </div>
+</ng-container>
