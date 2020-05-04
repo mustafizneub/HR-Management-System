@@ -1,3 +1,8 @@
+# First Step
+
+1. Install node.js
+2. open git bash or cmd inside the file and Run mpm install 
+
 # Ecomm
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.5.
