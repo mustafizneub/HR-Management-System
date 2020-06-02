@@ -1,0 +1,148 @@
+<div class="row mb-4">
+    <div class="col-sm-12">
+      <div class="card">
+          <div class="card-body">
+                <div class="mb-2">
+                  <span class="h5">Attendence Report</span>
+                </div>
+
+                <div style="margin-bottom: 30px;">
+                    
+                    <table *ngIf="data;" class="table table-bordered">
+                        <tr>
+                          <td style="width: 50%;">Employee ID</td>
+                          <td>{{ data[0].employee_id }}</td>
+                        </tr>
+                          <tr>
+                            <td>Employee Name</td>
+                            <td>  {{ data[0].employee_name }}</td>
+                          </tr>
+                          <tr>
+                            <td>Total Medical Leave Taken</td>
+                            <td>{{ leave["Sick"].total }}</td>
+                          </tr>
+
+                          <tr>
+                            <td>Total Emergency Leave Taken</td>
+                            <td>{{ leave["Emergency"].total }}</td>
+                          </tr>
+
+                          <tr>
+                            <td>Total Unpaid Leave Taken</td>
+                            <td>{{ leave["LWOP"].total }}</td>
+                          </tr>
+                          <tr>
+                            <td><span class="font-weight-bold">Total</span></td>
+                            <td><span class="font-weight-bold">{{ leave["Sick"].total + leave["Emergency"].total + leave["LWOP"].total }}</span></td>
+                          </tr>
+                    </table>
+
+                </div>  <!-- End Div -->
+
+
+
+               
+
+               
+              
+          </div>    <!-- End card body -->
+      </div> <!-- End card  -->
+    </div>  <!-- End col -->
+</div>  <!-- End row -->
+
+<div class="row">
+  <div class="col-sm-12">
+      <div class="card">
+        <div class="card-body">
+            <div>
+                  <div class="d-flex flex-column align-items-end">
+                            <div class="cp" (click)="dateFilter = !dateFilter" [attr.aria-expanded]="!dateFilter" aria-controls="dateFilterBlock">
+                            Get Data By Range
+                            <i class="chevron down icon"></i>
+                            </div>
+                            
+                          <div id="dateFilterBlock" [ngbCollapse]="dateFilter">
+                            <div class="d-flex flex-column align-items-end date-range">
+                              <div class="range">
+                                <input type="hidden"
+                                name="range.prevdate" [(ngModel)]="range.prevdate" ngbDatepicker #prevdate="ngbDatepicker" [placement]="placement">
+                                <div class="date-block">
+                                  <span>{{  range.prevdate.year + '-' + range.prevdate.month + '-' + range.prevdate.day | date: 'dd, MMM y' }}</span>
+                                  <span class="btn disabled cp calendar" (click)="prevdate.toggle()">
+                                    <i class="calendar alternate outline icon"></i>
+                                    
+                                  </span>
+                                </div>  <!-- End date-block -->
+                              </div> <!-- End div -->
+        
+                              <div class="range">
+                                <input type="hidden"
+                                name="range.nextdate" [(ngModel)]="range.nextdate" ngbDatepicker #nextdate="ngbDatepicker" [placement]="placement">
+                                <div class="date-block">
+                                  <span>{{  range.nextdate.year + '-' + range.nextdate.month + '-' + range.nextdate.day | date: 'dd, MMM y' }}</span>
+                                    
+                                  <span class="btn disabled cp calendar" (click)="nextdate.toggle()"> <i class="calendar alternate outline icon"></i></span>
+                                </div>  <!-- End date-block -->
+                              </div> <!-- End div -->
+        
+                             
+        
+                            <div class="date-block my-2">
+                                <span class="btn btn-sm btn-outline-success" (click)="getByRange(range)">Search</span>
+                            </div>  <!-- End d-flex -->
+                          </div> <!-- End Col 6 -->
+                          </div>  <!-- End collapse -->
+                  </div>  <!-- End d-flex -->           
+          
+
+            </div>   <!-- End div -->
+             <table class="table table-bordered">
+                  <thead>
+                       <tr>
+                          <th>#SL</th>
+                          <th class="cp" (click)="getDataSort('leave_type')">Leave Type
+                            <i [class]="sortedIcon.leave_type.icon"></i>
+                          </th> 
+
+                           <th class="cp" (click)="getDataSort('leave_from')">Leave From
+                            <i [class]="sortedIcon.leave_type.icon"></i>
+                          </th> 
+
+                          <th class="cp" (click)="getDataSort('leave_to')">Leave To
+                            <i [class]="sortedIcon.leave_type.icon"></i>
+                          </th> 
+
+
+                          <th class="cp" (click)="getDataSort('duration')">Duration
+                                <i [class]="sortedIcon.leave_type.icon"></i>
+                          </th> 
+
+
+                        </tr>
+                  </thead>
+                 
+                  <tr *ngFor="let object of data; let i = index;">
+                      <td> {{ i + 1 }} </td>
+                      <td>  {{ object.leave_type }}</td>
+
+                      <td> {{ object.leave_from  | date:'MMM d, y, EE' }}</td>
+
+                      <td> {{ object.leave_to  | date:'MMM d, y, EE' }} </td>
+                      <td>{{ object.duration }}</td>
+
+                    </tr>
+                </table>
+        </div> <!-- End card body -->
+      </div> <!-- End card -->
+  </div> <!-- End col -->
+</div> <!-- End row -->
+
+
+
+<div>
+  <pre>
+    {{ data | json }}
+
+  </pre>
+
+</div>

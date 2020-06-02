@@ -1,0 +1,184 @@
+<div class="row">
+    <div class="col-sm-4" style="margin-bottom: 20px;"> 
+      <div class="card">
+          <div class="card-body">
+            <h6 class="h6">Add Deposit</h6>
+            <div class="divider"></div>
+      
+            <div *ngIf="notification" class="alert alert-warning">
+                {{ notification }}
+            </div> <!-- End Alert -->
+      
+      
+                          
+                  <div class="form-group">
+                    <div class="input-group">
+
+                      <input type="hidden" 
+                            ngbDatepicker #depositDate="ngbDatepicker" [(ngModel)]="deposit.date">
+
+                    <input class="form-control" 
+                            ngbDatepicker #depositDate="ngbDatepicker" (click)="depositDate.toggle()" [value]="deposit?.date.year + '-' + deposit?.date.month + '-' + deposit?.date.day | date: 'dd, MMM y'">
+
+                      <div class="input-group-append">
+                        <button class="btn btn-outline-secondary disabled calendar" (click)="depositDate.toggle()" style="padding: 0 5px;"><span class="calendar-icon"></span>
+                          </button>
+                      </div>
+                    </div> <!-- End input group -->
+                  </div> <!-- End form group -->
+  
+  
+  
+                  <div class="form-group">
+                    <input type="hidden" [(ngModel)]="deposit.category">
+                    <select name="deposit_type" class="custom-select" #category (click)="getCategory(category.value)">
+                        <option selected="true" disabled value="0">Select Deposit Type </option>
+                        <option value="customer">Customer Payment</option>
+                        <option value="houserent">House Rent</option>
+                        <option value="Others">Others</option>
+                    </select>    
+                  </div> <!-- End form-group-->
+      
+      
+      
+              <div class="form-group">  
+                  <input type="number" min="0" placeholder="Deposit Amount" class="form-control mb-2" [(ngModel)]="deposit.amount">
+               </div> <!-- End --> 
+      
+      
+              <div class="form-group">  
+                <input type="text" placeholder="Deposit note" class="form-control mb-2" [(ngModel)]="deposit.note">
+             </div> <!-- End form-group-->
+      
+              <div class="form-group mb-0">
+                <button class="btn btn-sm btn-success" (click)="addDeposit(deposit)">Add Deposit</button>
+              </div>  <!-- End form-group-->
+        </div> <!-- End card body -->
+        </div> <!-- End card  -->
+      </div> <!-- End col 6 -->
+  
+  
+  
+      <div class="col-sm-8">
+        <div class="card" style="margin-bottom: 30px">
+            <div class="card-body">
+                <div class="" style="margin: 0;">
+                  <div class="row">
+                    <div class="col-sm-6 col-12">
+                      <div class="d-flex">
+                          <div class="form-group">
+                        <div class="input-group">
+                          <input type="hidden"
+                                 name="selected_day" [(ngModel)]="selected_day" ngbDatepicker #d2="ngbDatepicker" [placement]="placement" [positionTarget]="buttonEl">
+                          <div class="date-block">
+                            <span>{{  selected_day.year + '-' + selected_day.month + '-' + selected_day.day | date: 'dd, MMM y' }}</span>
+                              
+                            <span #buttonEl class="btn disabled cp calendar" (click)="d2.toggle()"></span>
+                          </div>  <!-- End date-block -->
+                        </div> <!-- End input group -->
+                      </div> <!-- End Form group -->
+  
+                      <div class="d-flex arrow-block" style="margin: 0;">
+                                  <div>
+                                    <span class="cp arrow" (click)="getPrevDate(selected_day)">
+                                      <i class="chevron left icon"></i>
+                                      </span>
+  
+                                      <span class="cp arrow" (click)="getNextDate(selected_day)">
+                                       <i class="chevron right icon"></i>
+
+                                      </span>
+                                  </div> <!-- End div  -->
+                                  <div>
+                                    <span class="btn btn-sm btn-outline-success" (click)="getByDay(selected_day)">Get Data</span>
+                                  </div> <!-- End div  -->
+                      </div> <!-- End div d-flex -->
+                      </div>   <!-- End d-flex -->
+                    </div> <!-- End Col 6 -->
+  
+                    <div class="col-sm-6 col-12">
+                        <div class="d-flex flex-column align-items-end">
+                              <div class="cp" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+                              Get Data By Range
+                              <i class="chevron down icon"></i>
+                              </div>
+                            <div id="collapseExample" [ngbCollapse]="isCollapsed">
+                              <div class="d-flex flex-column align-items-end date-range">
+                                <div class="range">
+                                  <input type="hidden"
+                                  name="range.prevdate" [(ngModel)]="range.prevdate" ngbDatepicker #prevdate="ngbDatepicker" [placement]="placement">
+                                  <div class="date-block">
+                                    <span>{{  range.prevdate.year + '-' + range.prevdate.month + '-' + range.prevdate.day | date: 'dd, MMM y' }}</span>
+                                    <span class="btn disabled cp calendar" (click)="prevdate.toggle()"><i class="calendar alternate outline icon"></i></span>
+                                  </div>  <!-- End date-block -->
+                                </div> <!-- End div -->
+          
+                                <div class="range">
+                                  <input type="hidden"
+                                  name="range.nextdate" [(ngModel)]="range.nextdate" ngbDatepicker #nextdate="ngbDatepicker" [placement]="placement">
+                                  <div class="date-block">
+                                    <span>{{  range.nextdate.year + '-' + range.nextdate.month + '-' + range.nextdate.day | date: 'dd, MMM y' }}</span>
+                                      
+                                    <span class="btn disabled cp calendar" (click)="nextdate.toggle()"><i class="calendar alternate outline icon"></i></span>
+                                  </div>  <!-- End date-block -->
+                                </div> <!-- End div -->
+          
+                               
+          
+                              <div class="date-block my-2">
+                                  <span class="btn btn-sm btn-outline-success" (click)="getByRange(range)">Search</span>
+                              </div>  <!-- End d-flex -->
+                            </div> <!-- End Col 6 -->
+                            </div>  <!-- End collapse -->
+                        </div>  <!-- End d-flex -->
+                  </div> <!-- End row -->
+                  </div>  <!-- End row -->
+  
+                <div *ngIf="deposits">
+                  <table class="table table-bordered">
+                    <tr>
+                      <td>#Serial</td>
+                      <td class="cp" (click)="getDataSort('amount')">Amount 
+
+                        <i [class]="sortedIcon.amount.icon"></i>
+                        
+                        </td>
+
+                      <td class="cp" (click)="getDataSort('category')">Bill Type <i [class]="sortedIcon.category.icon"></i>
+                      
+                      </td>
+                      <td class="cp" (click)="getDataSort('userdate_ms')">Date <i [class]="sortedIcon.userdate_ms.icon"></i></td>
+                      <td>Note</td>
+                    </tr>
+      
+                    <tr *ngFor="let object of deposits | paginate: { itemsPerPage: 4, currentPage: p }; let i = index;">
+                      <td> {{ i + 1 }} </td>
+                      
+                      <td> <a routerLink="/finance/{{object.deposit.transaction_type}}/{{ object.deposit.category.split(' ')[0]  + '/' + object.deposit.datetime }}"><span class="span_amount">{{ object.deposit.amount | number }}</span> </a> TK</td>
+
+                      <td> <a routerLink="/finance/{{object.deposit.transaction_type}}/{{ object.deposit.category.split(' ')[0] }}">{{ object.deposit.category  }}</a> </td>
+                      <td> {{ object.deposit.userdate | date:'MMM d, y, EE' }} </td>
+                      <td> {{ object.deposit.note  }} </td>
+                    </tr>
+                  </table>
+                  
+                </div> <!-- End ngIf -->
+
+                <div class="d-flex justify-content-between">
+                  <div class="">
+                    Total Deposit: <span class="h5">{{ totalDeposit | number }} </span> <span>TK</span>
+                   </div> <!-- End -->
+
+                   <div class="d-flex justify-content-end">
+                    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                   </div>   <!-- End Pagination -->
+                </div> <!-- End d-flex -->
+                
+  
+                 
+             
+            </div>    <!-- End card body -->
+            </div> <!-- End card  -->
+        </div> <!-- End card  -->
+      </div>  <!-- End col -->
+  </div> <!-- End row -->

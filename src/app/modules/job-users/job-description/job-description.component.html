@@ -1,0 +1,141 @@
+<!--Start Placeholder-->
+<div class="ui grid" *ngIf="!information">
+  <div class="ui eleven wide column">
+    <div class="ui fluid placeholder">
+      <div class="header"></div>
+      <div class="ui divider"></div>
+      <div class="paragraph">
+        <div class="line" *ngFor="let info of [1,2,3,4,5,6,4,8,9,10]"></div>
+      </div>
+    </div>
+    <div class="ui padded text segment">
+      <div class="ui fluid placeholder">
+        <div class="header"></div>
+        <div class="ui divider"></div>
+        <div class="paragraph">
+          <div class="line" *ngFor="let info of [1,2,3,4,5,6,4,8,9,10]"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ui five wide column">
+    <div class="ui fluid placeholder">
+      <div class="header"></div>
+      <div class="ui divider"></div>
+      <div class="paragraph">
+        <div class="line" *ngFor="let info of [1,2,3,4,5,6,4,8,9,10]"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--End Placeholder-->
+<ng-container>
+  <div class="ui grid">
+    <div class="ui eleven wide column">
+
+      <div class="ui segment" *ngIf="information">
+        <div class="card">
+          <div class="content">
+            <div class="description">
+              <div class="ui grid">
+                <div class="ui eight wide column">
+                  <h3 class="job-title">{{information.job.title}}
+                  </h3>
+                  <h5 class="department">Developer</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="extra content">
+            <div class="ui divider"></div>
+            <span class="right floated">
+              <i class="calendar alternate outline icon"></i> Post Date:
+              {{information.postDate | date}} &nbsp;
+            </span>
+            <span class="right">
+              <i class="calendar alternate outline icon"></i> Last Date:
+              {{information.job.deadLine | date}} &nbsp;
+            </span>
+            <span>
+              <i class="user outline icon"></i>Applicants: {{applicants}}
+            </span>&nbsp;
+          </div>
+        </div>
+      </div>
+
+      <div class="ui padded text segment">
+        <h5 class="ui header" style="font-size: 16px; font-weight: 600; ">Job Description</h5>
+        <p id="description" class="job-description"></p>
+      </div>
+
+    </div>
+    <div class="ui five wide column" *ngIf="information">
+      <div class="ui padded text segment">
+        <p class="apply ui segment rounded" (click)="apply()">Apply For This Job</p>
+        <br><br>
+        <div class="ui relaxed list">
+          <div class="item">
+            <i class="large chart bar outline middle aligned icon"></i>
+            <div class="content">
+              <h4 class="header job-properties">JOB TYPE</h4>
+              <div class="description">{{information.job.jobNature}}</div>
+            </div>
+          </div>
+          <div class="item">
+            <i class="large money bill alternate outline middle aligned icon"></i>
+            <div class="content">
+              <h4 class="header job-properties">SALARY
+              </h4>
+              <div class="description">{{information.job.startSalary/1000 | currency: "BDT"}}k -
+                {{information.job.endSalary/1000 |currency:"BDT"}}k</div>
+            </div>
+          </div>
+          <div class="item">
+            <i class="large briefcase middle aligned icon"></i>
+            <div class="content">
+              <h4 class="header job-properties">
+                EXPERIENCE</h4>
+              <div class="description">{{information.job.experience}} years</div>
+            </div>
+          </div>
+          <div class="item">
+            <i class="large ticket alternate middle aligned icon"></i>
+            <div class="content">
+              <h4 class="header job-properties">VACANCY
+              </h4>
+              <div class="description">{{information.job.availablePosition}}</div>
+            </div>
+          </div>
+          <div class="item">
+            <i class="large location arrow middle aligned icon"></i>
+            <div class="content">
+              <h4 class="header job-properties">
+                LOCATION</h4>
+              <div class="description">{{information.job.jobLocation}}</div>
+            </div>
+          </div>
+          <br><br>
+        </div>
+        <div>
+          <p class="day-left">Application Deadline</p>
+          <p class="day-left">{{information.job.deadLine | date}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<!-- footer -->
+<footer>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12">
+        <p>Copyright &copy; 2020 <span class="orange">Yo</span><span class="purple">Tech</span> Limited All rights
+          reserved</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- footer ends -->

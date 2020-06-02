@@ -1,9 +1,14 @@
-import { Observable } from 'rxjs';
+
+import * as firebase from 'firebase/app'
+import 'firebase/database'
+import 'firebase/firestore'
+
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorageReference } from '@angular/fire/storage'
 import { HttpClient } from '@angular/common/http';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -30,8 +35,7 @@ export class EmployeeService {
     private aFAuth: AngularFireAuth
   ) {
     this.db.collection('registered-table').doc('total-employees').get().subscribe(e => {
-      this.employees = e.data().total_employee;
-      console.log(this.employees)
+      this.employees = e.data()['total-employee'] ? e.data()['total-employee'] : 0;
     })
     this.allEmployeeDb = this.db.collection('all-employee', ref => ref.where('basic.employee_status', '==', 'active'))
   }
@@ -40,76 +44,125 @@ export class EmployeeService {
     return this.employees
   }
 
+
   getEmployees() {
-    // return this.db.collection('registered-table')
+    // FETCH FROM RDB
+    firebase.database()
+      .ref('registered-table')
+      .orderByChild('basic/employee_status')
+      .equalTo('active')
+      .on('value', (snapshot) => {
+        snapshot.forEach(data => {
+          // DATA FETCHED
+          let employees = data.val()
+          // console.log(data.val())
+        });
+
+      })
+    // FETCH RDB DATA ENDS
     return this.db.collection('registered-table', ref => ref.where('basic.employee_status', '==', 'active'));
+
   }
 
-  getEmployee(id: string) {
+  getEmployee(id: string, empId) {
+
+    // FETCH SINGLE EMPLOYEE FROM RDB
+    firebase.database().ref('registered-table')
+      .orderByChild('basic/employee_id')
+      .equalTo(empId)
+      .on('value', (snapshot) => {
+        snapshot.forEach(data => {
+          let employee = data.val()
+          // DATA FETCH FROM RDB
+        })
+      })
+    // RDB ENDS
     return this.db.collection('registered-table').doc(id)
   }
 
   getEmployeeById(id: string) {
-    console.log(id)
+
+    // FETCH SINGLE EMPLOYEE FROM RDB
+    // firebase.database().ref('registered-table')
+    //   .orderByChild('basic/employee_id')
+    //   .equalTo(id)
+    //   .on('value', (snapshot) => {
+    //     console.log(snapshot.val());
+    //   })
+
     return this.db.collection('registered-table', ref => ref.where('basic.employee_id', '==', id));
   }
 
-  create(employee: any) {
-
+  uploadImage(employee: any) {
     let formData = new FormData();
     formData.append('file', employee.basic.avatar);
     formData.append('upload_preset', 'wjwrg6om');
-    return this.http.post('https://api.cloudinary.com/v1_1/mihrab-miah/upload/', formData).subscribe(res => {
-      if (res['secure_url']) {
-        employee.basic.avatar = res['secure_url'];
-        this.aFAuth.createUserWithEmailAndPassword(employee.contact.email.trim(), employee.basic.password.trim())
-          .then(() => {
-            // this.db.collection('all-employee').doc(employee.basic.employee_id).set(employee);
-            this.db.collection('registered-table').add(employee);
-            this.db.collection('registered-table').doc('total-employees').set({ total_employee: this.employees + 1 }, { merge: true })
-          }).then(() => {
-            this.db.collection('registered-table', ref => ref.where('contact.email', '==', employee.contact.email)).snapshotChanges().subscribe(e => {
-              let data = e.map(dt => {
-                return ({
-                  id: dt.payload.doc.id,
-                  data: dt.payload.doc.data()
-                })
-              })
-              this.db.collection('registered-table').doc(data[0].id).set({ fStoreId: data[0].id }, { merge: true }).then(() => {
-                console.log('Updated');
-              }).catch(err => {
-                console.log(err, 'ERROR')
-              })
-            })
-          })
-      }
-    });
-
-
+    return this.http.post('https://api.cloudinary.com/v1_1/mihrab-miah/upload/', formData)
   }
+
+  createUserWithEmailAndPass(employee: any) {
+    return this.aFAuth.createUserWithEmailAndPassword(employee.contact.email.trim(), employee.basic.password.trim())
+  }
+
+
+  create(employee: any) {
+    // REALTIME-DB //
+    firebase.database().ref('registered-table').push(employee)
+    firebase.database().ref('registered-table').update({ total_employee: this.employees + 1 })
+    firebase.database().ref('registered-table').orderByChild('basic/employee_id').equalTo(employee.basic.employee_id)
+      .on('value', (snapshot) => {
+        let id = []
+        snapshot.forEach(e => {
+          id.push(e.key)
+        })
+        employee.dbId = id[0]
+        firebase.database().ref('registered-table').child(id[0]).update(employee)
+      })
+    // REALTIME-DB ENDS //
+
+    // FIRESTORE
+    return this.db.collection('registered-table').add(employee);
+  }
+
+
 
   updateEmployee(employee: any, id: string) {
-    if (employee.basic.avatar != employee.basic.prev_avatar) {
-      let formData = new FormData();
-      formData.append('file', employee.basic.avatar);
-      formData.append('upload_preset', 'wjwrg6om');
 
-      this.http.post('https://api.cloudinary.com/v1_1/mihrab-miah/upload/', formData).subscribe(res => {
-        if (res['secure_url']) {
-          employee.basic.avatar = res['secure_url'];
-          this.db.collection('registered-table').doc(id).set(employee, { merge: true })
-        } else {
-          console.log("Unsuccessfull");
-        }
-      })
-    }
-    else {
-      this.db.collection('registered-table').doc(id).set(employee, { merge: true });
-    }
+    // UPDATE IN RDB 2
+    firebase.database().ref('registered-table')
+      .orderByChild('basic/employee_id')
+      .equalTo(employee.basic.employee_id)
+      .on('value', (snapshot) => {
+        let id = []
+        snapshot.forEach(e => {
+          id.push(e.key)
+        })
+        firebase.database().ref('registered-table').child(id[0]).update(employee);
+      });
+    return this.db.collection('registered-table').doc(id).set(employee, { merge: true });
+
   }
 
-  deleteEmployee(id: string) {
-    return this.db.collection('registered-table').doc(id).set({ basic: { employee_status: 'inactive' } }, { merge: true });
+
+
+  deleteEmployee(ids: any) {
+
+    // RDB DELETE EMPLOYEE
+    firebase.database().ref('registered-table').orderByChild('basic/employee_id').equalTo(ids.empId)
+      .on('value', (snapshot) => {
+        let ids = []
+
+        snapshot.forEach(e => {
+          ids.push(e.key)
+        });
+
+        if (ids[0]) {
+          firebase.database().ref(`registered-table/${ids[0]}`).child('basic').update({ employee_status: 'inactive' })
+        }
+      })
+
+    return this.db.collection('registered-table').doc(ids.fsId).set({ basic: { employee_status: 'inactive' } }, { merge: true });
+
   }
 
 }

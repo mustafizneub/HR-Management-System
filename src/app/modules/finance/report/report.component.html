@@ -1,0 +1,78 @@
+<div class="row mb-4">
+  <div class="col-sm-6 col-12">
+        <div class="card">
+            <div class="card-body">
+                      <div>
+                        <ngx-charts-bar-vertical
+                        [view]="view"
+                        [scheme]="graphData.expense.colorScheme"
+                        [results]="graphData.expense.data"
+                        [xAxis]="showXAxis"
+                        [yAxis]="showYAxis"
+                        [legend]="showLegend"
+                        [showXAxisLabel]="showXAxisLabel"
+                        [showYAxisLabel]="showYAxisLabel"
+                        [xAxisLabel]="graphData.expense.xAxisLabel"
+                      [yAxisLabel]="graphData.expense.yAxisLabel">
+                      </ngx-charts-bar-vertical>
+                      </div>
+            </div> <!-- End card body -->
+          </div> <!-- End card  -->
+    </div> <!-- End col -->
+
+
+    <div class="col-sm-6 col-12">
+      <div class="card">
+          <div class="card-body">
+              <div>
+                <ngx-charts-bar-vertical
+                [view]="view"
+                [scheme]="graphData.deposit.colorScheme"
+                [results]="graphData.deposit.data"
+                [xAxis]="showXAxis"
+                [yAxis]="showYAxis"
+                [legend]="showLegend"
+                [showXAxisLabel]="showXAxisLabel"
+                [showYAxisLabel]="showYAxisLabel"
+                [xAxisLabel]="graphData.deposit.xAxisLabel"
+                [yAxisLabel]="graphData.deposit.yAxisLabel">
+              </ngx-charts-bar-vertical>
+              </div>
+          </div> <!-- End card body -->
+        </div> <!-- End card  -->
+  </div> <!-- End col -->
+</div>  <!-- End row -->
+
+<div class="row">
+  <div class="col-sm-6 col-12">
+     <div class="card">
+       <div class="card-body">
+            <ngx-charts-pie-chart
+                  [view]="view"
+                  [scheme]="graphData.expense.colorScheme"
+                  [results]="graphData.expense.data"
+                  [legend]="showLegend"
+                  [legendPosition]="legendPosition"
+                  [labels]="showLabels"
+                  >
+            </ngx-charts-pie-chart>
+       </div>   <!-- End card body -->
+     </div> <!-- End card  -->
+  </div> <!-- End col -->
+
+  <div class="col-sm-6 col-12">
+    <div class="card">
+      <div class="card-body">
+           <ngx-charts-pie-chart
+                 [view]="view"
+                 [scheme]="graphData.deposit.colorScheme"
+                 [results]="graphData.deposit.data"
+                 [legend]="showLegend"
+                 [legendPosition]="legendPosition"
+                 [labels]="showLabels"
+                 >
+           </ngx-charts-pie-chart>
+      </div>   <!-- End card body -->
+    </div> <!-- End card  -->
+ </div> <!-- End col -->
+</div>  <!-- End row -->

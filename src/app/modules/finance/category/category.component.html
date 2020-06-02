@@ -1,0 +1,117 @@
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card">
+        <div class="card-body">
+            <div class="" style="margin: 0;">
+              <div class="row">
+                <div class="col-sm-6 col-12">
+                  <div class="d-flex">
+                      <div class="form-group">
+                    <div class="input-group">
+                      <input type="hidden"
+                             name="selected_day" [(ngModel)]="selected_day" ngbDatepicker #d2="ngbDatepicker" [placement]="placement" [positionTarget]="buttonEl">
+                      <div class="date-block">
+                        <span>{{  selected_day.year + '-' + selected_day.month + '-' + selected_day.day | date: 'dd, MMM y' }}</span>
+                          
+                        <span #buttonEl class="btn disabled cp calendar" (click)="d2.toggle()"></span>
+                      </div>  <!-- End date-block -->
+                    </div> <!-- End input group -->
+                  </div> <!-- End Form group -->
+
+                  <div class="d-flex arrow-block" style="margin: 0;">
+                              <div>
+                                <span class="cp arrow" (click)="getPrevDate(selected_day)">
+                                 <i class="chevron left icon"></i>
+                                  </span>
+
+                                  <span class="cp arrow" (click)="getNextDate(selected_day)">
+                                    <i class="chevron right icon"></i>
+                                  </span>
+                              </div> <!-- End div  -->
+                              <div>
+                                <span class="btn btn-sm btn-outline-success" (click)="getByDay(selected_day)">Get Data</span>
+                              </div> <!-- End div  -->
+                  </div> <!-- End div d-flex -->
+                  </div>   <!-- End d-flex -->
+                </div> <!-- End Col 6 -->
+
+                <div class="col-sm-6 col-12">
+                    <div class="d-flex flex-column align-items-end">
+                          <div class="cp" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+                          Get Data By Range
+                          <i class="chevron down icon"></i>
+                          </div>
+                        <div id="collapseExample" [ngbCollapse]="isCollapsed">
+                          <div class="d-flex flex-column align-items-end date-range">
+                            <div class="range">
+                              <input type="hidden"
+                              name="range.prevdate" [(ngModel)]="range.prevdate" ngbDatepicker #prevdate="ngbDatepicker" [placement]="placement">
+                              <div class="date-block">
+                                <span>{{  range.prevdate.year + '-' + range.prevdate.month + '-' + range.prevdate.day | date: 'dd, MMM y' }}</span>
+                                <span class="btn disabled cp calendar" (click)="prevdate.toggle()"></span>
+                              </div>  <!-- End date-block -->
+                            </div> <!-- End div -->
+      
+                            <div class="range">
+                              <input type="hidden"
+                              name="range.nextdate" [(ngModel)]="range.nextdate" ngbDatepicker #nextdate="ngbDatepicker" [placement]="placement">
+                              <div class="date-block">
+                                <span>{{  range.nextdate.year + '-' + range.nextdate.month + '-' + range.nextdate.day | date: 'dd, MMM y' }}</span>
+                                  
+                                <span class="btn disabled cp calendar" (click)="nextdate.toggle()"></span>
+                              </div>  <!-- End date-block -->
+                            </div> <!-- End div -->
+      
+                           
+      
+                          <div class="date-block my-2">
+                              <span class="btn btn-sm btn-outline-success" (click)="getByRange(range)">Get Data by Range</span>
+                          </div>  <!-- End d-flex -->
+                        </div> <!-- End Col 6 -->
+                        </div>  <!-- End collapse -->
+                    </div>  <!-- End d-flex -->
+              </div> <!-- End row -->
+              </div>  <!-- End row -->
+            </div>  <!-- End -->
+            
+            <div *ngIf="objects">
+              <table class="table">
+                <tr>
+                  <td>#Serial</td>
+                  <td class="cp" (click)="getDataSort('amount')">Amount <i [class]="sortedIcon.amount.icon"></i> </td>
+                  <td class="cp">Bill Type </td>
+                  <td class="cp" (click)="getDataSort('userdate_ms')">Date <i [class]="sortedIcon.userdate_ms.icon"></i></td>
+                  <td class="cp" (click)="getDataSort('datetime')">Creatime Time <i [class]="sortedIcon.datetime.icon"></i></td>
+                  <td>Note</td>
+                </tr>
+                <tr *ngFor="let object of objects | paginate: { itemsPerPage: 4, currentPage: p }; let i = index;">
+                  <td> {{ i + 1 }}</td>
+
+                  <td> <a routerLink="/finance/{{ routeParameter.category + '/'+ object[routeParameter.category]['category'].split(' ')[0]  + '/' + object[routeParameter.category]['datetime'] }}"> <span class="span_amount">{{ object[routeParameter.category]['amount'] | number }} </span> </a>  TK </td>
+
+                  <td> {{ object[routeParameter.category]['category']  }} </td>
+                  <td> {{ object[routeParameter.category]['userdate'] | date:'MMM d, y, EE' }} </td>
+                  <td> {{ object[routeParameter.category]['datetime'] | date:'MMM d, y, EE, h:mm:ss a' }} </td>
+                  <td> {{ object[routeParameter.category]['note']  }} </td>
+                </tr>
+              </table>
+
+              <div class="d-flex justify-content-between">
+                <div class="">
+                  Total Amount: <span class="h5">{{ totalAmount | number }} </span> <span>TK</span>
+                </div> <!-- End -->
+                <div class="d-flex justify-content-end">
+                  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                </div>    <!-- End -->
+              </div>   <!-- End d-flex -->
+               
+            </div>    <!-- End ngIf -->
+          
+        </div>    <!-- End card body -->
+        
+    </div> <!-- End card  -->
+  </div>  <!-- End col -->
+</div>  <!-- End row -->
+
+
+

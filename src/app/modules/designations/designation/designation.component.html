@@ -1,0 +1,26 @@
+<form class="ui form" [formGroup]="editDes" *ngIf="data">
+  <app-success [message]="updatingDesignation? 'updatingDesignation': ''"></app-success>
+  <app-success [message]="designationUpdated? 'designationUpdated': ''"></app-success>
+
+
+  <label style="margin-bottom: 20px; font-weight: bold;">Update Designation</label>
+  <div class="field" style="margin-top: 20px;">
+    <input type="text" name="name" placeholder="Designation" formControlName="desname">
+  </div>
+
+  <div class="field">
+    <!-- <input type="text" name="name" placeholder="Department Name" formControlName="dname"> -->
+
+    <select name="" id="" formControlName="dname">
+      <option [value]="dep.dep_name" *ngFor="let dep of deps">
+        {{dep.dep_name}}</option>
+    </select>
+  </div>
+  <div class="ui grid">
+    <div class="four column row">
+      <div class="right floated column right aligned">
+        <button class="ui button " (click)="updateDesignation()">Update</button>
+      </div>
+    </div>
+  </div>
+</form>

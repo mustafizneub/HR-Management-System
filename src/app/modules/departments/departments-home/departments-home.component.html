@@ -1,0 +1,47 @@
+<ng-container *ngIf="!router">
+  <app-header (show)="toggleModal()">
+    <ng-container class="header-title">
+      <div class="left floated column">
+        <h1 class="page-title">Departments</h1>
+      </div>
+    </ng-container>
+    <ng-container class="header-button">
+      <button class="ui button">
+        <i class="user plus icon"></i>Add New Department
+      </button>
+    </ng-container>
+  </app-header>
+  <div style="margin: 20px 0"></div>
+
+  <!-- DEPARTMENT TABLE -->
+  <app-table [data]='data' [t_headers]='t_headers' (delete)="deleteDepartment($event)">
+  </app-table>
+
+  <div style="margin: 20px 0"></div>
+
+  <!-- FORM MODAL -->
+
+  <app-form-modal *ngIf="modalOpen" (close)="toggleModal()" (formValue)="addDepartment()">
+    <app-success [message]="addingDepartment? 'addingDepartment':''"></app-success>
+    <app-success [message]="departmentAdded? 'departmentAdded':''"></app-success>
+
+
+    <form class="ui form" [formGroup]="department">
+      <div class="field">
+        <label>Add Department</label>
+        <input type="text" name="name" placeholder="Department" formControlName="dep_name">
+      </div>
+      <div class="ui grid">
+        <div class="four column row">
+          <div class="right floated column right aligned">
+            <button class="ui button " (click)="addDepartment()">Submit</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </app-form-modal>
+</ng-container>
+<!-- Child Routes -->
+<ng-container *ngIf="router">
+  <router-outlet></router-outlet>
+</ng-container>

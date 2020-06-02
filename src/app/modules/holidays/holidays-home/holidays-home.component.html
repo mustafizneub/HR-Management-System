@@ -1,0 +1,74 @@
+<ng-container *ngIf="!router">
+
+  <app-header (show)="toggleModal()" (close)="toggleModal()">
+    <ng-container class="header-title">
+      <div class="left floated column">
+        <h1 class="page-title">Holidays</h1>
+      </div>
+    </ng-container>
+    <ng-container class="header-button">
+      <button class="ui button">
+        <i class="plus icon"></i>Add New Holiday
+      </button>
+    </ng-container>
+  </app-header>
+  <div style="margin: 20px 0"></div>
+
+  <!-- DATA TABLE -->
+  <table class="ui striped table">
+    <thead>
+      <tr>
+        <th *ngFor="let th of t_headers">{{th.label}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let dt of data">
+        <td *ngFor="let th of t_headers">
+          <div *ngIf="th.key==='actions'">
+            <div class="ui buttons">
+              <button class="ui blue button" [routerLink]="['./edit', dt.id]">Edit</button>
+              <div class="or"></div>
+              <button class="ui red button" (click)="deleteOne(dt.id)">Delete</button>
+            </div>
+          </div>
+          <ng-container *ngIf="th.key!='actions'">
+            {{dt[th.key]}}
+          </ng-container>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <app-form-modal *ngIf="modalOpen" (close)="toggleModal()">
+    <app-success [message]="addingHoliday ? 'addingHoliday': ''"></app-success>
+    <app-success [message]="holidayAdded ? 'holidayAdded': ''"></app-success>
+
+    <h1 class="ui header" id="modal-title">Add Holiday</h1>
+    <form class="ui form" [formGroup]="holiday">
+      <div class="field">
+        <label>Title</label>
+        <input type="text" name="name" placeholder="Title" formControlName="title">
+      </div>
+      <div class="field">
+        <label>Starts In</label>
+        <input type="date" name="name" formControlName="startsIn">
+      </div>
+      <div class="field">
+        <label>Ends In</label>
+        <input type="date" name="name" formControlName="endsIn">
+      </div>
+      <div class="ui grid">
+        <div class="four column row">
+          <div class="right floated column right aligned">
+            <button class="ui button " (click)="addHoliday()">Add</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </app-form-modal>
+
+</ng-container>
+
+<ng-container *ngIf="router">
+  <router-outlet></router-outlet>
+</ng-container>

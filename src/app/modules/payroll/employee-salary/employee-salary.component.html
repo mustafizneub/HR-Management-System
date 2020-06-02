@@ -1,0 +1,102 @@
+<ng-container *ngIf="loader">
+  <div class="ui active inverted dimmer">
+    <div class="ui large text loader" style="font-weight: 600;">
+      <h1>
+        <span class="primary-text-color">Fetching </span><span class="secondary-text-color">Employee Salary</span>
+      </h1>
+
+    </div>
+  </div>
+  <img class="ui wireframe image" src="https://semantic-ui.com/images/wireframe/short-paragraph.png">
+  <img class="ui wireframe image" src="https://semantic-ui.com/images/wireframe/short-paragraph.png">
+  <img class="ui wireframe image" src="https://semantic-ui.com/images/wireframe/short-paragraph.png">
+  <img class="ui wireframe image" src="https://semantic-ui.com/images/wireframe/short-paragraph.png">
+  <img class="ui wireframe image" src="https://semantic-ui.com/images/wireframe/short-paragraph.png">
+  <img class="ui wireframe image" src="https://semantic-ui.com/images/wireframe/short-paragraph.png">
+  <img class="ui wireframe image" src="https://semantic-ui.com/images/wireframe/short-paragraph.png">
+</ng-container>
+<ng-container *ngIf="!loader">
+
+  <form action="" class="ui form" #editSalaryForm="ngForm">
+
+    <app-success [message]="salaryUpdating?'salaryUpdating':''"></app-success>
+    <app-success [message]="salaryUpdated?'salaryUpdated':''"></app-success>
+
+    <div class="four fields">
+      <div class="field">
+        <label for="">Staff Name</label>
+        <input type="text" name="staff_name" [(ngModel)]="staff_name" readonly>
+      </div>
+      <div class="field">
+        <label for="">Staff Id</label>
+        <input type="text" name="staff_id" [(ngModel)]="staff_id" readonly>
+      </div>
+      <div class="field">
+        <label for="">Staff Email</label>
+        <input type="text" name="staff_email" [(ngModel)]="staff_email" readonly>
+      </div>
+      <div class="field">
+        <label for="">Payslip No</label>
+        <input type="text" name="payslip_no" [(ngModel)]="payslip_no" readonly>
+      </div>
+    </div>
+
+    <!-- Allowance -->
+    <ng-container *ngIf="type">
+      <div class="ui divider"></div>
+      <h6>Allowance</h6>
+      <div class="two fields">
+        <div class="field">
+          <label for="">Type</label>
+          <select class="ui dropdown" name="type" [(ngModel)]="type">
+            <option value="Monthly Salary">Monthly Salary</option>
+            <option value="Increment">Increment</option>
+            <option value="Promotion">Promotion</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="">Amount</label>
+          <input type="text" name="amount" [(ngModel)]="amount">
+        </div>
+      </div>
+    </ng-container>
+
+    <!-- BONUSES -->
+    <div class="ui checkbox">
+      <input type="checkbox" name="example" (change)="addBonus()" id="checkbox">
+      <label>Add Bonus</label>
+    </div>
+    <br><br>
+
+    <ng-container *ngIf="bonusToggle">
+      <div class="ui divider"></div>
+      <h6>Bonus</h6>
+      <div class="ui two fields">
+        <div class="field">
+
+          <label for="">Bonus Type</label>
+          <select class="ui dropdown" name="bonus_type" [(ngModel)]="bonus_type">
+            <option value=""></option>
+            <option value="Eid-Ul-Fitr" [selected]="bonus_type==='Eid-Ul-Fitr'">Eid-Ul-Fitr</option>
+            <option value="Eid-Ul-Adha" [selected]="bonus_type==='Eid-Ul-Adha'">Eid-Ul-Adha</option>
+            <option value="Puja" [selected]="bonus_type==='Puja'">Puja</option>
+            <option value="Chirstmas" [selected]="bonus_type==='Chirstmas'">Christmas</option>
+          </select>
+        </div>
+        <div class="field">
+          <div class="field">
+            <label for="">Amount</label>
+            <input type="text" name="bonus_amount" [(ngModel)]="bonus_amount">
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+    <div class="field">
+      <label for="">Date</label>
+      <input type="date" name="allowance_date" [(ngModel)]="allowance_date">
+    </div>
+
+    <button class="ui button primary-bg-color text-white" (click)="update(editSalaryForm)">Update</button>
+  </form>
+</ng-container>

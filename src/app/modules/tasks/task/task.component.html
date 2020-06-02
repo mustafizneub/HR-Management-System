@@ -1,0 +1,183 @@
+<div class="ui container">
+  <div class="row" *ngIf="project">
+    <div class="col 6">
+      <h4>Project: {{ project["name"] }}</h4>
+      <h6>Client: {{ project["client"] }}</h6>
+      <span>
+        <h6 class="d-inline">Description:</h6>
+        {{ project["description"] }}
+      </span>
+    </div>
+    <div class="col 6">
+      <span>Start Date: {{ project["startdate"] }}</span><br />
+      <span>End Date: {{ project["enddate"] }}</span><br />
+      <span>No of employees:
+        {{
+          project["assigned_employees"]
+            ? project["assigned_employees"].length
+            : 0
+        }}</span>
+    </div>
+  </div>
+</div>
+
+<br />
+<!-- <button class="ui inverted violet button">Add Employee</button> -->
+
+<div class="row">
+  <button class="ui inverted orange button ml-4" (click)="toggleModal()">
+    Add Task
+  </button>
+</div>
+
+<br />
+<br />
+
+<ng-container *ngFor="let task of allTask">
+
+  <div class="card p-2">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-8">
+          <div class="row">
+            <div class="col-md-10" class="font">
+              <span class="p-2" [routerLink]="['/task-details', task.fStoreId]"
+                [queryParams]="{project: projectId}">{{ task.task_name }} | </span>
+              <span>Start Date: {{task.task_start_date}} | </span>&nbsp;
+              <span>End Date: {{task.task_end_date}} | </span>&nbsp;
+              <span>{{task.task_end_date | dayLeft}} to complete</span>&nbsp;
+              <table class="ui unstackable table">
+                <tbody>
+                  <tr>
+                    <td>Assigned To</td>
+                    <td>
+                      <ol class="ui list">
+                        <ng-container *ngIf="task.assigned_to.length===0">- No Employee Assigned</ng-container>
+                        <li value="-" *ngFor="let emp of task.assigned_to">
+                          {{ emp.employee }} -{{ emp.designation }}
+                          <span (click)="removeEmployeeFromTask(task.fStoreId,emp.fStoreId)">&times;</span>
+                        </li>
+                      </ol>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Subscribers</td>
+                    <td>
+                      <ol class="ui list" *ngIf="task['subscribers']">
+                        <ng-container *ngIf="task['subscribers'].length===0">- No Subscriber Assigned</ng-container>
+                        <li value="-" *ngFor="let emp of task.subscribers">
+                          {{ emp.employee }} -{{ emp.designation }}
+                          <span (click)="removeSubscriberFromTask(task.fStoreId,emp.fStoreId)">&times;</span>
+                        </li>
+                      </ol>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Completion Percentage</td>
+                    <td>
+                      <ol class="ui list">
+                        <li value="-">{{task.task_completed}}%</li>
+                      </ol>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="col-4">
+          <form class="ui form" #f="ngForm" (ngSubmit)="submitAssignName(f)" class="ui form" required
+            *ngIf="taskNames[task.fStoreId]">
+
+            <div class="field">
+              <label for="">Select Employee</label>
+
+              <select id="assigned_employees" name="assigned_employees" multiple [(ngModel)]="assigned_employees">
+                <option [value]="emps.empId" *ngFor="let emps of assignedEmployeesToProject">{{emps.employee}}
+                  -{{emps.designation}}
+                </option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="">Select Subscribers</label>
+              <select id="subscribers" name="subscribers" multiple [(ngModel)]="subscribers">
+                <option [value]="emps.empId" *ngFor="let emps of assignedEmployeesToProject">{{emps.employee}}
+                  -{{emps.designation}}
+                </option>
+              </select>
+            </div>
+
+
+            <div class="ui buttons">
+              <button type="submit" class="ui inverted purple button">Assign</button>
+              <button class="ui inverted orange button" (click)="toggleAssignEmployee(task.fStoreId)">Close</button>
+            </div>
+
+          </form>
+
+
+          <i class="fas fa-user-plus" style="cursor: pointer;" (click)="assignTask(task.fStoreId)"
+            *ngIf="!taskNames[task.fStoreId]"></i>
+          &nbsp;&nbsp;
+          <i class="fas fa-trash-alt" style="cursor: pointer;" (click)="delTask(task.fStoreId)"
+            *ngIf="!taskNames[task.fStoreId]"></i>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <br />
+</ng-container>
+
+<app-form-modal *ngIf="modalOpen" (close)="toggleModal()">
+  <div class="ui header" id="modal-title">Add Task</div>
+  <form class="ui form" [formGroup]="assignNewTask">
+    <div class="field">
+      <label>Add Task</label>
+      <input type="text" name="name" placeholder="Department" formControlName="task_name">
+    </div>
+    <div class="two fields">
+      <div class="field">
+        <label for="">Select Employee</label>
+
+        <select id="assigned_employees" name="assigned_employees" multiple formControlName="assigned_employees">
+          <option [value]="emps.empId" *ngFor="let emps of assignedEmployeesToProject">{{emps.employee}}
+            -{{emps.designation}}
+          </option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="">Select Subscribers</label>
+        <select id="subscribers" name="subscribers" multiple formControlName="subscribers">
+          <option [value]="emps.empId" *ngFor="let emps of assignedEmployeesToProject">{{emps.employee}}
+            -{{emps.designation}}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="two fields">
+      <div class="field">
+        <label for="">Start Date</label>
+        <input type="date" formControlName="start_date">
+      </div>
+      <div class="field">
+        <label for="">End Date</label>
+        <input type="date" formControlName="end_date">
+      </div>
+    </div>
+    <div class="field">
+      <label for="">Description</label>
+      <textarea name="" id="" cols="30" rows="10" formControlName="task_description"></textarea>
+    </div>
+    <div class="ui grid">
+      <div class="four column row">
+        <div class="right floated column right aligned">
+          <button class="ui button" (click)="submitTaskName()">Add</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</app-form-modal>

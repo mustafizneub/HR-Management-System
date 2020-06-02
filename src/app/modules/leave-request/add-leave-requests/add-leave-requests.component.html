@@ -1,0 +1,139 @@
+<div class="container">
+    <form [formGroup]="adleaveForm" (ngSubmit)="submitleaveForm()" novalidate>
+        <div class="row">
+            <div class="col-lg-8 col-md-12 col-sm-12">
+
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <label>Leave Type</label>
+                        <select formControlName="type">
+                            <option disabled value="">select</option>
+                            <option>Emergency</option>
+                            <option>LWOP</option>
+                            <option>Casual</option>
+                            <option>Medical</option>
+                        </select>
+                        <p *ngIf="type.touched && type.invalid" class="error">
+                            <sup>*</sup>Please Enter Your Leave Type</p>
+
+                    </div>
+                </div>
+
+
+                <div class="row">
+
+                    <div class="col-md-6 mb-3">
+                        <label>Leave From</label>
+                        <input type="date" class="form-control" formControlName="from" required>
+                        <!-- Showing errors using getter method -->
+                        <p *ngIf="from.touched && from.invalid" class="error">
+                            <sup>*</sup>Please Enter Leave From Date</p>
+                    </div>
+
+
+                    <div class="col-md-6 mb-3">
+                        <label>Leave To</label>
+                        <input type="date" class="form-control" formControlName="to" required>
+                        <!-- Showing errors using getter method -->
+                        <p *ngIf="to.touched && to.invalid" class="error">
+                            <sup>*</sup>Please Enter Leave To Date</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <label>Number Of Days</label>
+                        <input type="number" class="form-control" formControlName="days" min="1" required>
+
+                        <p *ngIf="days.touched && days.invalid" class="error">
+                            <sup>*</sup>Please Enter Number Of Days</p>
+
+                    </div>
+                </div>
+                <div class="row">
+
+                    <div class="col-md-12 mb-3">
+                        <label>When</label>
+                        <div class="radio">
+                            <label><input type="radio" formControlName="whenleave" (click)="when()">Half Day
+                                Leave</label>
+                        </div>
+                        <div class="radio">
+                            <label><input type="radio" value="Full Day Leave" formControlName="whenleave"
+                                    (click)="closetime()" checked>Full Day Leave</label>
+                        </div>
+                        <div *ngIf="time">
+                            <br />
+                            <label>Time is:</label>
+                            <div class="radio">
+                                <label><input type="radio" value="First Half Day Leave" formControlName="whenleave"
+                                        checked>First Half Day Leave</label>
+                            </div>
+                            <div class="radio">
+                                <label><input type="radio" value="Second Half Day Leave"
+                                        formControlName="whenleave">Second Half Day Leave</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+
+                    <div class="col-md-12 mb-3">
+                        <label>Leave Reason/Purpose</label>
+                        <textarea class="form-control" formControlName="description"></textarea>
+                        <p *ngIf="description.touched && description.invalid" class="error">
+                            <sup>*</sup>Please Enter Description</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <div class="form-group">
+                            <label>Upload File</label>
+                            <input type="file" class="form-control-file" id="file" (change)="uploadFile($event)">
+                           
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <b>Medical Leave:-</b>
+                        <br /><br />
+                        <span style="display:inline-block; width: 10px;"></span>
+                        <span class="badge badge-primary">1</span>&nbsp;Remaining Leave: <b>{{ medicalLeave }}</b>
+                        <br />
+                        <span style="display:inline-block; width: 10px;"></span>
+                        <span class="badge badge-primary">2</span>&nbsp;Taken Leave: <b>{{ takenmleave }}</b>
+                        <br /><br />
+                        <b>Crasual Leave:-</b>
+                        <br /><br />
+                        <span style="display:inline-block; width: 10px;"></span>
+                        <span class="badge badge-primary">1</span>&nbsp;Remaining Leave: <b>{{ crasualLeave }}</b>
+                        <br />
+                        <span style="display:inline-block; width: 10px;"></span>
+                        <span class="badge badge-primary">2</span>&nbsp;Taken Leave: <b>{{ takencleave }}</b>
+                        <br /><br />
+                        <b>LWOP:-</b>
+                        <br /><br />
+                        <span style="display:inline-block; width: 10px;"></span>
+                        <span class="badge badge-primary">1</span>&nbsp;Taken Leave: <b>{{ takenLWOP }}</b>
+                        <br /><br />
+                        <b>Emergency Leave:-</b>
+                        <br /><br />
+                        <span style="display:inline-block; width: 10px;"></span>
+                        <span class="badge badge-primary">1</span>&nbsp;Taken Leave: <b>{{ takenEmergency }}</b>
+                        <br /><br />
+                    </div>
+                </div>
+
+
+                <div class="form-group text-right">
+                    <button type="button" class="btn btn-secondary gap-right" (click)="close()">Cancel</button>
+                    <button type="submit" class="btn btn-success" [disabled]="!adleaveForm.valid">Add
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </form>
+</div>

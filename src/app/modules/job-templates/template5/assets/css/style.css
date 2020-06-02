@@ -1,0 +1,324 @@
+@import 'https://use.fontawesome.com/releases/v5.5.0/css/all.css';
+@import '~semantic-ui-css/semantic.css';
+@import "~bootstrap/dist/css/bootstrap.css";
+
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@1,600&family=Roboto+Mono:wght@700&display=swap');
+
+:root{
+  --primary-color:#EE8B2B;
+  --secondary-color: #642C82;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  position: relative;
+  color: #424242;
+  background-color: #f5f5f5;
+}
+
+@font-face {
+  font-family: 'Raleway';
+  src: url("../fonts/Raleway/Raleway-Black.ttf");
+  font-weight: 900;
+}
+
+@font-face {
+  font-family: 'Raleway';
+  src: url("../fonts/Raleway/Raleway-Bold.ttf");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'Raleway';
+  src: url("../fonts/Raleway/Raleway-ExtraBold.ttf");
+  font-weight: 800;
+}
+
+@font-face {
+  font-family: 'Raleway';
+  src: url("../fonts/Raleway/Raleway-Light.ttf");
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: 'Raleway';
+  src: url("../fonts/Raleway/Raleway-Regular.ttf");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(../iconfont/MaterialIcons-Regular.eot);
+  /* For IE6-8 */
+  src: local("Material Icons"), local("MaterialIcons-Regular"), url(../iconfont/MaterialIcons-Regular.woff2) format("woff2"), url(../iconfont/MaterialIcons-Regular.woff) format("woff"), url(../iconfont/MaterialIcons-Regular.ttf) format("truetype");
+}
+
+m-0 {
+  margin: 0;
+}
+
+.border-none {
+  border-top: none !important;
+  border-right: none !important;
+  border-left: none !important;
+  border-bottom: none !important;
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+  /* Support for IE. */
+  -webkit-font-feature-settings: 'liga';
+          font-feature-settings: 'liga';
+}
+.divider {
+  background-color: #e5e5e5;
+  height: 3px;
+}
+
+.line {
+  position: relative;
+}
+
+.line::before {
+  position: absolute;
+  content: '';
+  background-color: #999;
+  width: 1px;
+  height: 100%;
+  left: -3%;
+  top: 0;
+}
+
+.top {
+  padding: 40px 0 0 0;
+}
+
+.top .cv-top .name {
+  font-size: 40px;
+  text-transform: uppercase;
+  font-weight: 800;
+  letter-spacing: 5px;
+  margin: 0;
+  margin-bottom: 10px;
+  color: #652783;
+}
+
+.top .cv-top .position {
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 20px;
+  letter-spacing: 5px;
+  color: #f08c2e;
+}
+
+.top .address {
+  text-align: right;
+}
+
+.top .address .area p {
+  color: #652783;
+  font-weight: 700;
+}
+
+.top .address .contact p {
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  margin: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 16px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.top .address .contact p span {
+  font-size: 14px;
+  color: #f08c2e;
+}
+
+.top .address .contact p i {
+  color: #f08c2e;
+  padding-right: 5px;
+  font-size: 16px;
+}
+
+section .cv-box {
+  padding-top: 40px;
+}
+
+section .cv-box-single {
+  padding: 0 10px 0 0;
+}
+
+section .cv-box-single .cv-title {
+  border-bottom: 1px solid #652783;
+}
+
+section .cv-box-single .cv-title h5 {
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 18px;
+  color: #f08c2e;
+}
+
+section .cv-box-single .cv-title h5 span {
+  font-weight: 300;
+  letter-spacing: 2px;
+  color: #652783;
+}
+
+section .cv-box-single .cv-left-content ul {
+  padding-top: 20px;
+}
+
+section .cv-box-single .cv-left-content ul li {
+  margin-left: 15px;
+  padding-bottom: 10px;
+}
+
+section .cv-box-single .cv-left-content ul li p {
+  font-size: 14px;
+  font-weight: 700;
+  color: #652783;
+}
+
+section .cv-box-single .cv-left-content ul li .degree-name {
+  color: #652783;
+  font-weight: 700;
+}
+
+section .cv-box-single .cv-left-content ul li .uni-name {
+  font-weight: 400;
+}
+
+section .cv-box-single .cv-left-content ul li .pass-year {
+  color: #f08c2e;
+  font-weight: 300;
+}
+
+section .cv-box-single .cv-left-content .social {
+  padding-top: 20px;
+}
+
+section .cv-box-single .cv-left-content .social p {
+  padding-bottom: 10px;
+}
+
+section .cv-box-single .cv-left-content .social p i {
+  background-color: #f08c2e;
+  color: #fff;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+  font-size: 14px;
+}
+
+section .cv-box-single .cv-left-content .social p span {
+  color: #652783;
+  font-size: 14px;
+}
+
+section .cv-box-single .cv-right-content {
+  padding: 20px 0;
+}
+
+section .cv-box-single .cv-right-content p {
+  color: #652783;
+  font-size: 14px;
+}
+
+section .cv-box-single .cv-right-content .work-experience {
+  padding-bottom: 20px;
+}
+
+section .cv-box-single .cv-right-content .work-experience p {
+  font-size: 14px;
+  color: #652783;
+}
+
+section .cv-box-single .cv-right-content .work-experience .job-title {
+  font-weight: 700;
+}
+
+section .cv-box-single .cv-right-content .work-experience .company-name {
+  font-weight: 400;
+}
+
+section .cv-box-single .cv-right-content .work-experience .company-name span {
+  font-size: 12px;
+  font-weight: 300;
+}
+
+section .cv-box-single .cv-right-content .work-experience .job-des {
+  color: #f08c2e;
+  font-size: 13px;
+  padding: 10px 0;
+}
+
+section .cv-box-single .cv-right-content .work-experience .job-award {
+  padding: 0 0 0 25px;
+}
+
+section .cv-box-single .cv-right-content .work-experience .job-award li {
+  list-style-type: disc;
+}
+
+section .cv-box-single .cv-right-content .work-experience .job-award li p {
+  font-size: 13px;
+  color: #f08c2e;
+}
+/*# sourceMappingURL=style.css.map */
+
+
+
+/* ############################## */
+.primary-bg-color{
+  background-color: var(--primary-color) !important;
+}
+.primary-text-color{
+  color: var(--primary-color) !important;
+}
+.secondary-bg-color{
+  background-color: var(--secondary-color) !important;
+}
+.secondary-text-color{
+  color: var(--secondary-color) !important;
+}
+.text-white{
+  color: #eeeeee !important;
+}

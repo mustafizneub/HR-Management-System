@@ -1,0 +1,55 @@
+
+
+<div class="row">
+    <div class="col-sm-12 col-12" style="margin-bottom: 20px;"> 
+        <div class="card">
+            <div class="card-body">
+                <h5>Welcome to Finance Section</h5>
+            </div> <!-- End card body -->
+        </div> <!-- End card  -->
+      </div> <!-- End col 6 -->
+  </div> <!-- End row -->
+
+ <div class="row mb-4">
+	 	<div class="col-sm-4 col-12 mb-1">
+	 		<div class="card bg-info">
+	 			<div class="card-body text-white">
+					 Total Expense: <span class="h2">{{ total.expense | number}}</span> TK
+
+					 <table class="table mt-4 mb-0">
+						<tr *ngFor="let o of total.expenseCategory">
+							   <td> {{  o.name }}</td>
+							   <td> {{  o.value | number }}</td>
+						</tr>
+					</table>
+	 			</div> <!-- End card body -->
+	 		</div> <!-- End card -->
+		 </div> <!-- End col 4 -->
+		 
+ 		<div class="col-sm-4 col-12 mb-1">
+	 		<div class="card" style="background: #8BC34A;">
+	 			<div class="card-body text-white">
+					 Total Deposit: <span class="h2">{{ total.deposit | number }}</span> TK
+
+					 <div class="text-white">
+						 <table class="table mt-4 mb-0">
+							 <tr *ngFor="let o of total.depositCategory">
+									<td> {{  o.name }}</td>
+									<td> {{  o.value | number }}</td>
+							 </tr>
+						 </table>
+					</div> <!-- End summary -->
+					 
+
+	 			</div> <!-- End card body -->
+	 		</div> <!-- End card -->
+	 	</div> <!-- End col 4 -->   
+
+	 	<div class="col-sm-4 col-12 mb-1">
+	 		<div class="card text-white" style="background: #FF9800;">
+	 			<div class="card-body">
+	 				Profit or Loss  <span class="h2">{{ total.deposit - total.expense | number }}</span> TK
+	 			</div> <!-- End card body -->
+	 		</div> <!-- End card -->
+		 </div> <!-- End col 4 -->
+ </div> <!-- End row -->  

@@ -1,0 +1,93 @@
+<div class="row">
+    <div class="col-6">
+        <div class="fullContent">
+            <p class="header border-bottom">Policy</p>
+            <div class="content">
+                <div class="items border-bottom" *ngFor="let item of policyList; let i=index"
+                    (click)="viewPolicy(item.id)">
+                    <div class="">
+                        <span style="width: 65%;" class="heading">{{item.data.policy.title}}</span>
+                        <span
+                            style="width: fit-content; float: right;">{{item.data.publishedAt | date:'EE, MMMM d, y'}}</span>
+                    </div>
+                </div>
+            </div>
+            <p class="footer border-top">Showing: {{policyLength}} of {{policyLength}}</p>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="fullContent">
+            <p class="header border-bottom">Notice</p>
+            <div *ngIf="newsLength > 0" class="content">
+                <div class="items border-bottom" *ngFor="let item of news; let i = index" data-toggle="modal"
+                    data-target="#exampleModalCenter" (click)="description(i)">
+                    <div class="">
+                        <span style="width: 65%;" class="heading">{{item.data.heading}}</span>
+                        <span
+                            style="width: fit-content; float: right;">{{item.data.startDate_ISO | date:'EE, MMMM d, y'}}</span>
+                    </div>
+                    <div>
+                        <span class="description">{{item.data.description}}</span>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="newsLength == 0" class="content" style="text-align: center;">No Notice Available</div>
+            <p class="footer border-top">Showing: {{newsLength}} of {{newsLength}}</p>
+        </div>
+    </div>
+    <div class="col-6 mt-3">
+        <div class="fullContent">
+            <p class="header border-bottom">Today Offline employees :</p>
+            <table class="ui celled table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Department</th>
+                        <th>designation</th>
+                    </tr>
+                </thead>
+                <tbody *ngIf="employeeLength > 0">
+                    <tr *ngFor="let employee of leaveEmployeeList">
+                        <td data-label="Name">{{employee.basic.firstname+' '+employee.basic.lastname}}</td>
+                        <td data-label="Age">{{ employee.basic.department }}</td>
+                        <td data-label="Job">{{employee.basic.designation}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div *ngIf="employeeLength == 0" style="text-align: center;">No Employee found</div>
+        </div>
+    </div>
+</div>
+<!--Modal for Notice-->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Notice</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid" *ngIf="Notice">
+                    <div class="row">
+                        <div class="col-9">
+                            <h4>{{Notice.data.heading}}</h4>
+                        </div>
+                        <div class="col-3">
+                            <span>{{Notice.data.startDate_ISO | date}}</span>
+                        </div>
+                        <div class="col-10 mt-3">
+                            <p>{{Notice.data.description}}</p>
+                        </div>
+                        <div class="col-2 mt-3" *ngIf="Notice.data.upload_file!=null">
+                            <a [href]="Notice.data.upload_file" style="overflow: hidden;"
+                             download="notice.txt" target="_blank">File</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

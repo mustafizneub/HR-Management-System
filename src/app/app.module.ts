@@ -1,202 +1,105 @@
+import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-
-
-// Reactive Form
-import { ReactiveFormsModule } from "@angular/forms";
-
-
-// App routing modules
-import { AppRoutingModule } from './shared/routing/app-routing.module';
-
-// App components
 import { AppComponent } from './app.component';
-import { SignInComponent } from './components/sign-in/sign-in.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { ClientsComponent } from './components/clients/clients.component';
-import { ProjectsComponent } from './components/projects/projects.component';
-import { UsersComponent } from './components/users/users.component';
-import { AddClientsComponent } from './components/clients/add-clients/add-clients.component';
-import { EditClientsComponent } from './components/clients/edit-clients/edit-clients.component';
-import { AddProjectComponent } from './components/projects/add-project/add-project.component';
-import { EditProjectsComponent } from './components/projects/edit-projects/edit-projects.component';
-import { AddUsersComponent } from './components/users/add-users/add-users.component';
-import { EditUsersComponent } from './components/users/edit-users/edit-users.component';
-import { TaskComponent } from './components/task/task.component';
-import { AddTaskComponent } from './components/task/add-task/add-task.component';
-import { EditTaskComponent } from './components/task/edit-task/edit-task.component';
-import { LeadComponent } from './components/lead/lead.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 
-// job-portal component start
-import { CreateResumeComponent } from './components/job-create-resume/create-resume.component';
-import { NavComponent } from './components/job-nav/nav.component';
-import { Template1Component } from './components/job-templates/template1/template1.component';
-import { Template2Component } from './components/job-templates/template2/template2.component';
-import { Template3Component } from './components/job-templates/template3/template3.component';
-import { Template4Component } from './components/job-templates/template4/template4.component';
-import { Template5Component } from './components/job-templates/template5/template5.component';
-import { Template6Component } from './components/job-templates/template6/template6.component';
-import { Template1CreateComponent } from './components/job-templates/template1/template1-create/template1-create.component';
-import { Template2CreateComponent } from './components/job-templates/template2/template2-create/template2-create.component';
-import { Template3CreateComponent } from './components/job-templates/template3/template3-create/template3-create.component';
-import { Template4CreateComponent } from './components/job-templates/template4/template4-create/template4-create.component';
-import { Template5CreateComponent } from './components/job-templates/template5/template5-create/template5-create.component';
-import { Template6CreateComponent } from './components/job-templates/template6/template6-create/template6-create.component';
-import { HomeComponent } from './components/job-admin/home/home.component';
-import { AddComponent } from './components/job-admin/add/add.component';
-import { ApplicantListComponent } from './components/job-admin/applicant-list/applicant-list.component';
-import { ShortlistComponent } from './components/job-admin/shortlist/shortlist.component';
-import { CareerComponent } from './components/job-user/career/career.component';
-import { QuizComponent } from './components/job-user/quiz/quiz.component';
-import { ViewPostComponent } from './components/job-admin/view-post/view-post.component';
-import { UserHomeComponent } from './components/job-user/user-home/user-home.component';
-import { JobDescriptionComponent } from './components/job-user/job-description/job-description.component';
-import { ExpiredPostComponent } from './components/job-admin/expired-post/expired-post.component';
-import { MyJobComponent } from './components/job-user/my-job/my-job.component';
-import { JobpostDescriptionComponent } from './components/job-admin/jobpost-description/jobpost-description.component';
-import { JobpostUpdateComponent } from './components/job-admin/jobpost-update/jobpost-update.component';
-
-
-
-// Job portal component End
-
-// Financial Section: Author: Ahmad Sharif
-
-import { ExpenseComponent } from './components/expense/expense.component';
-import { DepositComponent } from './components/deposit/deposit.component';
-import { CategoryComponent } from './components/category/category.component';
-import { DetailsComponent } from './components/details/details.component';
-// import { GraphExpenseComponent } from './components/graph/graph-expense/graph-expense.component';
-
-// DEPOSITHOMECOMPONENT
-
-import { FinancehomeComponent } from './components/finance-home/finance-home.component';
-
-
-import { AdminleaverequestComponent } from './components/adminleaverequest/adminleaverequest.component';
-import { AdminviewLeaverequestComponent } from './components/adminview-leaverequest/adminview-leaverequest.component';
-import { EditadminviewLeaverequestComponent } from './components/editadminview-leaverequest/editadminview-leaverequest.component';
-import { EditemployeeviewLeaveRequestComponent } from './components/editemployeeview-leave-request/editemployeeview-leave-request.component';
-import { AddLeaveRequestsComponent } from './components/add-leave-requests/add-leave-requests.component';
-import { ViewLeaveRequestsComponent } from './components/view-leave-requests/view-leave-requests.component';
-import { AssignLeaverequestComponent } from './components/assign-leaverequest/assign-leaverequest.component';
-import { ViewassignleaveComponent } from './components/viewassignleave/viewassignleave.component';
-import { EditassignleaveComponent } from './components/editassignleave/editassignleave.component';
-import { AddassignleaveComponent } from './components/addassignleave/addassignleave.component';
-import { CreateadminComponent } from './components/createadmin/createadmin.component';
-import { ViewadminleaveComponent } from './components/viewadminleave/viewadminleave.component';
-import { AdminLeaverequestComponent } from './components/admin-leaverequest/admin-leaverequest.component';
-import { EditadminLeaveComponent } from './components/editadmin-leave/editadmin-leave.component';
-import { AdminleaveeditComponent } from './components/adminleaveedit/adminleaveedit.component';
-
-// Firebase services + enviorment module
-import { AngularFireModule } from "@angular/fire";
-import { AngularFireAuthModule } from "@angular/fire/auth";
-import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { environment } from '../environments/environment';
-import { AngularFireStorageModule } from '@angular/fire/storage';
+// import { FinanceModule } from '../app/modules/finance/finance.module';
+import { AngularFireDatabaseModule } from "@angular/fire/database";
 import 'firebase/storage';
-
-// Auth service
-import { AuthService } from "./services/auth.service";
-
-// Ng2SearchPipeModule
-import { Ng2SearchPipeModule } from 'ng2-search-filter';
-
-// import for work ng2searchpipemodule
-import { FormsModule } from '@angular/forms';
-
 // import for pagination
 import { NgxPaginationModule } from 'ngx-pagination';
-import { AddProjectsComponent } from './projects/add-projects/add-projects.component';
-
-// import for show successful message
-import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { FlashMessagesModule } from 'angular2-flash-messages';
-
-// ng bootstrap
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
-// for multi select
-import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
-
-//semantic ui
-import { SuiModule } from 'ng2-semantic-ui';
-
-import { CookieService } from 'ngx-cookie-service';
 
 
-//##############
+import { AngularFireModule } from "@angular/fire";
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { environment } from '../environments/environment';
 import { CloudinaryModule } from '@cloudinary/angular-5.x';
 import * as  Cloudinary from 'cloudinary-core';
 import { HttpClientModule } from '@angular/common/http';
 
 
-// semantic ui
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
+// Ng2SearchPipeModule
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+// import for pagination
+import { DatePipe } from '@angular/common'
+
+
+
+import { ClientsComponent } from 'src/app/modules/clients/clients/clients.component';
+import { ProjectsComponent } from 'src/app/modules/projects/projects/projects.component';
+import { AddClientsComponent } from 'src/app/modules/clients/add-clients/add-clients.component';
+import { EditClientsComponent } from 'src/app/modules/clients/edit-clients/edit-clients.component';
+import { AddProjectComponent } from 'src/app/modules/projects/add-project/add-project.component';
+import { EditProjectsComponent } from 'src/app/modules/projects/edit-projects/edit-projects.component';
+import { AddTaskComponent } from 'src/app/modules/tasks/add-task/add-task.component';
+import { EditTaskComponent } from 'src/app/modules/tasks/edit-task/edit-task.component';
+
+
+import { AdminleaverequestComponent } from 'src/app/modules/leave-request/adminleaverequest/adminleaverequest.component';
+import { AdminviewLeaverequestComponent } from 'src/app/modules/leave-request/adminview-leaverequest/adminview-leaverequest.component';
+import { EditadminviewLeaverequestComponent } from 'src/app/modules/leave-request/editadminview-leaverequest/editadminview-leaverequest.component';
+import { EditemployeeviewLeaveRequestComponent } from 'src/app/modules/leave-request/editemployeeview-leave-request/editemployeeview-leave-request.component';
+
+import { AssignLeaverequestComponent } from 'src/app/modules/leave-request/assign-leaverequest/assign-leaverequest.component';
+import { ViewassignleaveComponent } from 'src/app/modules/leave-request/viewassignleave/viewassignleave.component';
+import { EditassignleaveComponent } from 'src/app/modules/leave-request/editassignleave/editassignleave.component';
+import { AddassignleaveComponent } from 'src/app/modules/leave-request/addassignleave/addassignleave.component';
+import { AdminLeaverequestComponent } from 'src/app/modules/leave-request/admin-leaverequest/admin-leaverequest.component';
+import { EditadminLeaveComponent } from 'src/app/modules/leave-request/editadmin-leave/editadmin-leave.component';
+import { AdminleaveeditComponent } from 'src/app/modules/leave-request/adminleaveedit/adminleaveedit.component';
+import { MyInfoComponent } from 'src/app/modules/my-info/my-info/my-info.component';
+
+
+
+import { AddLeaveRequestsComponent } from 'src/app/modules/leave-request/add-leave-requests/add-leave-requests.component';
+import { ViewLeaveRequestsComponent } from 'src/app/modules/leave-request/view-leave-requests/view-leave-requests.component';
+
+import { CheckHomeComponent } from 'src/app/modules/check/check-home/check-home.component';
+import { CheckOutComponent } from 'src/app/modules/check/check-out/check-out.component';
+import { AttendanceRecordsComponent } from 'src/app/modules/check/attendance-records/attendance-records.component';
+import { ExporttocsvComponent } from 'src/app/modules/check/exporttocsv/exporttocsv.component';
+
+
+
+
+
+
+import { AngularFireAuthModule } from "@angular/fire/auth";
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import 'firebase/storage';
+import { ProjectsModule } from './modules/projects/projects.module';
+
+
+/* Included By Ahmad Sharif */
+import { FinanceModule } from '../app/modules/finance/finance.module';
+import { NoticeListComponent } from 'src/app/modules/notice/notice-list/notice-list.component';
+import { NoticeBoardComponent } from 'src/app/modules/notice/notice-board/notice-board.component';
+import { NoticeViewComponent } from 'src/app/modules/notice/notice-view/notice-view.component';
+import { EmployeeComponent } from 'src/app/modules/report-leave/employee/employee.component';
+import { AttendenceDetailComponent } from 'src/app/modules/report-leave/details/details.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    SignInComponent,
-    DashboardComponent,
+    AddLeaveRequestsComponent,
+    ViewLeaveRequestsComponent,
     ClientsComponent,
     ProjectsComponent,
-    UsersComponent,
     AddClientsComponent,
     EditClientsComponent,
     AddProjectComponent,
     EditProjectsComponent,
-    AddProjectsComponent,
-    AddUsersComponent,
-    EditUsersComponent,
-    TaskComponent,
     AddTaskComponent,
     EditTaskComponent,
-    LeadComponent,
-
-    //job portal 
-    CreateResumeComponent,
-    NavComponent,
-    Template1Component,
-    Template2Component,
-    Template3Component,
-    Template4Component,
-    Template5Component,
-    Template6Component,
-    Template1CreateComponent,
-    Template2CreateComponent,
-    Template3CreateComponent,
-    Template4CreateComponent,
-    Template5CreateComponent,
-    Template6CreateComponent,
-    HomeComponent,
-    AddComponent,
-    ApplicantListComponent,
-    ShortlistComponent,
-    CareerComponent,
-    QuizComponent,
-    ViewPostComponent,
-    UserHomeComponent,
-    JobDescriptionComponent,
-    ExpiredPostComponent,
-    MyJobComponent,
-    JobpostDescriptionComponent,
-    JobpostUpdateComponent,
-
-    // Financial App Component: Author: Ahmad Sharif
-    ExpenseComponent,
-    DepositComponent,
-    CategoryComponent,
-    DetailsComponent,
-    // GraphExpenseComponent,
-    FinancehomeComponent,
-
     ViewLeaveRequestsComponent,
     AddLeaveRequestsComponent,
     AdminviewLeaverequestComponent,
@@ -207,39 +110,51 @@ import { HttpClientModule } from '@angular/common/http';
     ViewassignleaveComponent,
     EditassignleaveComponent,
     AddassignleaveComponent,
-    CreateadminComponent,
-    ViewadminleaveComponent,
     AdminLeaverequestComponent,
     EditadminLeaveComponent,
-    AdminleaveeditComponent
+    AdminleaveeditComponent,
+    MyInfoComponent,
+    CheckHomeComponent,
+    CheckOutComponent,
+    AttendanceRecordsComponent,
+    ExporttocsvComponent,
+    NoticeListComponent,
+    NoticeBoardComponent,
+    NoticeViewComponent,
+    EmployeeComponent,
+    AttendenceDetailComponent
+
   ],
   imports: [
+
     BrowserModule,
-    Ng2SearchPipeModule,
     AppRoutingModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAuthModule,
     AngularFirestoreModule,
-    ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
+    AngularFireDatabaseModule,
     AngularFireStorageModule,
+    CloudinaryModule.forRoot(Cloudinary, { cloud_name: 'mihrab-miah' }),
+    HttpClientModule,
+    NgbModule,
+    CommonModule,
+    ReactiveFormsModule,
+    FormsModule,
+    Ng2SearchPipeModule,
+    NgxPaginationModule,
+    NgbModule,
+    NgxChartsModule,
+    FormsModule,
+    FinanceModule,
+
+    CommonModule,
+    ReactiveFormsModule,
     FormsModule,
     NgxPaginationModule,
-    BrowserAnimationsModule,
-    ToastrModule.forRoot(),
-    FlashMessagesModule.forRoot(),
-    NgbModule,
-    AngularFireAuthModule,
-    NgMultiSelectDropDownModule.forRoot(),
-
-
-    // #########################
-    AngularFirestoreModule,
-    CloudinaryModule.forRoot(Cloudinary, { cloud_name: 'mihrab-miah' }),
-    HttpClientModule
-
+    ProjectsModule
   ],
-  providers: [AuthService, CookieService],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
-
 export class AppModule { }
+

@@ -1,0 +1,28 @@
+<p class="back" (click)="back()"><i class="arrow left icon" ></i></p>
+ <!--Start Placeholder-->
+ <div class="ui fluid placeholder" *ngIf="!policy">
+    <div class="header"></div>
+    <div class="ui divider"></div>
+    <div class="paragraph">
+      <div class="line" *ngFor="let info of [1,2,3,4,5,6,4,8,9,10]"></div>
+    </div>
+  </div>
+  <!--End Placehoder-->
+<div class="container" id="info">
+
+    <div class="row"  *ngIf ="policy">
+        <div class="col-9">
+            <h3>{{ policy.policy.title }}</h3><span>Valid till&nbsp;:&nbsp; {{ policy.policy.expiryDate |date }}</span>
+        </div>
+        <div class="col-3" *ngIf="policy.url!=null && policy.fileType =='pdf'">
+            <a [href]="policy.url" target="_blank"><i class="file pdf icon"></i>Attachment</a>
+        </div>
+        <div class="col-3" *ngIf="policy.url!=null &&
+       (policy.fileType =='jpeg' || policy.fileType =='jpg'||policy.fileType =='png')">
+            <a class="Link" [href]="policy.url" target="_blank" download="Attachment.png">
+                <i class="image icon"></i>Attachment</a>
+        </div>
+    </div>
+    <hr>
+    <p id="description"></p>
+</div>

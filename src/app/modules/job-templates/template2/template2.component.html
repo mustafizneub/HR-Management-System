@@ -1,0 +1,516 @@
+<header class="sticky-top">
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <a class="navbar-brand" [routerLink]="['/admin/admin-home']">
+      <img src="../../../../assets/images/yotech.png" alt="">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse justify-content-end navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <button class="btn yoBtn" (click)="view()">View Post</button>
+        </li>
+        <li class="nav-item">
+          <button class="btn yoBtn" (click)="download()">Download Pdf</button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+<!--Start Placeholder-->
+<div class="ui grid" *ngIf="!information">
+  <div class="ui five wide column">
+    <div class="ui fluid placeholder">
+      <div class="image header"></div>
+      <div class="paragraph">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div class="ui fluid placeholder" *ngFor="let x of [1,2,3,4,5]">
+      <div class="header"></div>
+      <div class="ui divider"></div>
+      <div class="paragraph">
+        <div class="line" *ngFor="let info of [1,2,3,4,5]"></div>
+      </div>
+    </div>
+  </div>
+  <div class="ui eleven wide column">
+    <div class="ui fluid placeholder" *ngFor="let x of [1,2,3,4,5]">
+      <div class="header"></div>
+      <div class="ui divider"></div>
+      <div class="paragraph">
+        <div class="line" *ngFor="let info of [1,2,3,4,5]"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--End Placeholder-->
+<section id="cv" class="cv-t2">
+  <div class="container" *ngIf='information'>
+    <div class="row">
+      <!-- left column -->
+      <div class="col-lg-3">
+        <div class="left h-100">
+          <div class="personal-img">
+            <img class="img-fluid" [src]="information.url">
+          </div>
+          <div class="name-des">
+            <h3>{{ information.basicInfo.name }}</h3>
+            <p>{{ information.basicInfo.designation }}</p>
+          </div>
+          <!-- personal info starts -->
+          <div class="left-items">
+            <h5 class="left-header">Personal info</h5>
+            <div class="left-items-details">
+              <p class="semi-title">
+                <i class="far fa-address-book"></i>
+                <span>Address</span>
+              </p>
+              <p>{{ information.basicInfo.presentaddress }}</p>
+            </div>
+            <div class="left-items-details">
+              <p class="semi-title">
+                <i class="fas fa-envelope"></i>
+                <span>Email</span>
+              </p>
+              <p>{{ information.basicInfo.email }}</p>
+            </div>
+            <div class="left-items-details">
+              <p class="semi-title">
+                <i class="fas fa-phone-alt"></i>
+                <span>Phone</span>
+              </p>
+              <p>{{ information.basicInfo.phonenumber }}</p>
+            </div>
+            <div class="left-items-details">
+              <p class="semi-title">
+                <i class="fab fa-linkedin-in"></i>
+                <span>Linkedin</span>
+              </p>
+              <p>{{ information.basicInfo.linkedin }}</p>
+            </div>
+          </div>
+          <!-- personal info ends -->
+
+          <!-- skills stats -->
+          <div class="left-items">
+            <h5 class="left-header">Skills</h5>
+            <div class="left-items-details">
+              <h6 class="semi-title">Programming Languages</h6>
+              <p>{{ information.skills.programming }}</p>
+            </div>
+            <div class="left-items-details">
+              <h6 class="semi-title">Framework</h6>
+              <p>{{ information.skills.framework }}</p>
+            </div>
+            <div class="left-items-details">
+              <h6 class="semi-title">Operating System</h6>
+              <p>{{ information.skills.system }}</p>
+            </div>
+            <div class="left-items-details">
+              <h6 class="semi-title">Web Technologies</h6>
+              <p>{{ information.skills.other }}</p>
+            </div>
+          </div>
+          <!-- skills ends -->
+
+          <!-- Software starts -->
+          <div class="left-items">
+            <h5 class="left-header">Software</h5>
+            <div class="left-single-list">
+              <p *ngIf='information.software.soft0 && information.software.soft0!=""'>{{ information.software.soft0 }}
+              </p>
+              <p *ngIf='information.software.soft1 && information.software.soft1!=""'>{{ information.software.soft1 }}
+              </p>
+              <p *ngIf='information.software.soft2 && information.software.soft2!=""'>{{ information.software.soft2 }}
+              </p>
+              <p *ngIf='information.software.soft3 && information.software.soft3!=""'>{{ information.software.soft3 }}
+              </p>
+              <p *ngIf='information.software.soft4 && information.software.soft4!=""'>{{ information.software.soft4 }}
+              </p>
+            </div>
+          </div>
+          <!-- Software ends -->
+
+          <!-- Languages Starts -->
+          <div class="left-items">
+            <h5 class="left-header">Languages</h5>
+            <div class="left-single-list">
+              <p *ngIf="information.language.language0 && information.language.language0!=''">
+                {{ information.language.language0 }}</p>
+              <p *ngIf="information.language.language1 && information.language.language1!=''">
+                {{ information.language.language1 }}</p>
+              <p *ngIf="information.language.language2 && information.language.language2!=''">
+                {{ information.language.language2 }}</p>
+              <p *ngIf="information.language.language3 && information.language.language3!=''">
+                {{ information.language.language3 }}</p>
+              <p *ngIf="information.language.language4 && information.language.language4!=''">
+                {{ information.language.language4 }}</p>
+            </div>
+          </div>
+          <!-- Languages Ends -->
+        </div>
+      </div>
+      <!-- left column ends -->
+
+      <!-- right column -->
+      <div class="col-lg-9">
+        <div class="right h-100">
+          <div class="right-single">
+            <h5 class="right-header">Experience</h5>
+            <div class="row" *ngIf="information.experience.companyName0 && information.experience.companyName0 !='' ">
+              <div class="col-3">
+                <div class="years">
+                  <p>{{ information.experience.from0 }} - {{ information.experience.to0 }}</p>
+                </div>
+              </div>
+              <div class="col-9">
+                <div class="details">
+                  <h6>{{information.experience.designation0}}</h6>
+                  <p class="details-1">{{information.experience.companyName0}}</p>
+                  <p class="details-2">{{information.experience.description0}}</p>
+                </div>
+              </div>
+            </div>
+            <div class="row" *ngIf="information.experience.companyName1 && information.experience.companyName1 !='' ">
+              <div class="col-3">
+                <div class="years">
+                  <p>{{ information.experience.from1 }} - {{ information.experience.to1 }}</p>
+                </div>
+              </div>
+              <div class="col-9">
+                <div class="details">
+                  <h6>{{information.experience.designation1}}</h6>
+                  <p class="details-1">{{information.experience.companyName1}}</p>
+                  <p class="details-2">{{information.experience.description1}}</p>
+                </div>
+              </div>
+            </div>
+            <div class="row" *ngIf="information.experience.companyName2 && information.experience.companyName2 !='' ">
+              <div class="col-3">
+                <div class="years">
+                  <p>{{ information.experience.from2 }} - {{ information.experience.to2 }}</p>
+                </div>
+              </div>
+              <div class="col-9">
+                <div class="details">
+                  <h6>{{information.experience.designation2}}</h6>
+                  <p class="details-1">{{information.experience.companyName2}}</p>
+                  <p class="details-2">{{information.experience.description2}}</p>
+                </div>
+              </div>
+            </div>
+            <div class="row" *ngIf="information.experience.companyName3 && information.experience.companyName3 !='' ">
+              <div class="col-3">
+                <div class="years">
+                  <p>{{ information.experience.from3 }} - {{ information.experience.to3 }}</p>
+                </div>
+              </div>
+              <div class="col-9">
+                <div class="details">
+                  <h6>{{information.experience.designation3}}</h6>
+                  <p class="details-1">{{information.experience.companyName3}}</p>
+                  <p class="details-2">{{information.experience.description3}}</p>
+                </div>
+              </div>
+            </div>
+            <div class="row" *ngIf="information.experience.companyName4 && information.experience.companyName4 !='' ">
+              <div class="col-3">
+                <div class="years">
+                  <p>{{ information.experience.from4 }} - {{ information.experience.to4 }}</p>
+                </div>
+              </div>
+              <div class="col-9">
+                <div class="details">
+                  <h6>{{information.experience.designation4}}</h6>
+                  <p class="compnay-name">{{information.experience.companyName4}}</p>
+                  <p class="details-2">{{information.experience.description4}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="right-single">
+            <h5 class="right-header">Qualification</h5>
+            <div class="row"
+              *ngIf="information.qualification.certificationname0 && information.qualification.certificationname0!=''">
+              <div class="col-3">
+                <div class="years">
+                  <p>{{ information.qualification.session0 }}</p>
+                </div>
+              </div>
+              <div class="col-9">
+                <div class="details">
+                  <h6>{{ information.qualification.certificationname0 }}</h6>
+                  <p class="details-1">{{ information.qualification.institute0 }}</p>
+                </div>
+              </div>
+            </div>
+            <div class="row"
+              *ngIf="information.qualification.certificationname1 && information.qualification.certificationname1!=''">
+              <div class="col-3">
+                <div class="years">
+                  <p>{{ information.qualification.session1 }}</p>
+                </div>
+              </div>
+              <div class="col-9">
+                <div class="details">
+                  <h6>{{ information.qualification.certificationname1 }}</h6>
+                  <p class="details-1">{{ information.qualification.institute1 }}</p>
+                </div>
+              </div>
+            </div>
+            <div class="row"
+              *ngIf="information.qualification.certificationname2 && information.qualification.certificationname2!=''">
+              <div class="col-3">
+                <div class="years">
+                  <p>{{ information.qualification.session2 }}</p>
+                </div>
+              </div>
+              <div class="col-9">
+                <div class="details">
+                  <h6>{{ information.qualification.certificationname2 }}</h6>
+                  <p class="details-1">{{ information.qualification.institute2 }}</p>
+                </div>
+              </div>
+            </div>
+            <div class="row"
+              *ngIf="information.qualification.certificationname3 && information.qualification.certificationname3!=''">
+              <div class="col-3">
+                <div class="years">
+                  <p>{{ information.qualification.session3 }}</p>
+                </div>
+              </div>
+              <div class="col-9">
+                <div class="details">
+                  <h6>{{ information.qualification.certificationname3 }}</h6>
+                  <p class="details-1">{{ information.qualification.institute3 }}</p>
+                </div>
+              </div>
+            </div>
+            <div class="row"
+              *ngIf="information.qualification.certificationname4 && information.qualification.certificationname4!=''">
+              <div class="col-3">
+                <div class="years">
+                  <p>{{ information.qualification.session4 }}</p>
+                </div>
+              </div>
+              <div class="col-9">
+                <div class="details">
+                  <h6>{{ information.qualification.certificationname4 }}</h6>
+                  <p class="details-1">{{ information.qualification.institute4 }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="right-single">
+            <h5 class="right-header">Projects</h5>
+            <div class="row" *ngIf="information.projects.topic0 && information.projects.topic0!=''">
+              <div class="col-3">
+                <div class="years">
+                  <p>{{ information.projects.year0 }}</p>
+                </div>
+              </div>
+              <div class="col-9">
+                <div class="details">
+                  <h6>{{ information.projects.topic0 }}</h6>
+                  <p class="details-1">{{ information.projects.description0 }}</p>
+                </div>
+              </div>
+            </div>
+            <div class="row" *ngIf="information.projects.topic1 && information.projects.topic1!=''">
+              <div class="col-3">
+                <div class="years">
+                  <p>{{ information.projects.year1 }}</p>
+                </div>
+              </div>
+              <div class="col-9">
+                <div class="details">
+                  <h6>{{ information.projects.topic1 }}</h6>
+                  <p class="details-1">{{ information.projects.description1 }}</p>
+                </div>
+              </div>
+            </div>
+            <div class="row" *ngIf="information.projects.topic2 && information.projects.topic2!=''">
+              <div class="col-3">
+                <div class="years">
+                  <p>{{ information.projects.year2 }}</p>
+                </div>
+              </div>
+              <div class="col-9">
+                <div class="details">
+                  <h6>{{ information.projects.topic2 }}</h6>
+                  <p class="details-1">{{ information.projects.description2 }}</p>
+                </div>
+              </div>
+            </div>
+            <div class="row" *ngIf="information.projects.topic3 && information.projects.topic3!=''">
+              <div class="col-3">
+                <div class="years">
+                  <p>{{ information.projects.year3 }}</p>
+                </div>
+              </div>
+              <div class="col-9">
+                <div class="details">
+                  <h6>{{ information.projects.topic3 }}</h6>
+                  <p class="details-1">{{ information.projects.description3 }}</p>
+                </div>
+              </div>
+            </div>
+            <div class="row" *ngIf="information.projects.topic4 && information.projects.topic4!=''">
+              <div class="col-3">
+                <div class="years">
+                  <p>{{ information.projects.year4 }}</p>
+                </div>
+              </div>
+              <div class="col-9">
+                <div class="details">
+                  <h6>{{ information.projects.topic4 }}</h6>
+                  <p class="details-1">{{ information.projects.description4 }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="right-single">
+            <h5 class="right-header">Participation</h5>
+            <div class="row" *ngIf="information.participation.event0 && information.participation.event0!=''">
+              <div class="col-3">
+                <div class="years">
+                  <p>{{ information.participation.time0 }}</p>
+                </div>
+              </div>
+              <div class="col-9">
+                <div class="details">
+                  <h6>{{information.participation.event0}}</h6>
+                  <p class="details-1">{{ information.participation.achievement0 }}</p>
+                </div>
+              </div>
+            </div>
+            <div class="row" *ngIf="information.participation.event1 && information.participation.event1!=''">
+              <div class="col-3">
+                <div class="years">
+                  <p>{{ information.participation.time1 }}</p>
+                </div>
+              </div>
+              <div class="col-9">
+                <div class="details">
+                  <h6>{{information.participation.event1}}</h6>
+                  <p class="details-1">{{ information.participation.achievement1 }}</p>
+                </div>
+              </div>
+            </div>
+            <div class="row" *ngIf="information.participation.event2 && information.participation.event2!=''">
+              <div class="col-3">
+                <div class="years">
+                  <p>{{ information.participation.time2 }}</p>
+                </div>
+              </div>
+              <div class="col-9">
+                <div class="details">
+                  <h6>{{information.participation.event2}}</h6>
+                  <p class="details-1">{{ information.participation.achievement2 }}</p>
+                </div>
+              </div>
+            </div>
+            <div class="row" *ngIf="information.participation.event3 && information.participation.event3!=''">
+              <div class="col-3">
+                <div class="years">
+                  <p>{{ information.participation.time3 }}</p>
+                </div>
+              </div>
+              <div class="col-9">
+                <div class="details">
+                  <h6>{{information.participation.event3}}</h6>
+                  <p class="details-1">{{ information.participation.achievement3 }}</p>
+                </div>
+              </div>
+            </div>
+            <div class="row" *ngIf="information.participation.event4 && information.participation.event4!=''">
+              <div class="col-3">
+                <div class="years">
+                  <p>{{ information.participation.time4 }}</p>
+                </div>
+              </div>
+              <div class="col-9">
+                <div class="details">
+                  <h6>{{information.participation.event4}}</h6>
+                  <p class="details-1">{{ information.participation.achievement4 }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="right-single">
+            <h5 class="right-header">Online-Judges</h5>
+            <div class="row" *ngIf="information.onlineJudge.judgeName0 && information.onlineJudge.judgeName0!=''">
+              <div class="col-3">
+                <div class="years">
+                  <p>{{ information.onlineJudge.id0 }}</p>
+                </div>
+              </div>
+              <div class="col-9">
+                <div class="details">
+                  <h6>{{ information.onlineJudge.judgeName0 }}</h6>
+                  <p class="details-1">{{information.onlineJudge.judgeAchievement0}}</p>
+                </div>
+              </div>
+            </div>
+            <div class="row" *ngIf="information.onlineJudge.judgeName1 && information.onlineJudge.judgeName1!=''">
+              <div class="col-3">
+                <div class="years">
+                  <p>{{ information.onlineJudge.id1 }}</p>
+                </div>
+              </div>
+              <div class="col-9">
+                <div class="details">
+                  <h6>{{ information.onlineJudge.judgeName1 }}</h6>
+                  <p class="details-1">{{information.onlineJudge.judgeAchievement1}}</p>
+                </div>
+              </div>
+            </div>
+            <div class="row" *ngIf="information.onlineJudge.judgeName2 && information.onlineJudge.judgeName2!=''">
+              <div class="col-3">
+                <div class="years">
+                  <p>{{ information.onlineJudge.id2 }}</p>
+                </div>
+              </div>
+              <div class="col-9">
+                <div class="details">
+                  <h6>{{ information.onlineJudge.judgeName2 }}</h6>
+                  <p class="details-1">{{information.onlineJudge.judgeAchievement2}}</p>
+                </div>
+              </div>
+            </div>
+            <div class="row" *ngIf="information.onlineJudge.judgeName3 && information.onlineJudge.judgeName3!=''">
+              <div class="col-3">
+                <div class="year">
+                  <p>{{ information.onlineJudge.id3 }}</p>
+                </div>
+              </div>
+              <div class="col-9">
+                <div class="details">
+                  <h6>{{ information.onlineJudge.judgeName3 }}</h6>
+                  <p class="details-1">{{information.onlineJudge.judgeAchievement3}}</p>
+                </div>
+              </div>
+            </div>
+            <div class="row" *ngIf="information.onlineJudge.judgeName4 && information.onlineJudge.judgeName4!=''">
+              <div class="col-3">
+                <div class="years">
+                  <p>{{ information.onlineJudge.id4 }}</p>
+                </div>
+              </div>
+              <div class="col-9">
+                <div class="deatils">
+                  <h6>{{ information.onlineJudge.judgeName4 }}</h6>
+                  <p class="details-1">{{information.onlineJudge.judgeAchievement4}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- right column ends -->
+    </div>
+  </div>
+</section>

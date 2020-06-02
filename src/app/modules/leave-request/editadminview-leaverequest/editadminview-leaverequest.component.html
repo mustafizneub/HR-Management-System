@@ -1,0 +1,122 @@
+<div class="container">
+    <form [formGroup]="adleaveForm" (ngSubmit)="submitleaveForm()" novalidate>
+        <div class="row">
+            <div class="col-lg-8 col-md-12 col-sm-12">
+
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <label>Employee name</label>
+                        <input type="text" class="form-control" formControlName="name" readonly>
+
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <label>Employee Id</label>
+                        <input type="text" class="form-control" formControlName="id" readonly>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <label>Leave Type</label>
+
+                                <select formControlName="type">
+                                    <option>Sick</option>
+                                    <option>Emergency</option>
+                                    <option>LWOP</option>
+                                    <option>Crasual</option>
+                                    <option>Medical</option>
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="row">
+
+                    <div class="col-md-6 mb-3">
+                        <label>Leave From</label>
+                        <input type="text" class="form-control" formControlName="from">
+
+                    </div>
+
+
+                    <div class="col-md-6 mb-3">
+                        <label>Leave To</label>
+                        <input type="text" class="form-control" formControlName="to">
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <label>Days</label>
+                        <input type="text" class="form-control" formControlName="days">
+
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-12 mb-3">
+                        <label>When</label>
+                        <select formControlName="when">
+                            <option>Half Day Leave</option>
+                            <option>Full Day Leave</option>
+                            <option>First Half Day Leave</option>
+                            <option>Second Half Day Leave</option>
+                        </select>
+
+                    </div>
+                </div>
+                <div class="row">
+
+                    <div class="col-md-12 mb-3">
+                        <label>Leave Reason/Purpose</label>
+                        <textarea class="form-control" formControlName="description"></textarea>
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <label>Action</label>
+                        <select formControlName="status" (change)="valueChange($event)">
+
+                            <option value="approve">Approve</option>
+                            <option value="pending">pending</option>
+                            <option value="reject">reject</option>
+
+
+                        </select>
+
+                    </div>
+                </div>
+                <div class="row" *ngIf="rejectOption">
+
+                    <div class="col-md-12 mb-3">
+                        <label>Cause of reject</label>
+                        <textarea class="form-control" formControlName="rejectstatus"></textarea>
+
+                    </div>
+                </div>
+                <input type="hidden" class="form-control" formControlName="lid">
+                <input type="hidden" class="form-control" formControlName="mail">
+                <input type="hidden" class="form-control" formControlName="when">
+                <input type="hidden" class="form-control" formControlName="role">
+
+
+                <div class="form-group text-right">
+                    <button type="submit" class="btn btn-success">Submit
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </form>
+</div>

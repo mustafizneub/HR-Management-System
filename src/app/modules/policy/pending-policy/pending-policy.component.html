@@ -1,0 +1,86 @@
+<div class="row">
+  <div class="col-3">
+    <input type="text" placeholder="Search By title" class="form-control" [(ngModel)]="term" (input)="filterByName()">
+  </div>
+  <div class="col-3 mb-3">
+    <select type="text" #t class="custom-select" (change)="filterByLocation(t.value)">
+      <option [selected]="true">Filter by Location</option>
+      <option value="Bangladesh">Bangladesh</option>
+      <option value="America">America</option>
+      <option value="England">England</option>
+      <option value="India">India</option>
+
+    </select>
+  </div>
+</div>
+<!--Start placeholder-->
+<div class="ui fluid placeholder" *ngIf="!policy">
+  <div class="paragraph">
+    <div class="header"></div>
+    <div class="header"></div>
+    <div class="header"></div>
+    <div class="line" *ngFor="let x of [1,2,3,4,5]"></div>
+  </div>
+</div>
+<!--End placeholder-->
+<table class="table" *ngIf="policy">
+  <thead>
+    <tr>
+      <th scope="col">Policy title</th>
+      <th scope="col">Post date</th>
+      <th scope="col">Expiry Date</th>
+      <th *ngIf="admin" scope="col">Publish/Remove</th>
+      <th *ngIf="admin" scope="col">Delete</th>
+      <th scope="col">Attachment</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let policy of policy">
+      <td><a [routerLink]="['/policy/policy',policy.id]">{{ policy.data.policy.title }}</a></td>
+      <td>{{ policy.data.publishedAt | date }}</td>
+      <td>{{policy.data.policy.expiryDate |date}}</td>
+      <td *ngIf="admin"><button class="btn btn-primary" [disabled]="policy.data.isPublished"
+          (click)="add(policy.id)">Publish</button>&nbsp;
+        <button class="btn btn-warning" [disabled]="!policy.data.isPublished" (click)="remove(policy.id)">Hide</button>
+      </td>
+      <td *ngIf="admin"><button class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter"
+         (click)="confirm(policy.id,policy.data.url)">Delete</button></td>
+      <td *ngIf="policy.data.url==null">
+        -----
+      </td>
+      <td *ngIf="policy.data.url!=null && policy.data.fileType == 'doc'">
+        <a class="Link" [href]="policy.data.url" download="attachment.doc">Download attachment</a>
+      </td>
+      <td *ngIf="policy.data.url!=null &&
+       (policy.data.fileType =='jpeg' || policy.data.fileType =='jpg'||policy.data.fileType =='png')">
+        <a class="Link" [href]="policy.data.url" target="_blank">view attachment</a>
+      </td>
+      <td *ngIf="policy.data.url!=null && policy.data.fileType =='pdf'">
+        <a class="Link" [href]="policy.data.url" target="_blank">view attachment</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<!--Policy delete Modal-->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Deleting Job</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete this post?</p>
+    <p>Note: your post will be deleted permanantly!!</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">cancel</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="delete()">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--End Policy delete modal-->

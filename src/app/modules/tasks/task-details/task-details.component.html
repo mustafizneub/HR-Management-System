@@ -1,0 +1,238 @@
+<div class="container" *ngIf="task">
+  <div class="row">
+    <div class="col-lg-8  border border-top-0 border-left-0 border-bottom-0 p-3">
+      <h4 class=" lead title">
+        Title: {{task.task_name}}
+      </h4>
+      <div class="details">
+        <span class="pt-2 pb-2"><b>Description</b></span>
+        <p>
+          {{task.task_description}}
+        </p>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="row" *ngIf="project && task">
+        <div class="col-lg-12 p-3">
+          <span (click)="toggleEditClient()" *ngIf="!editClient">Client: {{project['client']}}</span>
+          <form class="ui form" #f="ngForm" *ngIf="editClient">
+            <input type="text" [ngModel]="project.client" name="projectClient">
+            <div class="ui mini buttons">
+              <button class="ui button" (click)="updateClient(f)">Update</button>
+              <div class="or"></div>
+              <button class="ui button" (click)="toggleEditClient()">Cancel</button>
+            </div>
+          </form>
+
+        </div>
+
+        <div class="col-lg-12 p-3">
+          <span (click)="toggleEditStartDate()" *ngIf="!editStartDate">Start Date: {{task['task_start_date']}}</span>
+          <form class="ui form" #ff="ngForm" *ngIf="editStartDate">
+            <input type="text" [ngModel]="task.task_start_date" name="taskStartDate">
+            <div class="ui mini buttons">
+              <button class="ui button" (click)="updateStartDate(ff)">Update</button>
+              <div class="or"></div>
+              <button class="ui button" (click)="toggleEditStartDate()">Cancel</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="col-lg-12 p-3">
+          <span (click)="toggleEditEndDate()" *ngIf="!editEndDate">End Date: {{task['task_end_date']}}</span>
+          <form class="ui form" #fff="ngForm" *ngIf="editEndDate">
+            <input type="text" [ngModel]="task.task_end_date" name="taskEndDate">
+            <div class="ui mini buttons">
+              <button class="ui button" (click)="updateEndDate(fff)">Update</button>
+              <div class="or"></div>
+              <button class="ui button" (click)="toggleEditEndDate()">Cancel</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="col-lg-12 p-3">
+          <span (click)="toggleEditPercentage()" *ngIf="!editCompletedPercent">Completed {{task.task_completed}}%</span>
+          <form class="ui form" #ffff="ngForm" *ngIf="editCompletedPercent">
+            <input type="text" [ngModel]="task.task_completed" name="completionPercentage">
+            <div class="ui mini buttons">
+              <button class="ui button" (click)="updatePercentage(ffff)">Update</button>
+              <div class="or"></div>
+              <button class="ui button" (click)="toggleEditPercentage()">Cancel</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="col-lg-12 p-3">
+          <div *ngIf="!addEmployeeToTask">
+            <h6 (click)="toggleAddEmployee()">Assigned To</h6>
+            <ol class="ui list">
+              <li value="-" *ngFor="let emp of taskAssignedTo">{{emp.employee}} <span
+                  (click)="removeEmployeeFromTask(emp.fStoreId)">&times;</span></li>
+            </ol>
+          </div>
+          <div *ngIf="addEmployeeToTask">
+            <form class="form" #assignEmpForm="ngForm" class="ui form" required>
+              <div class="form-group">
+                <label for="">Select Employees</label>
+                <input type="text" class="form-control" name="filterText" (input)="filterEmpList($event)"
+                  placeholder="Search...">
+              </div>
+              <div class="form-group" *ngIf="selectedEmps">
+                <div style="width: 80px; float: left;" class="border rounded-pill pl-2 pr-2 bg bg-secondary text-white"
+                  *ngFor="let val of selectedEmps">{{val}}
+                  <span style="cursor: pointer; font-size: 16px;" (click)=removeFromSelectedEmp(val)
+                    class="float-right">&times;</span>
+                </div>
+              </div>
+              <div class="form-group">
+
+                <select id="assigned_employees" name="assigned_employees" multiple [(ngModel)]="assigned_employees"
+                  (change)="selectEmps($event)">
+                  <option [disabled]="empAddedCheck[emps.empId]" [value]="emps.empId"
+                    *ngFor="let emps of _assignedEmployees">{{emps.employee}}
+                    -{{emps.designation}}
+                  </option>
+                </select>
+              </div>
+              <div class="ui mini buttons">
+                <button class="ui button" (click)="submitAssignName(assignEmpForm)">Update</button>
+                <div class="or"></div>
+                <button class="ui button" (click)="toggleAddEmployee()">Cancel</button>
+              </div>
+            </form>
+          </div>
+
+        </div>
+        <div class="col-lg-12 p-3">
+          <div *ngIf="!addSubToTask">
+            <h6 (click)="toggleAddSub()">Subscribers</h6>
+            <ol class="ui list">
+              <li value="-" *ngFor="let sub of assignedSubscribers">{{sub.employee}} <span
+                  (click)="removeSubscriberFromTask(sub.fStoreId)">&times;</span></li>
+            </ol>
+          </div>
+          <div>
+            <!-- *ngIf="addSubToTask" -->
+            <form *ngIf="addSubToTask" class="form" #ff="ngForm" class="ui form" required>
+              <div class="form-group">
+                <label for="">Select Subscribers</label>
+                <input type="text" class="form-control" name="filterText" (input)="filterSubList($event)"
+                  placeholder="Search...">
+              </div>
+              <div class="form-group" *ngIf="selectedSubs">
+                <div style="width: 80px; float: left;" class="border rounded-pill pl-2 pr-2 bg bg-secondary text-white"
+                  *ngFor="let val of selectedSubs">{{val}}
+                  <span style="cursor: pointer; font-size: 16px;" (click)=removeFromSelectedSub(val)
+                    class="float-right">&times;</span>
+                </div>
+              </div>
+              <div class="form-group">
+                <select id="subscribers" name="subscribers" multiple [(ngModel)]="subscribers"
+                  (change)="selectSubs($event)">
+                  <option [ngValue]="emps.empId" *ngFor="let emps of assignedEmployees"
+                    [disabled]="subAddedCheck[emps.empId]===true">
+                    {{emps.employee}} -{{emps.designation}}
+                  </option>
+                </select>
+              </div>
+              <div class="ui mini buttons">
+                <button class="ui button" (click)="submitSubsName(ff)">Update</button>
+                <div class="or"></div>
+                <button class="ui button" (click)="toggleAddSub()">Cancel</button>
+              </div>
+            </form>
+          </div>
+
+        </div>
+
+        <!-- <div class="sixteen wide column">
+          <div class="ui divider"></div>
+        </div> -->
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<br>
+
+
+<!-- COMMENTS -->
+<div class="ui comments">
+  <h3 class="ui dividing header">Comments</h3>
+  <form class="ui reply form">
+    <div class="field">
+      <textarea name="comment" [(ngModel)]="comment"></textarea>
+    </div>
+    <div class="ui blue labeled submit icon button" (click)="sendComment()">
+      <i class="icon edit"></i> Add Comment
+    </div>
+  </form>
+
+  <ng-container *ngFor="let comment of comments">
+    <div class="comment">
+      <a class="avatar">
+        <img src="https://semantic-ui.com/images/avatar/small/matt.jpg">
+      </a>
+      <div class="content">
+        <a class="author">{{comment.commentator}}</a>
+        <div class="metadata">
+          <span class="date">{{comment.comment_time | date: 'MMM d, y'}}</span>
+        </div>
+        <div class="text" *ngIf="editCommentIds[comment.fStoreId]!=true">
+          {{comment.comment}}
+        </div>
+        <form action="" class="ui form" #f="ngForm" *ngIf="editCommentIds[comment.fStoreId]===true">
+          <div class="update_comment field">
+            <input type="text" [ngModel]="comment.comment" name="updateComment">
+            <div class="actions clearfix">
+              <a class="reply float-right p-2" (click)="updateComment(f, comment.fStoreId)">Update</a>
+              <a class="reply float-right p-2" (click)="toggleCommentEdit(comment.fStoreId)">Cancel</a>
+            </div>
+
+          </div>
+        </form>
+        <div class=" actions">
+          <a class="reply" (click)="toggleReply(comment.fStoreId)">Reply</a>
+          <a class="reply" (click)="toggleCommentEdit(comment.fStoreId)"
+            *ngIf="commentEditable[comment.fStoreId]['editable']">Edit</a>
+          <form class="ui form" #f="ngForm" *ngIf="commentIds[comment.fStoreId]===true">
+            <div class="field">
+              <textarea name="" id="" cols="30" rows="1" name="reply" [ngModel]="reply"></textarea>
+            </div>
+
+            <div class="ui mini buttons right floated">
+              <button class="ui button" (click)="sendReply(comment.fStoreId, f)">Reply</button>
+              <div class="or"></div>
+              <button class="ui button" (click)="toggleReply(comment.fStoreId)">Cancel</button>
+            </div>
+          </form>
+
+
+
+
+        </div>
+        <div class="comments">
+
+          <div class="comment" *ngFor="let reply of comment.replies">
+            <a class="avatar">
+              <img src="https://semantic-ui.com/images/avatar/small/matt.jpg">
+            </a>
+            <div class="content">
+              <a class="author">{{reply.commentator}}</a>
+              <div class="metadata">
+                <span class="date">{{reply.reply_time | date: 'MMM d, y'}}</span>
+              </div>
+              <div class="text">
+                {{reply.reply}}
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </ng-container>
+
+</div>

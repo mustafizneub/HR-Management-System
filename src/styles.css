@@ -1,35 +1,64 @@
-@import 'https://use.fontawesome.com/releases/v5.5.0/css/all.css';
+/* You can add global styles to this file, and also import other style files */
+
 @import '~semantic-ui-css/semantic.css';
 @import "~bootstrap/dist/css/bootstrap.css";
-
-
-
-
-
-
-:root{
-  --primary-color:#EE8B2B;
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+:root {
+  --primary-color: #EE8B2B;
   --secondary-color: #642C82;
 }
 
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  font-family: 'Noto Sans', sans-serif;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  position: relative;
+  color: #424242;
+  background-color: #f5f5f5;
+}
 
 /* ############################## */
-.primary-bg-color{
+
+.primary-bg-color {
   background-color: var(--primary-color) !important;
 }
-.primary-text-color{
+
+.primary-text-color {
   color: var(--primary-color) !important;
 }
-.secondary-bg-color{
+
+.secondary-bg-color {
   background-color: var(--secondary-color) !important;
 }
-.secondary-text-color{
+
+.secondary-text-color {
   color: var(--secondary-color) !important;
 }
-.text-white{
+
+.text-white {
   color: #eeeeee !important;
 }
-/* Financial App */
-#app-sidebar {
-  background: #FFF;;
+
+i.icon {
+  cursor: pointer;
+  width: 30px;
+}
+.error{
+  color:red;
+}
+.cp {
+  cursor: pointer;
+}
+
+.notice-date .dropdown-menu.show {
+  transform: translate(0, 42px) !important;
 }

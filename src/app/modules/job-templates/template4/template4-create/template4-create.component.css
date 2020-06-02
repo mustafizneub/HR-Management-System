@@ -1,0 +1,27 @@
+.t5{
+    margin-top: 20px;
+      margin-bottom: 10px;
+  }
+  .t5  .col-1{
+      height: 50px; 
+      background-color: #4F90CD;
+  }
+  .t5 .container{
+      
+      box-shadow: 0 0 3px 2px #8e8686;
+      padding-top: 10px;
+      padding-bottom: 10px;
+  }
+  
+  
+  .form-control{
+    background-color: inherit;
+    border-top: 0;
+    border-right: 0;
+    border-left: 0;
+    border-bottom: 1x solid;
+    border-radius: 0;
+  }
+  label{
+    margin-bottom: 0;
+  }

@@ -1,0 +1,193 @@
+@font-face {
+  font-family: 'Roboto';
+  src: url("../fonts/Roboto-Medium.ttf");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url("../fonts/Roboto-Regular.ttf");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url("../fonts/Roboto-Bold.ttf");
+  font-weight: 600;
+}
+
+body {
+  font-family: 'Roboto';
+}
+
+form .form-row input:focus, form .form-row textarea:focus {
+  border-color: transparent;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  outline: 1px solid #f08c2e;
+}
+
+.active {
+  color: #f08c2e !important;
+}
+
+.yoBtn {
+  background-color: #652783;
+  border: none;
+  border: 1px solid #652783;
+  color: #f1f0f0;
+  -webkit-transition: .3s;
+  transition: .3s;
+}
+
+.yoBtn:focus {
+  outline: none;
+  border: 1px solid #f08c2e;
+  -webkit-box-shadow: 0 0 4px 0 #f08c2e;
+          box-shadow: 0 0 4px 0 #f08c2e;
+}
+
+.yoBtn:hover {
+  color: #f1f0f0;
+  background-color: #731aa0;
+}
+
+header nav {
+  -webkit-box-shadow: 0 -2px 4px 0px;
+          box-shadow: 0 -2px 4px 0px;
+}
+
+header nav .navbar-brand img {
+  width: 150px;
+  height: 35px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
+header nav .navbar-nav nav-item a {
+  -webkit-transition: .3s;
+  transition: .3s;
+}
+
+header nav .navbar-nav nav-item a:hover {
+  color: #f08c2e !important;
+}
+
+.page-content {
+  background-color: #f4f6f9;
+  min-height: 100vh;
+}
+
+footer {
+  background-color: #fff;
+  padding: 15px 0;
+}
+
+footer p {
+  margin: 0;
+  color: #888;
+}
+
+footer p span {
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+footer p .orange {
+  color: #f08c2e;
+}
+
+footer p .purple {
+  color: #652783;
+}
+
+/* add post start */
+form {
+  margin-top: 20px;
+}
+
+form .form-row label {
+  font-weight: 600;
+}
+
+form .form-row textarea {
+  height: 150px;
+}
+
+/* add post ends */
+/* view post starts */
+.yoCard {
+  padding: 10px 20px;
+  border: 1px solid #652783;
+  margin: 15px 0;
+  border-radius: 5px;
+  background-color: white;
+  opacity: 1;
+}
+.yoCard:hover{
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.yoCard-header .job-title {
+  color: #f08c2e;
+}
+
+.yoCard-job-des p {
+  margin: 0;
+}
+
+.yoCard-btn {
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.yoCard-btn .yoBtn {
+  padding: 5px 10px;
+  background-color: transparent;
+  border: 1px solid #f08c2e;
+  color: #333;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.yoCard-btn .yoBtn:hover {
+  background-color: #f08c2e;
+  color: #f1f0f0;
+  opacity: 1;
+}
+
+/* view post Ends */
+/* applicants starts */
+.table thead tr th {
+  text-transform: capitalize;
+}
+
+.table tbody tr td .status .selected {
+  color: #f08c2e;
+}
+
+.table tbody tr td .status .waitting {
+  color: #652783;
+}
+
+.table tbody tr td .add-remove a {
+  padding: 0 10px;
+  color: #333;
+}
+
+.table tbody tr td .add-remove a .fa-plus-square {
+  color: #f08c2e;
+}
+
+.table tbody tr td .add-remove a .fa-trash-alt {
+  color: #dc3545;
+}
+
+.table tbody tr td .add-remove a i {
+  font-size: 18px;
+}
+
+/* applicants ends */
+/*sign-in / sign up*/
+/*# sourceMappingURL=style.css.map */

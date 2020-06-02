@@ -1,0 +1,164 @@
+<div class="row" style="margin-bottom: 20px;">
+    <div class="col-sm-12">
+      <div class="card">
+          <div class="card-body">
+
+              <h4>Announcement</h4>
+              
+              <div *ngIf="object">
+
+                <table class="table table-bordered">
+
+                  <tr>
+                        <td>Notice Heading </td>
+                        <td> {{ object.heading }}  </td>
+                    </tr>
+
+
+                    <tr>
+                        <td>Start Date</td>
+                        <td> {{ object.startDate | date:'MMM d, y, EE'}}  </td>
+                    </tr>
+    
+    
+                    <tr>
+                        <td>End Date</td>
+                        <td> {{ object.endDate | date:'MMM d, y, EE'}}  </td>
+                    </tr>
+
+                    <tr>
+                        <td>Start Date HR</td>
+                        <td> {{ object.startDate_hr }}  </td>
+                    </tr>
+
+                    <tr>
+                        <td>End Date HR</td>
+                        <td> {{ object.endDate_hr }}  </td>
+                    </tr>
+
+                    <tr>
+                        <td>Description</td>
+                        <td> {{ object.description }}  </td>
+                    </tr>
+
+                    <tr>
+                        <td>Is approved By Admin</td>
+                        <td> {{ object.is_approved }}  </td>
+                    </tr>
+
+                    <tr>
+                        <td>Notice for country</td>
+                        <td> {{ object.country }}  </td>
+                    </tr>
+
+                    <tr>
+                      <td>Action</td>
+                      <td>
+                         <span (click)="isUpdateCollapsed = !isUpdateCollapsed" [attr.aria-expanded]="!isUpdateCollapsed" aria-controls="updateNotice" style="cursor: pointer;"> <i class="edit outline icon" placement="top" ngbTooltip="Edit" title="Update"></i> </span>
+
+                        <span placement="top" ngbTooltip="Delete" (click)="removeNotice(object._id)"> <i class="trash alternate outline icon"></i> </span>      
+                      </td>
+                    </tr>
+                    
+                  </table>
+              </div> <!-- End  -->
+          </div>    <!-- End card body -->
+      </div> <!-- End card  -->
+    </div>  <!-- End col -->
+  </div>  <!-- End row -->  
+
+
+
+  <div class="row" id="updateNotice" [ngbCollapse]="isUpdateCollapsed">
+  <div class="col-sm-12"> 
+    <div class="card">
+        <div class="card-body">
+          <div style="cursor: pointer;">
+             <h4 class="h6" (click)="isUpdateCollapsed = !isUpdateCollapsed"><i class="bars icon"></i> Update Notice </h4>
+          </div>  <!-- End Title Div -->
+
+            <div style="margin-top: 20px;">
+                  <div *ngIf="notification" class="alert alert-warning">
+                      {{ notification }}
+                  </div> <!-- End Alert -->
+                  <div class="form-group">  
+                      <input type="text" min="0" placeholder="Noitce Heading" class="form-control mb-2" [(ngModel)]="notice.heading">
+                   </div> <!-- End --> 
+
+                    <div *ngIf="notice.startDate && notice.endDate">
+                        <div class="form-group p-2 notice-date" style="background: #EEE">
+                          <label>
+                            Notice Start Date
+                          </label>
+                          <div class="input-group">
+
+                                <input type="hidden" 
+                                    ngbDatepicker #startDate="ngbDatepicker" [(ngModel)]="notice.startDate">
+
+                                <input class="form-control" placement="bottom right"
+                                        ngbDatepicker #startDate="ngbDatepicker" (click)="startDate.toggle()" [value]="notice?.startDate.year + '-' + notice?.startDate.month + '-' + notice?.startDate.day | date: 'dd, MMM y, EE'">
+
+                                <div class="input-group-append">
+                                  <button class="btn btn-outline-secondary disabled calendar" (click)="startDate.toggle()"><i class="calendar alternate outline icon"></i>
+                                    </button>
+                                </div>  <!-- End -->
+
+                            
+                          </div> <!-- End input group -->
+
+
+                          <div class="d-flex mt-1">
+                              Notice End Date
+                            </div>
+                          <div class="input-group">
+
+                                <input type="hidden" 
+                                    ngbDatepicker #endDate="ngbDatepicker" [(ngModel)]="notice.endDate">
+                             
+                                  <input class="form-control" placement="bottom right"
+                                          ngbDatepicker #endDate="ngbDatepicker" (click)="endDate.toggle()" [value]="notice?.endDate.year + '-' + notice?.endDate.month + '-' + notice?.endDate.day | date: 'dd, MMM y, EE'">
+                                   
+                                  <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary disabled calendar" (click)="endDate.toggle()"><i class="calendar alternate outline icon"></i>
+                                      </button>
+                                  </div>
+                          </div> <!-- End input group -->
+                    </div> <!-- End form group -->
+                    </div>  <!-- End -->
+                    
+
+
+                    <div class="form-group">
+                      <textarea class="form-control mb-2" [(ngModel)]="notice.description" placeholder="Describe here..."></textarea>
+                    </div> <!-- End form-group-->
+
+
+                    <div class="form-group">  
+                      <span class="mb-1" style="display: block;">Make the notice country specific or global.</span>
+
+                      <select [(ngModel)]="notice.country"  class="form-control input-sm" name="notice.country">
+                                <option *ngFor="let notice of notice.options;" [value]="notice">{{ notice }}</option>
+                              </select>
+                    </div> <!-- End --> 
+
+                    <div class="form-group">  
+                      <span class="mb-1" style="display: block;">Approved By Admin</span>
+
+                      <select [(ngModel)]="notice.is_approved"  class="form-control input-sm" name="notice.is_approved">
+                          <option value="Yes">Yes</option>
+                          <option value="No">No</option>
+                      </select>
+                    </div> <!-- End --> 
+
+
+        
+        
+                  <div class="form-group mb-0">
+                    <button class="btn btn-sm btn-success" (click)="updateNotice(notice)">Update Notice</button>
+                  </div>  <!-- End form-group-->
+                
+            </div>  <!-- End collapseExample  -->
+        </div> <!-- End card body -->
+    </div> <!-- End card  -->
+  </div> <!-- End col 12 -->
+</div> <!-- End row -->

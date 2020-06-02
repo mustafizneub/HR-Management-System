@@ -1,0 +1,29 @@
+<div style="background: #FFF">
+     <div class = "table-responsive">
+      <table class="table table-bordered">
+        <tr>
+          <td>#SL</td>
+          <td class="cp">Heading 
+             </td>
+
+          <td class="cp"> Start Date 
+            </td>
+
+          <td class="cp">Expire Date 
+            </td>
+
+     
+        </tr>
+
+        <tr *ngFor="let object of notices; let i = index;">
+          <td> {{ i + 1 }} </td>
+          <td> <a routerLink="/notice/{{ object._id }}"> {{ object.heading }}</a></td>
+
+          <td> {{ object.startDate  | date:'MMM d, y, EE' }}</td>
+
+          <td> {{ object.endDate  | date:'MMM d, y, EE' }} </td>
+
+        </tr>
+      </table>
+</div>   <!-- End Table resposive -->
+</div>  <!-- End -->

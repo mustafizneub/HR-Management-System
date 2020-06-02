@@ -1,0 +1,3 @@
+#dateFilterBlock .dropdown-menu.show {
+  transform: translate(0, 42px) !important;
+}

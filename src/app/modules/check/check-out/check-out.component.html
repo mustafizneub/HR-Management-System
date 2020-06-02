@@ -1,0 +1,117 @@
+<div class="card">
+    <div class="card-body" style="background-color: #f2f2f2;">
+        <b>Your Checked in Time: {{ checkIn }}</b>
+        <br />
+        <div *ngIf='sType'>
+            <b>Your Taken Break:</b>
+            <br />
+            <b>Type: {{ sType }}</b>
+            <br />
+            <b>Time: {{ sTime }}</b>
+            <br />
+            <b>Note: {{ sNote }}</b>
+        </div>
+
+
+    </div>
+</div>
+<div class="card">
+    <div class="card-body" style="background-color: #f2f2f2;">
+        <div class="row" [hidden]='sType'>
+            <div class="col-md-2">
+                <label>Break</label>
+            </div>
+            <div class="col-md-3">
+                <select class="form-control" [(ngModel)]="type">
+                    <option selected="true" disabled="disabled">Select Type</option>
+                    <option value="Namaz Break">Namaz Break</option>
+                    <option value="Launch Break">Launch Break</option>
+                    <option value="Namaz & Launch Break">Namaz & Launch Break</option>
+                    <option value="Other Break">Other Break</option>
+                </select>
+
+            </div>
+            <div class="col-md-2">
+                <input type="text" class="form-control" [(ngModel)]="breaktime" />
+            </div>
+            <div class="col-md-2">
+                <input type="text" class="form-control" [(ngModel)]="breaknote" placeholder="Note" />
+
+            </div>
+            <div class="col-md-3">
+                <button (click)="break(type,breaktime,breaknote)" class="btn btn-success" formtarget="_blank"
+                    style="width: 140px;">
+                    Break</button>
+            </div>
+
+        </div>
+        <div class="row" *ngIf='sType'>
+            <div class="col-md-2">
+                <label>Back To Work</label>
+            </div>
+            <div class="col-md-3">
+                <select class="form-control" [(ngModel)]="type">
+                    <option selected="true" disabled="disabled">{{ sType }}</option>
+                </select>
+
+            </div>
+            <div class="col-md-2">
+                <input type="text" class="form-control" [(ngModel)]="breaktime" />
+            </div>
+            <div class="col-md-2">
+                <input type="text" class="form-control" [(ngModel)]="breaknote" placeholder="Note" />
+
+            </div>
+            <div class="col-md-3">
+                <button (click)="backtowork(type,breaktime,breaknote)" class="btn btn-success" formtarget="_blank"
+                    style="width: 140px;">
+                    Back To Work</button>
+            </div>
+
+        </div>
+
+        <br />
+        <div class="row">
+            <div class="col-md-2">
+                <label>Again Check In</label>
+            </div>
+            <div class="col-md-3">
+                <input type="date" class="form-control" [(ngModel)]="cind" />
+            </div>
+            <div class="col-md-2">
+                <input type="text" class="form-control" [(ngModel)]="cint" />
+            </div>
+            <div class="col-md-2">
+                <input type="text" class="form-control" [(ngModel)]="cinn" placeholder="Note" />
+            </div>
+            <div class="col-md-2">
+                <button (click)="againCheckIn(cind,cint,cinn)" class="btn btn-success" formtarget="_blank"
+                    style="width: 140px;">Check In</button>
+            </div>
+            <div class="col-md-5">
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-2">
+                <label>Check Out</label>
+            </div>
+            <div class="col-md-3">
+                <input type="date" class="form-control" [(ngModel)]="cod" />
+            </div>
+            <div class="col-md-2">
+                <input type="text" class="form-control" [(ngModel)]="cot" />
+            </div>
+            <div class="col-md-2">
+                <input type="text" class="form-control" [(ngModel)]="con" placeholder="Note" />
+            </div>
+            <div class="col-md-2">
+                <button (click)="checkOut(cod,cot,con)" class="btn btn-success" formtarget="_blank"
+                    style="width: 140px;">Check Out</button>
+            </div>
+            <div class="col-md-5">
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,171 @@
+<div class="row">
+  <div class="col-sm-12" style="margin-bottom: 20px;"> 
+    <div class="card">
+        <div class="card-body">
+          <div (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample" style="cursor: pointer;">
+             <h4 class="h6"><i class="plus square outline icon"></i> Add Notice </h4>
+          </div>  <!-- End Title Div -->
+
+            <div id="collapseExample" [ngbCollapse]="isCollapsed" style="margin-top: 20px;">
+                  <div *ngIf="notification" class="alert alert-warning">
+                      {{ notification }}
+                  </div> <!-- End Alert -->
+                  <div class="form-group">  
+                      <input type="text" min="0" placeholder="Noitce Heading" class="form-control mb-2" [(ngModel)]="notice.heading">
+                   </div> <!-- End --> 
+                <div *ngIf="notice.startDate && notice.endDate">
+                    <div class="form-group p-2 notice-date" style="background: #EEE">
+                          <label>
+                            Notice Start Date
+                          </label>
+
+                          <div class="form-group">
+                                <div class="input-group">
+                                  <input type="hidden" 
+                                          ngbDatepicker #startDate="ngbDatepicker" [(ngModel)]="notice.startDate">
+
+                                  <input class="form-control" 
+                                          ngbDatepicker #startDate="ngbDatepicker" (click)="startDate.toggle()" [value]="notice?.startDate.year + '-' + notice?.startDate.month + '-' + notice?.startDate.day | date: 'dd, MMM y, EE'">
+                                  <div class="input-group-append">
+                                      <button class="btn btn-outline-secondary disabled calendar" (click)="startDate.toggle()" style="padding: 0 5px;"><span class="calendar-icon"></span>
+                                        </button>
+                                  </div>
+                                </div> <!-- End input group -->
+                          </div> <!-- End form group -->
+
+
+
+                          <div class="d-flex mt-1">
+                              Notice End Date
+                            </div>
+                          <div class="input-group">
+                            <input type="hidden" 
+                                    ngbDatepicker #endDate="ngbDatepicker" [(ngModel)]="notice.endDate">
+                             
+                            <input class="form-control"
+                                    ngbDatepicker #endDate="ngbDatepicker" (click)="endDate.toggle()" [value]="notice?.endDate.year + '-' + notice?.endDate.month + '-' + notice?.endDate.day | date: 'dd, MMM y, EE'">
+                            <div class="input-group-append">
+                              <button class="btn btn-outline-secondary disabled calendar" (click)="endDate.toggle()"><i class="calendar-icon"></i>
+                                </button>
+                            </div>
+                          </div> <!-- End input group -->
+                    </div> <!-- End form group -->
+                </div>  <!-- End notice -->
+
+                    <div class="form-group">
+                      <textarea class="form-control mb-2" [(ngModel)]="notice.description" placeholder="Describe here..."></textarea>
+                    </div> <!-- End form-group-->
+
+
+                    <div class="form-group">  
+                      <span class="mb-1" style="display: block;">Make the notice country specific or global.</span>
+
+                      <select [(ngModel)]="notice.country"  class="form-control input-sm" name="notice.country">
+                                <option *ngFor="let notice of notice.options;" [value]="notice">{{ notice }}</option>
+                              </select>
+                   </div> <!-- End --> 
+        
+                  
+
+                    
+                     <div class="form-group">
+                          <div class="input-group mb-3">
+                            
+                            <div class="custom-file">
+                              <input type="file" class="custom-file-input" id="inputGroupFile01" name="notice.upload_file" placeholder="select a file" (change)="uploadFile($event)">
+                              <label class="custom-file-label" for="inputGroupFile01">{{ notice.upload_file }}</label>
+                            </div> <!-- End custom-file -->
+                          </div>  <!-- End -->
+                      </div> <!-- End form group -->
+          
+        
+                      <div class="form-group mb-0">
+                        <button class="btn btn-sm btn-success" (click)="addNotice(notice)">Add Notice</button>
+                      </div>  <!-- End form-group-->
+                
+            </div>  <!-- End collapseExample  -->
+        </div> <!-- End card body -->
+    </div> <!-- End card  -->
+  </div> <!-- End col 12 -->
+</div> <!-- End row -->
+
+
+<div class="row">
+    <div class="col-sm-12">
+      <div class="card" style="margin-bottom: 30px">
+          <div class="card-body">
+              <div class="" style="margin: 0;">
+                <div class="row">
+                  <div class="col-sm-12 col-12">
+                    <div class="d-flex">
+                        
+
+                    </div>   <!-- End d-flex -->
+                  </div> <!-- End Col 6 -->
+
+                </div>  <!-- End row -->
+
+              <div *ngIf="notices">
+
+                <div class = "table-responsive">
+                  <table class="table table-bordered">
+                    <tr>
+                      <td>#SL</td>
+                      <td class="cp" (click)="getDataSort('heading')">Heading 
+                        <i [class]="sortedIcon.heading.icon"></i> </td>
+
+                      <td class="cp" (click)="getDataSort('startDate')"> Start Date 
+                        <i [class]="sortedIcon.startDate.icon"></i></td>
+
+                      <td class="cp" (click)="getDataSort('endDate')">End Date 
+                        <i [class]="sortedIcon.endDate.icon"></i></td>
+
+                      <td style="width: 120px; overflow: hidden;">
+                        Notice Country 
+                      </td>
+
+                      <td style="width: 120px; overflow: hidden;">
+                        File
+                      </td>
+
+                      <td style="width: 120px; overflow: hidden;">
+                        Is Approved 
+                      </td>
+
+                      <td>Action</td>`
+                    </tr>
+      
+                    <tr *ngFor="let object of notices | paginate: { totalItems: notices.count, itemsPerPage: 6, currentPage: p }; let i = index;">
+                      <td> {{ i + 1 }} </td>
+                      <td> <a routerLink="/notice/{{ object._id }}"> {{ object.heading }}</a></td>
+
+                      <td> {{ object.startDate  | date:'MMM d, y, EE' }}</td>
+
+                      <td> {{ object.endDate  | date:'MMM d, y, EE' }} </td>
+                      <td style="width: 160px; overflow: hidden;">
+                         {{ object.country  }} 
+                       </td>
+                      <td><a href="{{ object.upload_file }}" target="_blank">{{object.file_name}}</a></td>
+
+                      <td> {{ object.is_approved }} </td>
+
+                      <td> 
+                          <span placement="top" ngbTooltip="Delete" (click)="removeNotice(object._id)"> <i class="trash alternate outline icon"></i> </span>
+                      </td>
+
+                      
+                    </tr>
+                  </table>
+                </div>   <!-- End Table resposive -->
+
+              <div class="d-flex justify-content-end mt-2">
+                  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+              </div>   <!-- End d-flex -->
+                
+              
+              </div> <!-- End ngIf -->
+          </div>    <!-- End card body -->
+          </div> <!-- End card  -->
+      </div> <!-- End card  -->
+    </div>  <!-- End col -->
+</div> <!-- End row -->

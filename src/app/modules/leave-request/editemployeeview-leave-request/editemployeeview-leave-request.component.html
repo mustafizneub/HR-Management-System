@@ -1,0 +1,111 @@
+<div class="container">
+    <form [formGroup]="adleaveForm" (ngSubmit)="submitleaveForm()" novalidate>
+        <div class="row">
+            <div class="col-lg-8 col-md-12 col-sm-12">
+
+
+                <input type="hidden" class="form-control" formControlName="name" readonly>
+                <input type="hidden" class="form-control" formControlName="id" readonly>
+
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <label>Leave Type</label>
+
+                                <select formControlName="type">
+                                    <option>Sick</option>
+                                    <option>Emergency</option>
+                                    <option>LWOP</option>
+                                    <option>Crasual</option>
+                                    <option>Medical</option>
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="row">
+
+                    <div class="col-md-6 mb-3">
+                        <label>Leave From</label>
+                        <input type="text" class="form-control" formControlName="from">
+
+                    </div>
+
+
+                    <div class="col-md-6 mb-3">
+                        <label>Leave To</label>
+                        <input type="text" class="form-control" formControlName="to">
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <label>Days</label>
+                        <input type="text" class="form-control" formControlName="days">
+
+                    </div>
+                </div>
+
+
+                <div class="row">
+
+                    <div class="col-md-12 mb-3">
+                        <label>When</label>
+                        <select formControlName="when">
+                            <option>Half Day Leave</option>
+                            <option>Full Day Leave</option>
+                            <option>First Half Day Leave</option>
+                            <option>Second Half Day Leave</option>
+                        </select>
+
+                    </div>
+                </div>
+                <div class="row">
+
+                    <div class="col-md-12 mb-3">
+                        <label>Leave Reason/Purpose</label>
+                        <textarea class="form-control" formControlName="description"></textarea>
+
+                    </div>
+                </div>
+                <br />
+                <div class="row" [hidden]="vfile==='No File'">
+
+                    <div class="col-md-12 mb-3">
+                        <label class="pointfile"><b (click)="file(vfile)">Submitted
+                                File Click To
+                                Open</b></label>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <div class="form-group">
+                            <label>Upload File</label>
+                            <input type="file" class="form-control-file" id="file" (change)="uploadFile($event)">
+                        </div>
+                    </div>
+                </div>
+
+
+                <input type="hidden" class="form-control" formControlName="status">
+                <input type="hidden" class="form-control" formControlName="rejectstatus">
+
+                <input type="hidden" class="form-control" formControlName="lid">
+                <input type="hidden" class="form-control" formControlName="mail">
+                <input type="hidden" class="form-control" formControlName="when">
+
+
+                <div class="form-group text-right">
+                    <button type="submit" class="btn btn-success">Submit
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </form>
+</div>

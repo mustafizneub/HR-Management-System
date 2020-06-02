@@ -1,3 +1,4 @@
+<!-- ALLOWANCE -->
 <ng-container *ngIf="message === 'addingAllowance'">
   <h5 class="text-center bg bg-success p-3 text-white" style="width: 300px; margin:auto">Adding Allowance</h5>
 </ng-container>
@@ -5,15 +6,61 @@
   <h5 class="text-center bg bg-success p-3 text-white" style="width: 300px; margin:auto">Allowance Added</h5>
 </ng-container>
 
+<!-- MAIL -->
 <ng-container *ngIf="message === 'mailOnAir'">
   <h5 class="text-center bg primary-bg-color p-3 text-white" style="width: 300px; margin:auto">Mail On Air...</h5>
 </ng-container>
 <ng-container *ngIf="message === 'mailSent'">
   <h5 class="text-center bg secondary-bg-color p-3 text-white" style="width: 300px; margin:auto">Mail Sent</h5>
 </ng-container>
+
+<!-- SALARY -->
 <ng-container *ngIf="message==='salaryUpdating'">
   <h5 class="text-center bg secondary-bg-color p-3 text-white" style="width: 300px; margin:auto">Updating Salary</h5>
 </ng-container>
 <ng-container *ngIf="message==='salaryUpdated'">
   <h5 class="text-center bg primary-bg-color p-3 text-white" style="width: 300px; margin:auto">Salary Updated</h5>
+</ng-container>
+
+<!-- DEPARTMENT -->
+<ng-container *ngIf="message==='addingDepartment'">
+  <h5 class="text-center bg primary-bg-color p-3 text-white" style="width: 300px; margin:auto">Adding Department</h5>
+</ng-container>
+<ng-container *ngIf="message==='deparmentAdded'">
+  <h5 class="text-center bg primary-bg-color p-3 text-white" style="width: 300px; margin:auto">Department Added</h5>
+</ng-container>
+<ng-container *ngIf="message==='updatingDepartment'">
+  <h5 class="text-center bg primary-bg-color p-3 text-white" style="width: 300px; margin:auto">Updating Department</h5>
+</ng-container>
+<ng-container *ngIf="message==='departmentUpdated'">
+  <h5 class="text-center bg primary-bg-color p-3 text-white" style="width: 300px; margin:auto">Department Updated</h5>
+</ng-container>
+
+
+<!-- DESIGNATION -->
+<ng-container *ngIf="message==='addingDesignation'">
+  <h5 class="text-center bg primary-bg-color p-3 text-white" style="width: 300px; margin:auto">Adding Designation</h5>
+</ng-container>
+<ng-container *ngIf="message==='designationAdded'">
+  <h5 class="text-center bg primary-bg-color p-3 text-white" style="width: 300px; margin:auto">Designation Added</h5>
+</ng-container>
+<ng-container *ngIf="message==='updatingDesignation'">
+  <h5 class="text-center bg primary-bg-color p-3 text-white" style="width: 300px; margin:auto">Updating Designation</h5>
+</ng-container>
+<ng-container *ngIf="message==='designationUpdated'">
+  <h5 class="text-center bg primary-bg-color p-3 text-white" style="width: 300px; margin:auto">Designation Updated</h5>
+</ng-container>
+
+<!-- HOLIDAY -->
+<ng-container *ngIf="message==='addingHoliday'">
+  <h5 class="text-center bg primary-bg-color p-3 text-white" style="width: 300px; margin:auto">Adding Holiday</h5>
+</ng-container>
+<ng-container *ngIf="message==='holidayAdded'">
+  <h5 class="text-center bg primary-bg-color p-3 text-white" style="width: 300px; margin:auto">Holiday Added</h5>
+</ng-container>
+<ng-container *ngIf="message==='updatingHoliday'">
+  <h5 class="text-center bg primary-bg-color p-3 text-white" style="width: 300px; margin:auto">Updating Holiday</h5>
+</ng-container>
+<ng-container *ngIf="message==='holidayUpdated'">
+  <h5 class="text-center bg primary-bg-color p-3 text-white" style="width: 300px; margin:auto">Holiday Updated</h5>
 </ng-container>

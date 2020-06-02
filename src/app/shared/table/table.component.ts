@@ -18,8 +18,7 @@ export class TableComponent implements OnInit {
   editOne(id) {
     this.edit.emit(id);
   }
-  deleteOne(id) {
-    console.log(id)
-    this.delete.emit(id)
+  deleteOne(ids) {
+    this.delete.emit(ids)
   }
 }

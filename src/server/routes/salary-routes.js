@@ -3,7 +3,8 @@ const {
   addSalary,
   getSalary,
   addAllowance,
-  getAllowance
+  getAllowance,
+  updateAllowance
 } = require('../controllers/SalaryController')
 
 
@@ -19,4 +20,5 @@ router
 router.route('/payroll/employee-salary/salary-history/:id')
   .post(addAllowance)
   .get(getAllowance)
+  .patch(updateAllowance)
 module.exports = router;

@@ -1,0 +1,23 @@
+<form class="ui form" [formGroup]="editholiday" *ngIf="holiday">
+  <app-success [message]="updatingHoliday ? 'updatingHoliday':''"></app-success>
+  <app-success [message]="holidayUpdated ? 'holidayUpdated':''"></app-success>
+  <div class="field">
+    <label>Title</label>
+    <input type="text" name="name" placeholder="Title" formControlName="title">
+  </div>
+  <div class="field">
+    <label>Starts In</label>
+    <input type="date" name="name" formControlName="startsIn">
+  </div>
+  <div class="field">
+    <label>Ends In</label>
+    <input type="date" name="name" formControlName="endsIn">
+  </div>
+  <div class="ui grid">
+    <div class="four column row">
+      <div class="right floated column right aligned">
+        <button class="ui button " (click)="editHoliday()">Update</button>
+      </div>
+    </div>
+  </div>
+</form>

@@ -1,272 +1,284 @@
-<ng-container *ngIf="!menubar">
-    <ng-container *ngIf="user">
-        <div class="ui segment" style=" overflow: hidden;">
-            <div class="item" style="width: 15%; float: left;">
-                <img src="../assets/Yotech Web color.png" alt="" style="width: 70%;">
-            </div>
+<ng-container>
 
-            <div class="" style="width: 85%; overflow: hidden;">
-                <div class="item" style="float: right;">
-                    <div class="ui primary button">User</div>
-                </div>
-            </div>
+  <ng-container>
+    <div class="ui segment" style=" overflow: hidden; position: relative; z-index: 16; margin-top: 0">
+      <div class="item" style="width: 15%; float: left;">
+        <a routerLink="/">
+          <img src="../assets/images/yotech.png" alt="">
+        </a>
+      </div>
+    </div>
+  </ng-container>
 
-        </div>
-    </ng-container>
-
-    <ng-container *ngIf="!menubar">
-        <div class="ui grid">
-            <div class="three wide column sidebar" *ngIf="user">
-                <div class="ui vertical fluid tabular menu">
-                    <a class="item" routerLink="/dashboard" routerLinkActive="active">
-                        <i class="fas fa-tachometer-alt"></i>Dashboard
-                    </a>
-                </div>
-                <div class="ui vertical fluid tabular menu" *ngIf="role === 'admin' || role === 'superadmin'">
-                    <a class="item" routerLink="/clients" routerLinkActive="active">
-                        <i class="fa fa-user-plus"></i>Clients
-                    </a>
-                </div>
-                <div class="ui vertical fluid tabular menu" *ngIf="role === 'admin' || role === 'superadmin'">
-                    <a class="item" routerLink="/projects" routerLinkActive="active">
-                        <i class="fa fa-tasks"></i>Projects
-                    </a>
-                </div>
-                <!--
-                <div class="ui vertical fluid tabular menu" *ngIf="role === 'admin' || role === 'superadmin'">
-                    <a class="item" routerLink="/leads" routerLinkActive="active">
-                        <i class="fas fa-thumbtack"></i>leads
-                    </a>
-                </div>
-                 -->
-                <div class="ui vertical fluid tabular menu" *ngIf="role === 'admin' || role === 'superadmin'">
-                    <a class="item" routerLink="/task" routerLinkActive="active">
-                        <i class="fas fa-thumbtack"></i>Tasks
-                    </a>
-                </div>
-                <!--
-                <div class="ui vertical fluid tabular menu" *ngIf="role === 'admin' || role === 'superadmin'">
-                    <a class="item" routerLink="/users" routerLinkActive="active">
-                        <i class="ffa fa-check-square"></i>User Role
-                    </a>
-                </div>
-                -->
-
-                <!-- ########################### -->
-
-                <div class="ui accordion styled" style="margin-bottom: 20px;">
-                    <div class="title" [ngClass]="{active: openCareer}" (click)="dropdown(5)">
-                        <i class="dropdown icon"></i>
-                        Career
-                    </div>
-
-                    <div class="content animating visible" [ngClass]="{transition: openCareer}">
-                        <div class="ui vertical fluid tabular menu">
-
-                            <a class="item" routerLink="/career" routerLinkActive="active">
-                                Job Openings
-                            </a>
-                            <a class="item" routerLink="/my-job" routerLinkActive="active">
-                                My Job
-                            </a>
-
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="ui accordion styled" style="margin-bottom: 20px;"
-                    *ngIf="role === 'admin' || role === 'superadmin'">
-                    <div class="title" [ngClass]="{active: openEmployees}" (click)="dropdown(0)">
-                        <i class="dropdown icon"></i>
-                        Employees
-                    </div>
-
-                    <div class="content animating visible" [ngClass]="{transition: openEmployees}">
-                        <div class="ui vertical fluid tabular menu">
-                            <a class="item" routerLink="/employees/all-employee" routerLinkActive="active">
-                                All Employees
-                            </a>
-                            <a class="item" routerLink="/employees/departments" routerLinkActive="active">
-                                Departments
-                            </a>
-                            <a class="item" routerLink="/employees/designations" routerLinkActive="active">
-                                Designations
-                            </a>
-
-                            <div class="ui accordion styled" style="margin-bottom: 20px;">
-                                <div class="title" [ngClass]="{active: leaveRequest}" (click)="dropdown(3)">
-                                    <i class="dropdown icon"></i>
-                                    Leave Request
-
-                                </div>
-                                <div class="content animating visible" [ngClass]="{transition: leaveRequest}">
-                                    <div class="ui vertical fluid tabular menu" *ngIf="role === 'admin'">
-                                        <a class="item" routerLink="/adminleaverequest" routerLinkActive="active">
-                                            Add Leave Request
-                                        </a>
-                                    </div>
-                                    <div class="ui vertical fluid tabular menu" *ngIf="role === 'admin'">
-                                        <a class="item" routerLink="/admin-leaverequest" routerLinkActive="active">
-                                            My Leave Request
-                                        </a>
-                                    </div>
-                                    <div class="ui vertical fluid tabular menu">
-                                        <a class="item" routerLink="/adminview-leaverequest" routerLinkActive="active">
-                                            View Employees Leave Request
-                                        </a>
-                                    </div>
-                                    <div class="ui vertical fluid tabular menu">
-                                        <a class="item" routerLink="/assign-leaverequest" routerLinkActive="active">
-                                            Assign Leave Request
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <a class="item" routerLink="/employees/holidays" routerLinkActive="active">
-                                Holidays
-                            </a>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="ui accordion styled" style="margin-bottom: 20px;" *ngIf="role === 'superadmin'">
-                    <div class="title" [ngClass]="{active: adminctrl}" (click)="dropdown(4)">
-                        <i class="dropdown icon"></i>
-                        Admin
-
-                    </div>
-                    <div class="content animating visible" [ngClass]="{transition: adminctrl}">
-                        <div class="ui vertical fluid tabular menu">
-                            <a class="item" routerLink="/createadmin" routerLinkActive="active">
-                                Admin
-                            </a>
-                        </div>
-                        <div class="ui vertical fluid tabular menu">
-                            <a class="item" routerLink="/viewadminleave" routerLinkActive="active">
-                                View Admin Leave Request
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="ui accordion styled" style="margin-bottom: 20px;"
-                    *ngIf="role === 'admin' || role === 'superadmin'">
-                    <div class="title" [ngClass]="{active: openJob}" (click)="dropdown(1)">
-                        <i class="dropdown icon"></i>
-                        Jobs
-                    </div>
-
-                    <div class="content animating visible" [ngClass]="{transition: openJob}">
-                        <div class="ui vertical fluid tabular menu">
-
-                            <a class="item" routerLink="/admin-view" routerLinkActive="active">
-                                Managed Jobs
-                            </a>
-                            <a class="item" routerLink="/admin-add" routerLinkActive="active">
-                                Add Job
-                            </a>
-                            <a class="item" routerLink="/expired-post" routerLinkActive="active">
-                                Expired Job
-                            </a>
-
-                        </div>
-
-                    </div>
-                </div>
-                <div class="ui accordion styled" style="margin-bottom: 20px;"
-                    *ngIf="role === 'admin' || role === 'superadmin'">
-                    <div class="title" [ngClass]="{active: openPayroll}" (click)="dropdown(2)">
-                        <i class="dropdown icon"></i>
-                        Payroll
-                    </div>
-
-                    <div class="content animating visible" [ngClass]="{transition: openPayroll}">
-                        <div class="ui vertical fluid tabular menu">
-                            <a class="item" routerLink="/payroll/employee-salary" routerLinkActive="active">
-                                Employee Salary
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- <div class="ui vertical fluid tabular menu" *ngIf="role === 'admin' || role === 'superadmin'">
-                    <a class="item" routerLink="/all-jobs" routerLinkActive="active">
-                        Demo Job Apply
-                    </a>
-                </div> -->
-                <div class="ui accordion styled" style="margin-bottom: 20px;" *ngIf="role === 'employee'">
-                    <div class="title" [ngClass]="{active: leaveRequest}" (click)="dropdown(3)">
-                        <i class="dropdown icon"></i>
-                        Leave Request
-
-                    </div>
-                    <div class="content animating visible" [ngClass]="{transition: leaveRequest}">
-                        <div class="ui vertical fluid tabular menu">
-                            <a class="item" routerLink="/add-leave-requests" routerLinkActive="active">
-                                Add Leave Request
-                            </a>
-                        </div>
-                        <div class="ui vertical fluid tabular menu">
-                            <a class="item" routerLink="/view-leave-requests" routerLinkActive="active">
-                                My Leave Request
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Finance App -->
-                <div class="ui accordion styled" style="margin-bottom: 20px;"
-                    *ngIf="role === 'admin' || role === 'superadmin'">
-                    <div class="title" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed"
-                        aria-controls="collapseExample">
-                        <i class="dropdown icon"></i>
-                        Financial Section
-                    </div>
-
-                    <div id="collapseExample" [ngbCollapse]="isCollapsed">
-                        <div class="ui vertical fluid tabular menu">
-
-                            <a class="item" routerLink="home" routerLinkActive="active">
-                                Summary
-                            </a>
-                            <a class="item" routerLink="deposit" routerLinkActive="active">
-                                Dseposit
-                            </a>
-                            <a class="item" routerLink="expense" routerLinkActive="active">
-                                Expense
-                            </a>
-                        </div> <!-- End div -->
-                    </div> <!-- End div collapseExample -->
-                </div>
-                <!-- End div ui accordion -->
-
-                <div class="ui vertical fluid tabular menu">
-                    <a class="nav-link" (click)="authService.SignOut()" routerLinkActive="active">
-                        <i class="fas fa-sign-out-alt"></i>Log out
-                    </a>
-                </div>
-            </div>
-
-
-            <div class="thirteen wide stretched column" style="background-color: #eff3f6; min-height: 100vh;">
-                <div class="ui" style="padding: 20px;">
-                    <router-outlet></router-outlet>
-                </div>
-            </div>
-        </div>
-    </ng-container>
-
-    <!-- ######################## -->
-    <ng-container *ngIf="menubar">
-        <div style="background-color: #EFF3F6; height: 3000px; margin-top: -20px !important;">
-            <div class="ui container">
-                <router-outlet></router-outlet>
-            </div>
-        </div>
-    </ng-container>
 </ng-container>
 
 
-<ng-container *ngIf="menubar">
-    <router-outlet></router-outlet>
+<ng-container>
+  <div class="ui grid">
+    <div class="three wide column sidebar">
+      <div class="ui vertical fluid tabular menu">
+        <a class="item" routerLink="/" routerLinkActive="active">
+          <i class="fas fa-tachometer-alt"></i>Dashboard
+        </a>
+      </div>
+      <div class="ui vertical fluid">
+        <a class="item" routerLink="notice/board" routerLinkActive="active">
+          <span><i class="tasks icon"></i></span>Notice Board
+        </a>
+      </div>
+
+      <div class="ui vertical fluid">
+        <a class="item" routerLink="notice/list" routerLinkActive="active">
+          <span><i class="tasks icon"></i></span>Notice List
+        </a>
+      </div>
+
+      <div class="ui vertical fluid">
+        <a class="item" routerLink="report/employee" routerLinkActive="active">
+          <span><i class="tasks icon"></i></span> Leave Report
+        </a>
+      </div>
+
+      <div class="ui vertical fluid tabular menu">
+        <a class="item" routerLink="/clients" routerLinkActive="active">
+          Clients
+        </a>
+      </div>
+      <div class="ui vertical fluid tabular menu">
+        <a class="item" routerLink="/projects" routerLinkActive="active">
+          Projects
+        </a>
+      </div>
+
+      <div class="ui accordion styled" style="margin-bottom: 20px;">
+        <div class="title" [ngClass]="{active: attendance}" (click)="dropdown(8)">
+          <i class="dropdown icon"></i>
+          Attendance
+        </div>
+        <div class="content animating visible" [ngClass]="{transition: attendance}">
+          <div class="ui vertical fluid tabular menu">
+            <a class="item" routerLink="/attendance-records" routerLinkActive="active">
+              My Records
+            </a>
+          </div>
+          <div class="ui vertical fluid tabular menu">
+            <a class="item" routerLink="/check-home" routerLinkActive="active">
+              Check In/Out
+            </a>
+          </div>
+          <div class="ui vertical fluid tabular menu">
+            <a class="item" routerLink="/employee-records" routerLinkActive="active">
+              Employees Record
+            </a>
+          </div>
+          <div class="ui vertical fluid tabular menu">
+            <a class="item" routerLink="/exporttocsv" routerLinkActive="active">
+              Export To CSV </a>
+          </div>
+          <div class="ui vertical fluid tabular menu">
+            <a class="item" routerLink="/dataupload" routerLinkActive="active">
+              Data Upload </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="ui accordion styled" style="margin-bottom: 20px;">
+        <div class="title" [ngClass]="{active: openEmployees}" (click)="dropdown(0)">
+          <i class="dropdown icon"></i>
+          Employees
+        </div>
+        <div class="content animating visible" [ngClass]="{transition: openEmployees}">
+          <div class="ui vertical fluid tabular menu">
+            <a class="item" routerLink="/employees/all-employee" routerLinkActive="active">
+              All Employees
+            </a>
+            <a class="item" routerLink="/employees/departments" routerLinkActive="active">
+              Departments
+            </a>
+            <a class="item" routerLink="/employees/designations" routerLinkActive="active">
+              Designations
+            </a>
+            <a class="item" routerLink="/employees/holidays" routerLinkActive="active">
+              Holidays
+            </a>
+          </div>
+        </div>
+      </div> <!-- End ui accordion styled  -->
+      <div class="ui accordion styled" style="margin-bottom: 20px;">
+        <div class="title" [ngClass]="{active: leaveRequest}" (click)="dropdown(3)">
+          <i class="dropdown icon"></i>
+          Employee Side Leave Request
+        </div>
+        <div class="content animating visible" [ngClass]="{transition: leaveRequest}">
+          <div class="ui vertical fluid tabular menu">
+            <a class="item" routerLink="/add-leave-requests" routerLinkActive="active">
+              Add Leave Request
+            </a>
+          </div>
+          <div class="ui vertical fluid tabular menu">
+            <a class="item" routerLink="/view-leave-requests" routerLinkActive="active">
+              My Leave Request
+            </a>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="ui accordion styled" style="margin-bottom: 20px;">
+        <div class="title" [ngClass]="{active: openPayroll}" (click)="dropdown(2)">
+          <i class="dropdown icon"></i>
+          Payroll
+        </div>
+        <div class="content animating visible" [ngClass]="{transition: openPayroll}">
+          <div class="ui vertical fluid tabular menu">
+            <a class="item" routerLink="/payroll/employee-salary" routerLinkActive="active">
+              Employee Salary
+            </a>
+          </div>
+        </div>
+      </div> <!-- End ui accordion styled  -->
+
+      <div class="ui accordion styled" style="margin-bottom: 20px;">
+        <div class="title" [ngClass]="{active: adminleave}" (click)="dropdown(6)">
+          <i class="dropdown icon"></i>
+          Admin Side Leave Request
+        </div>
+        <div class="content animating visible" [ngClass]="{transition: adminleave}">
+          <div class="ui vertical fluid tabular menu">
+            <a class="item" routerLink="/adminleaverequest" routerLinkActive="active">
+              Add Leave Request
+            </a>
+          </div>
+          <div class="ui vertical fluid tabular menu">
+            <a class="item" routerLink="/admin-leaverequest" routerLinkActive="active">
+              My Leave Request
+            </a>
+          </div>
+          <div class="ui vertical fluid tabular menu">
+            <a class="item" routerLink="/adminview-leaverequest" routerLinkActive="active">
+              View Employees Leave Request
+            </a>
+          </div>
+          <div class="ui vertical fluid tabular menu">
+            <a class="item" routerLink="/assign-leaverequest" routerLinkActive="active">
+              Assign Leave Request
+            </a>
+          </div>
+        </div>
+      </div>
+        <div class="ui accordion styled" style="margin-bottom: 20px;">
+          <div class="title" [ngClass]="{active: openCareer}" (click)="dropdown(5)">
+            <i class="dropdown icon"></i>
+            Career
+          </div>
+
+          <div class="content animating visible" [ngClass]="{transition: openCareer}">
+            <div class="ui vertical fluid tabular menu">
+
+              <a class="item" routerLink="/user/career" routerLinkActive="active">
+                Job Openings
+              </a>
+              <a class="item" routerLink="/user/my-job" routerLinkActive="active">
+                My Job
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="ui accordion styled" style="margin-bottom: 20px;">
+          <div class="title" [ngClass]="{active: openJob}" (click)="dropdown(1)">
+            <i class="dropdown icon"></i>
+            Jobs
+          </div>
+
+          <div class="content animating visible" [ngClass]="{transition: openJob}">
+            <div class="ui vertical fluid tabular menu">
+              <a class="item" routerLink="/admin/admin-view" routerLinkActive="active">
+                Managed Jobs
+              </a>
+              <a class="item" routerLink="/admin/admin-add" routerLinkActive="active">
+                Add Job
+              </a>
+              <a class="item" routerLink="/admin/expired-post" routerLinkActive="active">
+                Expired Job
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- </div> -->
+        <div class="ui accordion styled" style="margin-bottom: 20px;">
+          <div class="title" [ngClass]="{active: openPolicy}" (click)="dropdown(7)">
+            <i class="dropdown icon"></i>
+            Policy
+          </div>
+          <div class="content animating visible" [ngClass]="{transition: openPolicy}">
+            <div class="ui vertical fluid tabular menu">
+              <a class="item" routerLink="/policy/manage-policy" routerLinkActive="active">
+                View Policy
+              </a>
+              <a class="item" routerLink="/policy/add-policy" routerLinkActive="active">
+                Add Policy
+              </a>
+            </div>
+          </div>
+      </div> <!-- End Sidebar -->
+
+      <div class="ui accordion styled" style="margin-bottom: 20px;">
+        <div (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample"
+          style="cursor: pointer;">
+          <i class="dropdown icon"></i> Finance Section
+        </div> <!-- End Title Div -->
+
+        <div id="collapseExample" [ngbCollapse]="isCollapsed">
+
+          <div class="ui vertical fluid tabular menu">
+
+            <li>
+              <a class="item" routerLink="finance/summary" routerLinkActive="active">
+                <span><i class="clone outline icon"></i></span> Summary
+              </a>
+            </li>
+
+
+            <li>
+              <a class="item" routerLink="finance/deposit" routerLinkActive="active">
+                <span><i class="dollar sign icon"></i></span> Dseposit
+              </a>
+            </li>
+
+            <li>
+              <a class="item" routerLink="finance/expense" routerLinkActive="active">
+                <span><i class="money bill alternate outline icon"></i></span> Expense
+              </a>
+            </li>
+            <li>
+              <a class="item" routerLink="finance/graph" routerLinkActive="active">
+                <span><i class="chart bar outline icon"></i></span>
+
+                Report
+              </a>
+            </li>
+            <li>
+
+              <a class="item">
+                <span class="cp" style="color: #666">
+                  <i class="calculator icon"></i> Calculator</span>
+              </a>
+            </li>
+
+
+          </div> <!-- End div -->
+        </div> <!-- End div collapseExample -->
+
+      </div> <!-- End ui accordion styled  -->
+
+
+
+    </div> <!-- End Sidebar -->
+    <div class="ui thirteen wide stretched column" style="background-color: #eff3f6; min-height: 100vh;">
+      <div class="ui" style="padding: 20px;">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div> <!--  End ui grid -->
 </ng-container>

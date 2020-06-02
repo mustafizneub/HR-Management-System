@@ -1,0 +1,291 @@
+$extraBold : 800;
+$bold: 700;
+$black: 900;
+$regular: 400;
+$light: 300;
+$black: 900;
+$bg-purple: #652783;
+$color-orange: #f08c2e;
+$bg-white: #F9F9F9;
+$color-white: #f9f9fb;
+$color-black: #282828;
+$color-black2: #777777;
+
+
+$large : (min-width: 992px),
+(max-width: 1200px);
+$medium :(min-width: 768px),
+(max-width: 991px);
+$small : only screen,
+(max-width: 767px);
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+@font-face {
+  font-family: 'Raleway';
+  src: url("../fonts/Raleway/Raleway-Black.ttf");
+  font-weight: $black;
+}
+
+@font-face {
+  font-family: 'Raleway';
+  src: url("../fonts/Raleway/Raleway-Bold.ttf");
+  font-weight: $bold;
+}
+
+@font-face {
+  font-family: 'Raleway';
+  src: url("../fonts/Raleway/Raleway-ExtraBold.ttf");
+  font-weight: $extraBold;
+}
+
+@font-face {
+  font-family: 'Raleway';
+  src: url("../fonts/Raleway/Raleway-Light.ttf");
+  font-weight: $light;
+}
+
+@font-face {
+  font-family: 'Raleway';
+  src: url("../fonts/Raleway/Raleway-Regular.ttf");
+  font-weight: $regular;
+}
+
+.border-none {
+  border-top: none !important;
+  border-right: none !important;
+  border-left: none !important;
+  border-bottom: none !important;
+}
+
+.m-0 {
+  margin: 0;
+}
+
+.h-100 {
+  height: 100%;
+}
+
+body {
+  font-family: 'Raleway', 'sans-serif';
+  position: relative;
+}
+
+%titleCommon {
+  font-size: 18px;
+  text-transform: uppercase;
+  font-weight: $bold;
+  letter-spacing: 2px;
+  padding-bottom: 5px;
+}
+
+.cv {
+  .background-color {
+    position: relative;
+
+    &::before {
+      position: absolute;
+      content: '';
+      top: 0;
+      left: 0;
+      width: 33.33%;
+      height: 100%;
+      z-index: -2;
+      background-color: $bg-purple;
+    }
+
+    &::after {
+      position: absolute;
+      content: '';
+      top: 0;
+      left: 33.33%;
+      width: 66.66%;
+      background-color: $bg-white;
+      height: 100%;
+      z-index: -2;
+    }
+
+    .header {
+      position: relative;
+      margin: 0;
+      padding: 45px 0;
+
+      &::before {
+        position: absolute;
+        content: '';
+        width: 100%;
+        height: 50%;
+        z-index: -1;
+        background-color: #fff;
+        top: 50%;
+        left: 0;
+        transform: translate(0, -50%);
+      }
+    }
+  }
+
+  .cv-left {
+    padding: 0 45px;
+
+    .cv-head {
+      display: table;
+      margin: auto;
+
+      img {
+        object-fit: cover;
+        display: block;
+        border-radius: 50%;
+        width: 160px;
+        height: 160px;
+        border: 2px solid #c8c8c8;
+      }
+    }
+
+    &-content {
+      .cv-left-title {
+        color: $color-white;
+        border-bottom: 2px solid #dadae2;
+
+        h4 {
+          @extend %titleCommon;
+        }
+      }
+
+      .cv-content {
+        margin: 20px 0;
+
+        .professional {
+          font-weight: 600;
+          text-transform: uppercase;
+          color: $color-white;
+          letter-spacing: 2px;
+        }
+
+        ul {
+          li {
+            a {
+              color: $color-white;
+              font-size: 13px;
+
+              i {
+                padding-right: 10px;
+                text-align: center;
+              }
+            }
+
+            p {
+              color: $color-white;
+              font-size: 13px;
+            }
+          }
+        }
+
+        .education {
+          li {
+            padding-bottom: 20px;
+
+            p {
+              color: $color-white;
+              font-size: 13px;
+            }
+
+            .degree {
+              font-weight: 600;
+              text-transform: uppercase;
+              letter-spacing: 1px;
+            }
+          }
+        }
+
+        .skill {
+          padding-left: 15px;
+
+          li {
+            list-style: disc;
+            color: $color-white;
+          }
+        }
+      }
+    }
+  }
+
+  .cv-right {
+    padding-left: 20px;
+
+    .cv-head {
+      height: 160px;
+      display: flex;
+      flex-flow: column;
+      justify-content: center;
+
+      .name {
+        text-transform: uppercase;
+        font-weight: 600;
+        margin: 0;
+        font-size: 26px;
+        line-height: 40px;
+        color: $color-orange
+      }
+
+      .profession {
+        letter-spacing: 2px;
+        color: $bg-purple;
+        padding-top: 10px;
+        font-size: 14px;
+        text-transform: uppercase;
+      }
+    }
+
+    &-content {
+      .cv-title {
+        color: $color-orange;
+        border-bottom: 2px solid #dadae2;
+
+        h4 {
+          @extend %titleCommon;
+
+        }
+      }
+
+      .cv-content {
+        p {
+          font-size: 13px;
+          color: $color-black2;
+        }
+
+        .job-title {
+          margin-bottom: 10px;
+
+          .title {
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: $bg-purple;
+          }
+        }
+
+        .job-award {
+          margin-bottom: 30px;
+
+          ul {
+            padding-left: 16px;
+
+            li {
+              list-style: disc;
+              color: $color-black2;
+            }
+          }
+        }
+      }
+    }
+  }
+}

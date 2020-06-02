@@ -1,0 +1,91 @@
+@media (max-width: 1200px) {
+  .cv-left {
+    padding: 0 30px !important;
+  }
+}
+
+@media (max-width: 991px) {
+  .cv-left {
+    padding: 0 10px !important;
+  }
+  .header {
+    padding: 30px 0 !important;
+  }
+  .cv-content ul li a i {
+    padding-right: 5px !important;
+  }
+  .cv-head {
+    height: 130px !important;
+  }
+  .cv-head img {
+    width: 130px !important;
+    height: 130px !important;
+  }
+}
+
+/* Mobile Layout: 320px. 300px */
+@media (max-width: 599px) {
+  body p {
+    word-break: break-all !important;
+  }
+  body h4 {
+    word-break: break-all;
+  }
+  body span {
+    word-break: break-all;
+  }
+  body a {
+    word-break: break-all;
+  }
+  .cv-left {
+    padding: 0 0 !important;
+  }
+  .header {
+    padding: 15px 0 !important;
+  }
+  .cv-content ul li a i {
+    padding-right: 5px !important;
+  }
+  .cv-head {
+    height: 90px !important;
+  }
+  .cv-head img {
+    width: 90px !important;
+    height: 90px !important;
+  }
+  .cv-head .name {
+    font-size: 14px !important;
+    line-height: 1 !important;
+  }
+  .cv-head .profession {
+    padding-top: 0 !important;
+    font-size: 12px !important;
+    letter-spacing: 0 !important;
+  }
+  .cv-left-title h4 {
+    font-size: 13px !important;
+  }
+  .cv-title h4 {
+    font-size: 13px !important;
+  }
+  .cv-content ul li a {
+    font-size: 11px !important;
+  }
+  .education li p {
+    font-size: 11px !important;
+  }
+  .professional {
+    font-size: 11px;
+    word-break: break-all;
+  }
+  .cv-content p {
+    font-size: 11px !important;
+  }
+  .title {
+    font-size: 11px !important;
+  }
+  .cv-des p {
+    font-size: 11px !important;
+  }
+}
+/*# sourceMappingURL=responsive.css.map */

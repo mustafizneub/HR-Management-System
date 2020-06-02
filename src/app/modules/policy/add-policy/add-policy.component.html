@@ -1,0 +1,60 @@
+<!-- page content -->
+<section class="page-content">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-12">
+                <form #form="ngForm">
+                    <div class="form-row" ngModelGroup="policyDetails">
+                        <div class="col-12">
+                            <label>Policy Title</label>
+                            <input type="text" name="title" class="form-control mb-2" placeholder="Policy Title"
+                                ngModel>
+                        </div>
+                        <div class="col-6">
+                            <label>Location</label><br>
+                            <select type="text" name="location" class="ui fluid dropdown" ngModel>
+                                <option value="">Select a Location</option>
+                                <option value="Bangladesh">Bangladesh</option>
+                                <option value="America">America</option>
+                                <option value="England">England</option>
+                                <option value="India">India</option>
+                            </select>
+                        </div>
+                        <div class="col-6">
+                            <label>Expiry Date</label>
+                            <input type="date" name="expiryDate" ngModel class="form-control mb-2"
+                                placeholder="Expiry Date">
+                        </div>
+                        <div class="col-12 mb-2">
+                            <label>Policy Description</label>
+                            <angular-editor [placeholder]="'Description...'" [(ngModel)]="description"
+                                name="description" [config]="editorConfig" ngModel></angular-editor>
+                        </div>
+                        <div class="custom-file col-6 mb-2">
+                            <input type="file" class="custom-file-input" id="customFile" (change)="upload($event)">
+                            <label class="custom-file-label" for="customFile">Choose file</label>
+                        </div>
+                        <div class="col-12">
+                            <button class="btn yoBtn" (click)="onSubmit(form)">Publish</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- page content ends -->
+
+<!-- footer -->
+<footer>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <p>Copyright &copy; 2020 <span class="orange">Yo</span><span class="purple">Tech</span> Limited All
+                    rights
+                    reserved</p>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer ends -->

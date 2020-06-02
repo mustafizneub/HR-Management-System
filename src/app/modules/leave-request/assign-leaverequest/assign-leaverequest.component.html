@@ -1,0 +1,44 @@
+<div class="container">
+    <div>
+        <h4>Assign Leave</h4>
+    </div>
+    <div style="height: 100px;"></div>
+    <div class="row">
+        <div class="col">
+            <input type="text" class="form-control" placeholder="Search By Employee Name And ID"
+                [(ngModel)]="searchassignleave">
+        </div>
+    </div>
+    <table class="ui celled table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Employee ID</th>
+                <th>Email</th>
+                <th>Join Date</th>
+                <th>Designation</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr
+                *ngFor="let employee of data |filter:searchassignleave | paginate: { itemsPerPage: 5, currentPage: p };">
+                <td> {{ employee.basic.firstname }}</td>
+                <td> {{ employee.basic.employee_id }}</td>
+                <td> {{ employee.contact.email }}</td>
+                <td> {{ employee.basic.joining_date }}</td>
+                <td> {{ employee.basic.designation }}</td>
+                <td>
+                    <div class="ui buttons">
+                        <button class="btn btn-secondary btn-sm" (click)="add(employee.basic.employee_id)"
+                            *ngIf="!employee.medicalleave">Add</button>
+                        <button class="btn btn-primary btn-sm" (click)="view(employee.basic.employee_id)">View</button>
+                        <button class="btn btn-warning btn-sm" (click)="edit(employee.basic.employee_id)">Edit</button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+    </table>
+</div>

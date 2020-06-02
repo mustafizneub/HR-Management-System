@@ -1,0 +1,51 @@
+$large : (min-width: 992px) and (max-width: 1200px);
+$medium :(min-width: 768px) and (max-width: 991px);
+$small : only screen and (max-width: 767px);
+
+/* XL Device :992px. 980px */
+@media #{$large} {}
+
+/* MD Device :768px. 750px */
+@media #{$medium} {
+  .line {
+    &::before {
+      display: none !important;
+    }
+  }
+
+  header {
+    .address {
+      margin-top: 10px;
+      text-align: left;
+
+      .contact {
+
+        p {
+          justify-content: flex-start;
+        }
+      }
+    }
+  }
+
+  .cv {
+    &-box {
+      display: flex;
+    }
+
+    .line {
+      flex-flow: column;
+    }
+  }
+}
+
+
+/* Mobile Layout: 320px. 300px */
+@media #{$small} {
+  .cv {
+    &-box {
+      display: flex;
+      flex-flow: column;
+    }
+
+  }
+}

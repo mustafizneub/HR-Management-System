@@ -1,0 +1,41 @@
+/* XL Device :992px. 980px */
+/* MD Device :768px. 750px */
+@media (max-width: 991px) {
+  .line::before {
+    display: none !important;
+  }
+  header .address {
+    margin-top: 10px;
+    text-align: left;
+  }
+  header .address .contact p {
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+  }
+  .cv-box {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .cv .line {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: column;
+            flex-flow: column;
+  }
+}
+
+/* Mobile Layout: 320px. 300px */
+@media (max-width: 767px) {
+  .cv-box {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: column;
+            flex-flow: column;
+  }
+}
+/*# sourceMappingURL=responsive.css.map */

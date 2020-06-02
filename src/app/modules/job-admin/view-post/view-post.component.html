@@ -1,0 +1,54 @@
+<!--Start Placeholder-->
+<div class="ui three column stackable grid" *ngIf="!information">
+  <div class="column" *ngFor="let x of [1,2,3,4,5,6]">
+    <div class="ui raised segment">
+      <div class="ui placeholder">
+        <div class="image header">
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+        <div class="paragraph">
+          <div class="medium line"></div>
+          <div class="short line"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--End Placeholder-->
+
+<!-- page content -->
+<section class="page-content">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-lg-4 col-sm-6" *ngFor="let info of filteredArray">
+        <div class="yoCard">
+          <div class="yoCard-header">
+            <h4 class="job-title">{{ info['data']['job']['title'] }}</h4>
+          </div>
+          <div class="yoCard-job-des">
+            <p class="job-position">{{ info['data']['job']['jobPosition'] }}</p>
+            <p class="job-location">{{ info['data']['job']['jobLocation'] }}</p>
+          </div>
+          <div class="yoCard-btn">
+            <a [routerLink]="['/admin/admin-jobview', info['id']]" class="yoBtn">View Post</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- page content ends -->
+
+<!-- footer -->
+<footer>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12">
+        <p>Copyright &copy; 2020 <span class="orange">Yo</span><span class="purple">Tech</span> Limited All rights
+          reserved</p>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- footer ends -->

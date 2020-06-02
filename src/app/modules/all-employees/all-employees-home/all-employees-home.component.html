@@ -1,0 +1,66 @@
+<!-- SHOW IF DELETED -->
+<div id="content">
+  <ng-container *ngIf="deleted">
+    <div class="alert alert-danger" role="alert">
+      Employee status updated to Inactive!
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="!router">
+    <app-header>
+      <ng-container class="header-title">
+        <div class="left floated column">
+          <h1 class="page-title">Employee</h1>
+        </div>
+      </ng-container>
+      <ng-container class="header-button">
+        <button class="ui button" routerLink="./add-employee">
+          <i class="user plus icon"></i>Add Employee
+        </button>
+      </ng-container>
+    </app-header>
+    <div class="" style="margin: 30px 0;"></div>
+
+
+    <!-- FILTER COMPONENT -->
+    <app-filter-one (filter)="filterData($event)">
+      <ng-container class="type-one">
+        <div class=" field">
+          <input type="text" placeholder="Employee Id" id="employee_id">
+        </div>
+      </ng-container>
+      <ng-container class="type-two">
+        <div class=" field">
+          <input type="text" placeholder="User Name" id="username">
+        </div>
+      </ng-container>
+      <ng-container class="type-three">
+        <ng-container class="type-three">
+          <option value="">All Designation</option>
+          <option [value]="des.desname" *ngFor="let des of designations">{{des.desname}}</option>
+        </ng-container>
+      </ng-container>
+
+
+    </app-filter-one>
+    <div class="" style="margin: 30px 0;"></div>
+
+
+
+    <!-- TABLE COMPONENT -->
+    <app-table [data]="data" [t_headers]="t_headers" (delete)="deleteEmployee($event)">
+    </app-table>
+    <div class="" style="margin: 30px 0;"></div>
+
+  </ng-container>
+
+  <!-- CONFIRMATION MODAL -->
+  <confirmation-modal *ngIf="confirmationModal" (confirm)="confirmation($event)" (close)="toggleConfirmationModal()">
+    <p class="alert alert-danger" id="message">This action will make emplyoyee status inactive</p>
+  </confirmation-modal>
+
+  <!-- CHILD ROUTES -->
+  <ng-container *ngIf="router">
+    <router-outlet></router-outlet>
+  </ng-container>
+</div>

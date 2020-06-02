@@ -1,0 +1,48 @@
+<div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+          <div class="card-body">
+              
+              <div *ngIf="object">
+
+                <table class="table table-bordered">
+                    <tr>
+                        <td>Amount</td>
+                        <td> {{ object[routeParameter.category].amount }} TK </td>
+                    </tr>
+    
+    
+                    <tr>
+                        <td>Bill Category</td>
+                        <td> {{ object[routeParameter.category].category }}  </td>
+                    </tr>
+
+
+                    <tr>
+                        <td>Bill Subcategory</td>
+                        <td> {{ object[routeParameter.category].subcategory }}  </td>
+                    </tr>
+    
+    
+                    <tr>
+                        <td>Date</td>
+                        <td> {{ object[routeParameter.category].userdate | date:'MMM d, y, EE' }} </td>
+                    </tr>
+    
+    
+                    <tr>
+                        <td>Creatime Time</td>
+                        <td> {{ object[routeParameter.category].datetime | date:'MMM d, y, EE, h:mm:ss a' }} </td>
+                    </tr>
+    
+                    <tr>
+                        <td>Note</td>
+                        <td> {{ object[routeParameter.category].note }}  </td>
+                    </tr>
+                  </table>
+              </div> <!-- End  -->
+          </div>    <!-- End card body -->
+          
+      </div> <!-- End card  -->
+    </div>  <!-- End col -->
+  </div>  <!-- End row -->

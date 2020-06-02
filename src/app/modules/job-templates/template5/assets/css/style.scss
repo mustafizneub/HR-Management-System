@@ -1,0 +1,322 @@
+$extraBold : 800;
+$bold: 700;
+$black: 900;
+$regular: 400;
+$light: 300;
+$black: 900;
+$colorBlack: #424242;
+$colorWhite: #fff;
+$border: #999;
+$colorPurple: #652783;
+$colorOrange: #f08c2e;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+@font-face {
+  font-family: 'Raleway';
+  src: url("../fonts/Raleway/Raleway-Black.ttf");
+  font-weight: $black;
+}
+
+@font-face {
+  font-family: 'Raleway';
+  src: url("../fonts/Raleway/Raleway-Bold.ttf");
+  font-weight: $bold;
+}
+
+@font-face {
+  font-family: 'Raleway';
+  src: url("../fonts/Raleway/Raleway-ExtraBold.ttf");
+  font-weight: $extraBold;
+}
+
+@font-face {
+  font-family: 'Raleway';
+  src: url("../fonts/Raleway/Raleway-Light.ttf");
+  font-weight: $light;
+}
+
+@font-face {
+  font-family: 'Raleway';
+  src: url("../fonts/Raleway/Raleway-Regular.ttf");
+  font-weight: $regular;
+}
+
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(../iconfont/MaterialIcons-Regular.eot);
+  /* For IE6-8 */
+  src: local('Material Icons'),
+    local('MaterialIcons-Regular'),
+    url(../iconfont/MaterialIcons-Regular.woff2) format('woff2'),
+    url(../iconfont/MaterialIcons-Regular.woff) format('woff'),
+    url(../iconfont/MaterialIcons-Regular.ttf) format('truetype');
+}
+
+m-0 {
+  margin: 0;
+}
+
+.border-none {
+  border-top: none !important;
+  border-right: none !important;
+  border-left: none !important;
+  border-bottom: none !important;
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}
+
+body {
+  font-family: 'Raleway', 'sans-serif';
+  position: relative;
+  color: $colorBlack;
+  background-color: #f5f5f5;
+}
+
+
+
+.divider {
+  background-color: #e5e5e5;
+  height: 3px;
+}
+
+.line {
+  position: relative;
+
+  &::before {
+    position: absolute;
+    content: '';
+    background-color: #999;
+    width: 1px;
+    height: 100%;
+    left: -3%;
+    top: 0;
+  }
+}
+
+.top {
+  padding: 40px 0 0 0;
+
+  .cv-top {
+    .name {
+      font-size: 40px;
+      text-transform: uppercase;
+      font-weight: $extraBold;
+      letter-spacing: 5px;
+      margin: 0;
+      margin-bottom: 10px;
+      color: $colorPurple;
+    }
+
+    .position {
+      text-transform: uppercase;
+      font-weight: $regular;
+      font-size: 20px;
+      letter-spacing: 5px;
+      color: $colorOrange;
+    }
+  }
+
+  .address {
+    text-align: right;
+
+    .area {
+      p {
+        color: $colorPurple;
+        font-weight: $bold;
+      }
+    }
+
+    .contact {
+      p {
+        justify-content: flex-end;
+        margin: 0;
+        display: flex;
+        font-size: 16px;
+        align-items: center;
+
+        span {
+          font-size: 14px;
+          color: $colorOrange;
+        }
+
+        i {
+          color: $colorOrange;
+          padding-right: 5px;
+          font-size: 16px;
+        }
+      }
+    }
+  }
+}
+
+section {
+  .cv {
+
+    &-box {
+
+      padding-top: 40px;
+
+      &-single {
+        padding: 0 10px 0 0;
+
+        .cv-title {
+          border-bottom: 1px solid $colorPurple;
+
+          h5 {
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: $bold;
+            font-size: 18px;
+            color: $colorOrange;
+
+            span {
+              font-weight: $light;
+              letter-spacing: 2px;
+              color: $colorPurple;
+            }
+          }
+        }
+
+        .cv-left-content {
+          ul {
+            padding-top: 20px;
+
+            li {
+              margin-left: 15px;
+              padding-bottom: 10px;
+
+              p {
+                font-size: 14px;
+                font-weight: $bold;
+                color: $colorPurple;
+              }
+
+              .degree-name {
+                color: $colorPurple;
+                font-weight: $bold;
+              }
+
+              .uni-name {
+                font-weight: $regular;
+              }
+
+              .pass-year {
+                color: $colorOrange;
+                font-weight: $light;
+              }
+            }
+          }
+
+          .social {
+            padding-top: 20px;
+
+            p {
+              padding-bottom: 10px;
+
+              i {
+                background-color: $colorOrange;
+                color: $colorWhite;
+                width: 20px;
+                height: 20px;
+                line-height: 20px;
+                text-align: center;
+                font-size: 14px;
+              }
+
+              span {
+                color: $colorPurple;
+                font-size: 14px;
+              }
+            }
+          }
+        }
+
+        .cv-right-content {
+          padding: 20px 0;
+
+          p {
+            color: $colorPurple;
+            font-size: 14px;
+          }
+
+          .work-experience {
+            padding-bottom: 20px;
+
+            p {
+              font-size: 14px;
+              color: $colorPurple;
+            }
+
+            .job-title {
+              font-weight: $bold;
+            }
+
+            .company-name {
+              font-weight: $regular;
+
+              span {
+                font-size: 12px;
+                font-weight: $light;
+              }
+            }
+
+            .job-des {
+              color: $colorOrange;
+              font-size: 13px;
+              padding: 10px 0;
+            }
+
+            .job-award {
+              padding: 0 0 0 25px;
+
+              li {
+                list-style-type: disc;
+
+                p {
+                  font-size: 13px;
+                  color: $colorOrange;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

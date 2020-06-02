@@ -1,0 +1,17 @@
+{
+  "name": "hrms",
+  "description": "",
+  "main": "",
+  "authors": [
+    "miah-mihrab <miah.mihrab@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

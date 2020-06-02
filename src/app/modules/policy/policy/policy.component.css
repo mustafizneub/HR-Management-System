@@ -1,0 +1,12 @@
+a{
+    font-size: large;
+    color: orange;
+}
+a:hover{
+    font-size: x-large;
+    transition: 0.1s;
+}
+.back{
+    font-size: large;
+    color: orange; 
+}

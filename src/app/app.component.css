@@ -1,26 +1,12 @@
-.item {
-  color: rgba(0, 0, 0, 0.6);
-  font-weight: 500
+.sidebar {
+  background-color: #ffffff;
+  height: 600px;
+  overflow-y: scroll;
 }
 
-.ui.segment {
-  width: 100vw;
-  padding: 1em 2em;
+ul,ol,li {
+  list-style: none;
 }
-
-.ui.tabular.menu {
-    font-size: 1.3em;
-  font-family: 'Mono';
-  }
-
-#app-sidebar {
-  transition: 0.5s all ease-in-out;
-}
-
-#app-main-content {
-  transition-delay: 0.5s;
-}
-
-.sidebar-collapse {
-  margin-left: -18%;
+.ui i{
+   font-size: 20px;
 }

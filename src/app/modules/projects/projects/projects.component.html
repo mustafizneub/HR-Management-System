@@ -1,0 +1,164 @@
+<div class="row">
+  <div class="col">
+    <h4 style="font-family: 'Amiri', serif;">Projects</h4>
+  </div>
+  <div class="col">
+  </div>
+  <div class="col">
+    <div style="text-align: right;">
+      <button type="button" class="btn btn-primary" style="color:white;font-family: 'Merriweather', serif;
+          " routerLink="/add-project"><i class="fas fa-plus"></i>Add Project</button>
+    </div>
+  </div>
+</div>
+<br />
+<div class="row">
+  <div class="col">
+    <div class="row">
+      <div class="col">
+        <input type="text" class="form-control" placeholder="Search By Project Name" [(ngModel)]="searchproject">
+      </div>
+    </div>
+  </div>
+</div>
+<br />
+<div class="row">
+  <table class="table">
+    <tr>
+      <th>
+        Project Name
+      </th>
+      <th>
+        Company Nmae
+      </th>
+      <th>
+        Start Date
+      </th>
+      <th>
+        End Date
+      </th>
+      <th>
+        Project Leader
+      </th>
+      <th>
+        Action
+      </th>
+    </tr>
+    <tr *ngFor="let project of projectList |filter:searchproject | paginate: { itemsPerPage: 5, currentPage: p };">
+      <td>
+        <a [routerLink]="['/project', project.id]">{{ project.data.name}}</a>
+      </td>
+      <td>
+        {{ project.data.client}}
+      </td>
+      <td>
+        {{ project.data.startdate}}
+      </td>
+      <td>
+        {{ project.data.enddate}}
+      </td>
+      <td>
+        {{ project.data.leader}}
+      </td>
+      <td>
+        <button class="btn btn-info" data-toggle="modal" data-target="#exampleModalCenter"
+          (click)="assignEmployee(project.id)">Assign Employee</button>
+        &nbsp;&nbsp;
+        <button class="btn btn-success" (click)="editProject(project.data.name)">
+          Edit</button>
+        &nbsp;&nbsp;
+        <button class="btn btn-danger" data-toggle="modal" data-target="#exampleModal"
+         (click)="delProject(project.id)">
+          Delete</button>
+      </td>
+    </tr>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </table>
+</div>
+<!--Modal for assign employee-->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-8 mb-3">
+              <select class="ui fluid search dropdown" id="search-select" name="id" [(ngModel)]="employeeId"
+                (change)="getValue($event)">
+                <option value="">Select Employee</option>
+                <option *ngFor="let item of employees" [value]="item.id">
+                  {{item.data.basic.firstname+' '+item.data.basic.lastname}}(<span>{{item.data.basic.designation}}</span>)
+                </option>
+              </select>
+            </div>
+            <div class="col-4 mb-3">
+              <button class="ui primary button" id="save" (click)="save()" disabled>Assign</button>
+            </div>
+            <div class="col-12 alert" [ngClass]="{
+              'alert-success':notification1,
+              'alert-danger':notification2
+            }"
+             *ngIf="notification1">{{notification1}}</div>
+          </div>
+          <div class="col-12">
+            <p class="ui inverted segment">Current assigned employees :</p>
+            <table class="ui celled table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Designation</th>
+                  <th>ID</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody *ngIf="information">
+                <tr *ngFor="let info of information['assigned_employees']; let i=index">
+                  <td data-label="Name">{{info.employee}}</td>
+                  <td data-label="Designation">{{info.designation}}</td>
+                  <td data-label="Id">{{info.empId}}</td>
+                  <td>
+                    <button class="ui red button" (click)="remove(i,info.empId)">Remove</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Done</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--End Modal for assign employee-->
+<!--project delete Modal-->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Delete project</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete your project?</p>
+        <p>Remember your project will be deleted permanantly </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="delete()">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--End Project delete modal-->

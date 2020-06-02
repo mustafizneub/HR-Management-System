@@ -1,5 +1,4 @@
-import { Component, OnInit, NgZone } from '@angular/core';
-import { AuthService } from "./services/auth.service";
+import { Component } from '@angular/core';
 import { Router } from "@angular/router";
 import { Location } from '@angular/common'
 import { AngularFireAuth } from '@angular/fire/auth';
@@ -9,45 +8,45 @@ import { AngularFireAuth } from '@angular/fire/auth';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent{
   user: any;
+  public isCollapsed = true;
 
   //#######################
   openEmployees: boolean = false;
   openJob: boolean = false;
+  openPolicy: boolean = false;
   openPayroll: boolean = false;
   openCareer: boolean = false;
+  adminleave: boolean = false;
   menubar: boolean;
   leaveRequest: boolean = false;
   adminctrl: boolean = false;
+  attendance: boolean = false;
   role;
 
-  public isCollapsed = true;
+
   constructor(
-    public authService: AuthService,
     public router: Router,
-    public ngZone: NgZone,
     private location: Location,
-    private route: Router,
-    private aFAuth: AngularFireAuth
+    private route: Router
   ) {
 
     //################################
-    this.route.events.subscribe(() => {
-      if (this.location.path().includes('/templates') || this.location.path().includes('/sign-in')) {
-        this.menubar = true;
-      }
-      else {
-        this.menubar = false;
-      }
-    })
+    // this.route.events.subscribe(() => {
+    //   if (this.location.path().includes('/templates')) {
+    //     this.menubar = true;
+    //   }
+    //   else {
+    //     this.menubar = false;
+    //   }
+    // })
   }
 
   ngOnInit() {
-    this.user = this.authService.isLoggedIn;
-    this.role = localStorage.getItem("role")
+   }
 
-  }
+
 
   // ###############
   dropdown(pos) {
@@ -68,6 +67,16 @@ export class AppComponent {
     }
     else if (pos === 5) {
       this.openCareer = !this.openCareer
+    }
+    else if (pos === 6) {
+      this.adminleave = !this.adminleave
+    }
+    else if (pos === 7) {
+      this.openPolicy = !this.openPolicy
+      // this.attendance = !this.attendance
+    }
+    else if (pos === 8) {
+      this.attendance = !this.attendance
     }
   }
 

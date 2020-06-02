@@ -1,0 +1,127 @@
+<div class="container-fluid">
+    <div style="height:20px;"></div>
+    <h5>Personal Details</h5>
+    <form [formGroup]="myinfoForm" (ngSubmit)="submitMyInfoData()" novalidate>
+        <div class="row">
+
+            <div class="col">
+                <label>First Name</label>
+                <input type="text" class="form-control" formControlName="fn" />
+                <p *ngIf="fn.touched && fn.invalid " class="error">
+                    <sup>*</sup> Please Enter Your First Name</p>
+
+                <p *ngIf="fn.errors?.minlength" class="error">
+                    <sup>*</sup> Name Should Not Be Less Then 3 Words
+                </p>
+
+            </div>
+
+            <div class="col">
+                <label>Last Name</label>
+                <input type="text" class="form-control" formControlName="ln" />
+                <p *ngIf="ln.touched && ln.invalid" class="error">
+                    <sup>*</sup> Please Enter Your Last Name
+                </p>
+                <p *ngIf="ln.errors?.minlength" class="error">
+                    Name Should Not Be Less Then 3 Words
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label>Employee Id</label>
+                <input type="text" class="form-control" formControlName="empid" readonly />
+                <p *ngIf="empid.touched && empid.invalid" class="error">
+                    <sup>*</sup>Please Enter Employee ID
+                </p>
+            </div>
+            <div class="col">
+                <label>Other Id</label>
+                <input type="text" class="form-control" formControlName="oid" />
+                <p *ngIf="oid.touched && oid.invalid" class="error">
+                    <sup>*</sup>Please Enter Other Id
+                </p>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label>Date Of Birth</label>
+                <input type="text" class="form-control" formControlName="dob" />
+                <p *ngIf="dob.touched && dob.invalid" class="error">
+                    Please Enter Date Of Birth
+                </p>
+            </div>
+            <div class="col">
+                <label>Marital Status</label>
+                <select formControlName="ms" class="form-control">
+                    <option>Married</option>
+                    <option>Single</option>
+                    <option>Other</option>
+                </select>
+                <p *ngIf="ms.touched && ms.invalid" class="error">
+                    <sup>*</sup> Please Enter Marital Status
+                </p>
+
+            </div>
+            <div class="col">
+                <label>Gender</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="gend" value="male" checked>
+                    <label class="form-check-label">
+                        Male
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="gend" value="female">
+                    <label class="form-check-label">
+                        Female
+                    </label>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label>Nationality</label>
+                <input type="text" class="form-control" formControlName="nation" />
+            </div>
+            <div class="col">
+                <label>Driver's License Number</label>
+                <input type="text" class="form-control" formControlName="lnum" />
+            </div>
+            <div class="col">
+                <label>License Expiry Date
+                </label>
+                <input type="text" class="form-control" formControlName="led" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+
+                <label>Blood Group
+                </label>
+                <input type="text" class="form-control" formControlName="bgrp" />
+            </div>
+            <div class="col">
+                <label>Hobbies
+                </label>
+                <input type="text" class="form-control" formControlName="hobbies" />
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <br />
+                <label>Food</label>
+                <br />
+                <input type="radio" name="food" formControlName="food">Non-Veg
+                <input type="radio" name="food" formControlName="food">Veg
+            </div>
+        </div>
+        <br /><br />
+
+        <button type="submit" class="btn btn-success" [disabled]="!myinfoForm.valid">Save</button>
+    </form>
+</div>

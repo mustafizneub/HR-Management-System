@@ -1,0 +1,27 @@
+@import "../assets/css/all.min.css";
+@import "../assets/css/bootstrap.min.css";
+@import "../assets/css/responsive.css";
+@import "../assets/css/style.css";
+
+.add-remove {
+  background-color: transparent;
+  border-style: none;
+}
+
+.add-remove.add i {
+  color: #f08c2e;
+  font-size: 16px;
+  transition: .3s;
+}
+
+.add-remove.add i:hover {
+  transform: scale(1.1);
+}
+
+.add-remove.remove i {
+  color: #f08c2e;
+}
+
+.m-30 {
+  margin-top: 30px;
+}

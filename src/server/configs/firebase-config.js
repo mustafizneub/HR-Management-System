@@ -1,4 +1,12 @@
 const firebase = require("firebase");
+const admin = require('firebase-admin')
+
+var serviceAccount = require("../db-hrmanage-firebase-adminsdk-8k3md-f9dabac146.json");
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: "https://node-testing-33ac9.firebaseio.com"
+});
 
 var firebaseConfig = {
   apiKey: "AIzaSyAN6oghZCvNQWKd-ulLdXLN4rRLg8KjVr4",

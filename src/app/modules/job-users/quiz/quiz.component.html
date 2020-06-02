@@ -1,0 +1,12 @@
+<div class="container">
+  <form class="form" #form="ngForm">
+    <div *ngFor="let question of questions; let i=index" ngModelGroup="answers">
+      <h2>{{i+1}}. {{ question.data.question }}</h2>
+      <div class="inputGroup" *ngFor="let option of question.data.option">
+        <input id="radio{{'q'+i+option}}" type="radio" [name]="question.data.name" [value]="option" ngModel required />
+        <label for="radio{{'q'+i+option}}">{{ option }}</label>
+      </div>
+    </div>
+    <button (click)='onSubmit(form)' class="btn btn-primary" [disabled]="form.invalid">Submit</button><br>
+  </form>
+</div>

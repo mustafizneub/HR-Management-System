@@ -114,15 +114,19 @@
               <div class="ui buttons">
 
                 <button class="ui blue button" [routerLink]="['./edit', dt.fStoreId]"
-                  (click)="editOne(dt.employee_id)">Edit</button>
+                  [queryParams]="{emp: dt.employee_id}" (click)="editOne(dt.employee_id)">Edit</button>
+
+
                 <div class="or"></div>
-                <button class="ui red button" (click)="deleteOne(dt.fStoreId)">Delete</button>
+                <button class="ui red button"
+                  (click)="deleteOne({fsId:dt.fStoreId, empId: dt.employee_id})">Delete</button>
               </div>
             </div>
 
             <ng-container *ngIf="(i===0) && th.key!='dname'; else normal">
               <h4 class="ui image header">
-                <img [src]="dt.avatar" class="ui massive rounded image" [routerLink]="['./profile', dt.fStoreId]">
+                <img [src]="dt.avatar" class="ui massive rounded image" [routerLink]="['./profile', dt.fStoreId]"
+                  [queryParams]="{emp: dt.employee_id}">
                 <div class="content">
                   {{dt.username}}
                   <div class="sub header">{{dt.designation}}
@@ -137,20 +141,22 @@
 
 
       <!-- SALARY -->
+
       <ng-container *ngIf="data[0].staff_salary">
+
         <tr *ngFor="let dt of data">
           <td *ngFor="let th of t_headers">
             <div *ngIf="th.key==='actions'">
-              <button class="ui secondary-bg-color text-white button"
-                [routerLink]="['./salary-history', dt.fStoreId]">View</button>
+              <button class="ui secondary-bg-color text-white button" [routerLink]="['./salary-history', dt.fStoreId]"
+                [queryParams]="{emp: dt.staff_id}">View</button>
             </div>
 
             <ng-container *ngIf="th.key!='actions'">
               {{th.key==='salary' ? (dt[th.key] | currency): dt[th.key]}}
             </ng-container>
-
           </td>
         </tr>
+
       </ng-container>
 
     </ng-container>

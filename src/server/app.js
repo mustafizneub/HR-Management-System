@@ -9,8 +9,10 @@ const pdfFonts = require('../../bower_components/pdfmake/build/vfs_fonts')
 
 const cors = require('cors')
 
-const salaryRoute = require('./routes/salary-routes');
 require('./configs/firebase-config');
+
+const salaryRoute = require('./routes/salary-routes');
+const employeeRoute = require('./routes/employee-route');
 
 app.use(logger("dev"));
 
@@ -22,11 +24,15 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 app.use(express.json());
 
+app.use('/', salaryRoute);
+app.use('/', employeeRoute);
+
 app.get('/sendmail', (req, res) => {
   res.send({
     message: "Server Running"
   })
 })
+
 app.post('/sendmail', async (req, res) => {
   console.log('Sending email....');
 
@@ -62,6 +68,5 @@ app.post('/sendmail', async (req, res) => {
 
 
 
-app.use('/', salaryRoute);
 
 module.exports = app;

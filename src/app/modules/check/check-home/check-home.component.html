@@ -1,0 +1,47 @@
+<div class="card">
+    <div class="card-body" style="background-color: #f2f2f2;">
+        <b>Check In</b>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body" style="background-color: #f2f2f2;">
+        <form [formGroup]="checkForm" (ngSubmit)="submitCheckIn()" novalidate>
+            <div class="row">
+                <div class="col">
+                    <label style="color: red;">Date *</label>
+                    <input type="date" formControlName="indate" class="form-control" placeholder="Enter Check In Date"
+                        required>
+                    <p *ngIf="indate.touched && indate.invalid" class="error">
+                        <sup>*</sup>Please Enter Check In Date</p>
+                </div>
+                <div class="col">
+                    <label style="color: red;">Time (HH:MM) *</label>
+                    <input type="text" formControlName="intime" class="form-control" placeholder="Enter Check In Time"
+                        required>
+                    <p *ngIf="intime.touched && intime.invalid" class="error">
+                        <sup>*</sup>Please Enter Check In Time</p>
+
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col">
+                    <label>Note</label>
+                    <textarea formControlName="innote" class="form-control"></textarea>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col">
+                    <p style="color: red;">* Required field</p>
+                </div>
+                <div class="col"></div>
+                <div class="col" style="text-align: right;">
+                    <button type="submit" class="btn btn-success" [disabled]="!checkForm.valid">
+                        IN</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

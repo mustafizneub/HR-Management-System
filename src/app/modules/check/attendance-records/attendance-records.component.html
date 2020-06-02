@@ -1,0 +1,52 @@
+<div class="card">
+    <div class="card-body" style="background-color: #f2f2f2;">
+        <b>My Attendance Records
+        </b>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body" style="background-color: #f2f2f2;">
+        <input type="date" class="form-control" (input)="searchByDate($event.target.value)">
+    </div>
+</div>
+<div class="card" *ngIf="record">
+    <div class="card-body" style="background-color: #f2f2f2;">
+        <table class="table">
+            <tr>
+                <th>
+                    Check In
+                </th>
+                <th>
+                    Note
+                </th>
+                <th>
+                    Check Out
+                </th>
+                <th>
+                    Note
+                </th>
+                <th>
+                    Duration
+                </th>
+            </tr>
+            <tr>
+
+                <td>
+                    {{ this.inTime }}
+                </td>
+                <td>
+                    {{ this.inNote }}
+                </td>
+                <td>
+                    {{ this.outTime }}
+                </td>
+                <td>
+                    {{ this.outNote }}
+                </td>
+                <td>
+                    {{ this.duration }} hr
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,56 @@
+ <!--Start Placeholder-->
+ <div class="ui fluid placeholder"  *ngIf="!jobInfo">
+    <div class="paragraph">
+      <div class="header"></div>
+      <div class="header"></div>
+      <div class="header"></div>
+      <div class="line" *ngFor="let info of [1,2,3,4]"></div>
+    </div>
+  </div>
+  <!--End Placehoder-->
+<section class="page-content" *ngIf="information && jobInfo!=undefined">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-12">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Post Name</th>
+                            <th scope="col">Applied At</th>
+                            <th scope="col">View</th>
+                            <th scope="col">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let info of jobInfo; let i=index">
+                            <td>{{info.job.title}}</td>
+                            <td>{{information[i].data.dateTime}}</td>
+                            <td><a [routerLink]="['/user/job-description', information[i].data.jobId]">
+                                    <button class="btn yoBtn">View</button></a>
+                            </td>
+                            <td *ngIf="information[i].data.isSelected == 0">
+                                Pending...
+                            </td>
+                            <td *ngIf="information[i].data.isSelected == 1">Shorlisted</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- page content ends -->
+
+<!-- footer -->
+<footer>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <p>Copyright &copy; 2020 <span class="orange">Yo</span><span class="purple">Tech</span> Limited All
+                    rights
+                    reserved</p>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer ends -->

@@ -1,0 +1,60 @@
+<div class="row">
+    <div class="col-sm-12">
+      <div class="card" style="margin-bottom: 30px">
+          <div class="card-body">
+              <div class="" style="margin: 0;">
+                <div class="row">
+                  <div class="col-sm-12 col-12">
+                    <div class="d-flex">
+                        
+
+                    </div>   <!-- End d-flex -->
+                  </div> <!-- End Col 6 -->
+
+                </div>  <!-- End row -->
+
+              <div *ngIf="employees">
+
+                <div class = "table-responsive">
+                  <table class="table table-bordered">
+                    <tr>
+                      <td>#SL</td>
+                      <td class="cp">Avatar </td>
+                      <td class="cp">Employee Name </td>
+                      <td class="cp">Department </td>
+                      <td class="cp">Designation </td>
+                      <td class="cp">Phone Number </td>
+                    </tr>
+
+                   
+    
+  
+                    <tr *ngFor="let object of employees | paginate: { totalItems: employees.count, itemsPerPage: 10, currentPage: p }; let i = index;">
+                      <td> {{ i + 1 }} </td>
+                      <td> <a routerLink="/report/employee/{{ object.employee_id }}"> <img [src]="object.basic.avatar" style="width: 60px;"> </a> </td>
+                      <td> <a routerLink="/report/employee/{{ object.basic.employee_id }}"> {{ object.basic.firstname }}</a></td>
+
+                      <td> {{ object.basic.department }}</td>
+
+                      
+                      <td style="width: 160px; overflow: hidden;">
+                         {{ object.basic.designation  }} 
+                      </td>
+
+                      <td> {{ object.contact.phone_number }} </td>
+                      
+                    </tr>
+                  </table>
+                </div>   <!-- End Table resposive -->
+
+              <div class="d-flex justify-content-end mt-2">
+                  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+              </div>   <!-- End d-flex -->
+                
+              
+              </div> <!-- End ngIf -->
+          </div>    <!-- End card body -->
+          </div> <!-- End card  -->
+      </div> <!-- End card  -->
+    </div>  <!-- End col -->
+</div> <!-- End row -->

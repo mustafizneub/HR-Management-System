@@ -20,11 +20,19 @@
 <ng-container *ngIf="error==='deleteFail'">
   <div class="message" style="width: 30%; margin: auto;">
     <p class="text-white" style="text-align: center; padding: 20px 0;font-size: 1.2em; background-color: #BA2929;">
-      Something went
-      wrong while Deletingd</p>
+      Something went wrong while Deleting</p>
   </div>
 </ng-container>
 <ng-container *ngIf="error==='mailError'">
   <h5 class="text-center p-3 text-white" style="width: 300px; margin:auto; background-color: #BA2929;">Mail not sent.
     please try again later</h5>
+</ng-container>
+
+<ng-container *ngIf="error==='pdfGenerationFalse'">
+  <h5 class="text-center p-3 text-white" style="width: 300px; margin:auto; background-color: #BA2929;">No data to
+    generate PDF.</h5>
+</ng-container>
+<ng-container *ngIf="error==='printFalse'">
+  <h5 class="text-center p-3 text-white" style="width: 300px; margin:auto; background-color: #BA2929;">No data to Print
+  </h5>
 </ng-container>

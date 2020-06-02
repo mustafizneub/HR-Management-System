@@ -1,0 +1,21 @@
+thead{
+    background-color: #642782;
+    color: aliceblue;
+}
+tbody tr{
+    color:rgb(233, 143, 8);
+}
+.btn-primary{
+    background-color: #642782;
+    color: aliceblue;
+    border-radius: none;
+    border: none;
+}
+.btn-primary:hover{
+   background-color: #410b5c;
+   border: none;
+   transition: 0.5s;
+}
+#exampleModalCenter{
+    transition: 0.3s;
+}

@@ -1,0 +1,54 @@
+<ng-container *ngIf="!router">
+  <app-header (show)="toggleModal()">
+    <ng-container class="header-title">
+      <div class="left floated column">
+        <h1 class="page-title">Designations</h1>
+      </div>
+    </ng-container>
+    <ng-container class="header-button">
+      <button class="ui button">
+        <i class="user plus icon"></i>Add New Designation
+      </button>
+    </ng-container>
+  </app-header>
+  <div style="margin: 20px 0;"></div>
+
+
+
+  <!-- DATA TABLE -->
+  <app-table [data]='data' [t_headers]='t_headers' (delete)="deleteDesignation($event)">
+  </app-table>
+
+  <div style="margin: 20px 0"></div>
+
+  <!-- FORM MODAL -->
+  <app-form-modal *ngIf="modalOpen" (close)="toggleModal()">
+    <app-success [message]="addingDesignation? 'addingDesignation':''"></app-success>
+    <app-success [message]="designationAdded ? 'designationAdded': ''"></app-success>
+    <div class="ui header" id="modal-title">Add Designation</div>
+    <form class="ui form" [formGroup]="designation">
+      <label>Add Designation</label>
+      <div class="field">
+        <input type="text" name="name" placeholder="Designation" formControlName="desname">
+      </div>
+      <div class="field">
+        <!-- <input type="text" name="name" placeholder="Department Name" formControlName="dname"> -->
+        <select name="" id="" formControlName="dname">
+          <option value="">Select Department</option>
+          <option [value]="dep.dep_name" *ngFor="let dep of deps">{{dep.dep_name}}</option>
+        </select>
+      </div>
+      <div class="ui grid">
+        <div class="four column row">
+          <div class="right floated column right aligned">
+            <button class="ui button " (click)="addDesignation()">Submit</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </app-form-modal>
+</ng-container>
+<!-- CHILD ROUTE -->
+<ng-container *ngIf="router">
+  <router-outlet></router-outlet>
+</ng-container>
