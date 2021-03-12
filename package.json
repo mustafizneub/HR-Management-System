@@ -40,7 +40,7 @@
     "firebase-admin": "^8.12.1",
     "html2canvas": "^1.0.0-rc.5",
     "jquery": "^3.5.1",
-    "jspdf": "^1.5.3",
+    "jspdf": "^2.3.1",
     "lodash": "^4.17.15",
     "moment": "^2.25.1",
     "morgan": "^1.10.0",
